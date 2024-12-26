@@ -21,10 +21,6 @@ const Module = () => {
                     <option value="C-">C-</option>
                     <option value="D">D</option>
                     <option value="I">I</option>
-                    <option value="F">F</option>
-                    <option value="P">P</option>
-                    <option value="N">N</option>
-                    <option value="W">W</option>
                 </select>
             </div>
             <div className="w-5 md:w-8 text-center">
