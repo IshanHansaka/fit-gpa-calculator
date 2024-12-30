@@ -74,7 +74,7 @@ const Table = () => {
               <tr className="border-t hover:bg-blue-50 dark:hover:bg-blue-800">
                 <td className="px-6 py-2">I</td>
                 <td className="px-6 py-2">0.0</td>
-                <td className="px-6 py-2">0 - 34</td>
+                <td className="px-6 py-2">00 - 34</td>
               </tr>
             </tbody>
           </table>
