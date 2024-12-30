@@ -122,13 +122,13 @@ const Table = () => {
           </ul>
           <div className="mt-6 text-sm text-gray-600 dark:text-gray-400">
             <p>
-              For more information on the grading system, visit the official{' '}
+              For more information on the grading system, visit the {' '}
               <a
-                href="#"
+                href="https://uom.lk/itfac/ugs/performance-criteria"
                 target="_blank"
                 className="text-blue-600 hover:text-blue-800 font-semibold dark:text-blue-400 dark:hover:text-blue-500"
               >
-                SLIIT Support Site
+                FIT Performance Criteria
               </a>
               .
             </p>
