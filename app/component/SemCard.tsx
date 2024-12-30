@@ -1,7 +1,24 @@
-import Module from './Module';
+"use client";
+
+import { useState } from 'react';
 import Image from 'next/image';
+import Module from './Module';
+
+interface ModuleType {
+  id: number;
+}
 
 const SemCard = () => {
+  const [modules, setModules] = useState<ModuleType[]>([]);
+
+  const handleAddModule = () => {
+    setModules([...modules, { id: Date.now() }]);
+  };
+
+  const handleRemoveModule = (id: number) => {
+    setModules(modules.filter((module) => module.id !== id));
+  };
+
   return (
     <>
       <div className="flex flex-col md:flex-row items-center justify-between">
@@ -28,9 +45,17 @@ const SemCard = () => {
           <div className="w-12 md:w-20 text-center">Grade</div>
           <div className="w-5 md:w-8 text-center"></div>
         </div>
-        <Module />
+
+        {modules.map((module) => (
+          <Module
+            key={module.id}
+            id={module.id}
+            onRemove={handleRemoveModule}
+          />
+        ))}
+
         <div className="flex justify-center mt-4">
-          <button className="px-2 py-1 md:px-4 md:py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none flex items-center justify-center gap-2 text-sm md:text-base">
+          <button onClick={handleAddModule} className="px-2 py-1 md:px-4 md:py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none flex items-center justify-center gap-2 text-sm md:text-base">
             <Image src="/add.svg" width={20} height={20} alt="add icon" />
             <span className="hidden md:block">Add Module</span>
           </button>
