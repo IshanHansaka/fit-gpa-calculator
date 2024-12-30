@@ -27,7 +27,7 @@ const Semester = () => {
             <Image src="/add.svg" width={20} height={20} alt="add icon" />
             <span className="hidden md:block">Add Semester</span>
           </button>
-          <button className="px-3 py-2 md:px-6 md:py-3 bg-gray-500 text-white rounded-md hover:bg-gray-600 disabled:bg-gray-300 focus:outline-none flex items-center justify-center gap-2">
+          <button className="px-3 py-2 md:px-6 md:py-3 bg-red-500 text-white rounded-md hover:bg-red-600 disabled:bg-red-300 focus:outline-none flex items-center justify-center gap-2">
             <Image src="/add.svg" width={20} height={20} alt="add icon" />
             <span className="hidden md:block">Remove Semester</span>
           </button>
