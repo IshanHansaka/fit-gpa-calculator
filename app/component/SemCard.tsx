@@ -7,6 +7,7 @@ import Module from './Module';
 interface ModuleType {
   id: string;
   name: string;
+  gpa: string;
   credits: string;
   grade: string;
 }
@@ -22,7 +23,7 @@ const SemCard: React.FC<SemCardProps> = ({ id }) => {
     if (modules.length < 10) {
       setModules([
         ...modules,
-        { id: new Date().toISOString(), name: '', credits: '', grade: 'A+' },
+        { id: new Date().toISOString(), name: '', gpa: 'GPA', credits: '', grade: 'A+' },
       ]);
     }
   };
@@ -33,7 +34,7 @@ const SemCard: React.FC<SemCardProps> = ({ id }) => {
 
   const handleModuleChange = (
     moduleId: string,
-    field: 'name' | 'credits' | 'grade',
+    field: 'name' | 'gpa' | 'credits' | 'grade',
     value: string
   ) => {
     setModules(
@@ -51,7 +52,7 @@ const SemCard: React.FC<SemCardProps> = ({ id }) => {
     <div className="bg-blue-50 dark:bg-slate-900 p-4 rounded-lg shadow-lg mb-6">
       <div className="flex flex-col md:flex-row items-center justify-between">
         <div className="text-lg md:text-xl font-semibold mb-2 text-blue-700 dark:text-blue-300">
-          L{level} - S{semester}
+          Level {level} - Semester {semester}
         </div>
         <div className="flex flex-col md:flex-row items-center gap-0 md:gap-6">
           <div className="mb-2 text-xs md:text-sm text-gray-700 dark:text-gray-300">
@@ -69,6 +70,7 @@ const SemCard: React.FC<SemCardProps> = ({ id }) => {
       <div className="mt-6 bg-white dark:bg-gray-700 p-2 rounded-lg shadow-lg">
         <div className="flex flex-wrap items-center gap-2 md:gap-4 font-semibold border-b pb-2 mb-2 text-blue-600 dark:text-blue-400 text-xs md:text-sm">
           <div className="flex-1">Module Name</div>
+          <div className="w-12 md:w-20 text-center">GPA/NGPA</div>
           <div className="w-14 md:w-20 text-center">Credits</div>
           <div className="w-12 md:w-20 text-center">Grade</div>
           <div className="w-5 md:w-8 text-center"></div>
@@ -79,6 +81,7 @@ const SemCard: React.FC<SemCardProps> = ({ id }) => {
             key={module.id}
             id={module.id}
             name={module.name}
+            gpa={module.gpa}
             credits={module.credits}
             grade={module.grade}
             onRemove={handleRemoveModule}
