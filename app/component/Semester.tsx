@@ -4,21 +4,40 @@ import { useState } from 'react';
 import SemCard from './SemCard';
 import Image from 'next/image';
 
-interface SemType {
-  id: string;
+interface ModuleType {
+  name: string;
+  gpa: string;
+  credits: string;
+  grade: string;
+}
+
+interface SemesterType {
+  id: number;
+  level: number;
+  semester: number;
+  modules: ModuleType[];
 }
 
 const Semester = () => {
-  const [semesters, setSemesters] = useState<SemType[]>([]);
+  const [semesters, setSemesters] = useState<SemesterType[]>([]);
 
   const handleAddSemester = () => {
     if (semesters.length < 8) {
-      setSemesters([...semesters, { id: (semesters.length + 1).toString() }]);
+      const nextId = semesters.length + 1;
+      const level = Math.ceil(nextId / 2);
+      const semester = nextId % 2 === 1 ? 1 : 2;
+      setSemesters([...semesters, { id: nextId, level, semester, modules: [] }]);
     }
   };
 
   const handleRemoveSemester = () => {
     setSemesters(semesters.slice(0, -1));
+  };
+
+  const updateSemesterModules = (index: number, modules: ModuleType[]) => {
+    const updatedSemesters = [...semesters];
+    updatedSemesters[index].modules = modules;
+    setSemesters(updatedSemesters);
   };
 
   return (
@@ -33,8 +52,14 @@ const Semester = () => {
         don&apos;t forget to add the credits for each module.
       </div>
 
-      {semesters.map((semester) => (
-        <SemCard key={semester.id} id={semester.id} />
+      {semesters.map((semester, index) => (
+        <SemCard
+          key={index}
+          level={semester.level}
+          semester={semester.semester}
+          modules={semester.modules}
+          onModulesChange={(modules) => updateSemesterModules(index, modules)}
+        />
       ))}
 
       <div className="flex items-center justify-between w-full mt-4 flex-wrap">
