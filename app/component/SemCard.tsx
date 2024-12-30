@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 import Module from './Module';
 
@@ -79,7 +77,7 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
             className="px-2 py-1 md:px-4 md:py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none flex items-center justify-center gap-2 text-sm md:text-base"
           >
             <Image src="/add.svg" width={20} height={20} alt="add icon" />
-            <span className="hidden md:block">Add Module</span>
+            <span>Add Module</span>
           </button>
         </div>
       </div>
