@@ -1,4 +1,5 @@
-import Module from "./Module";
+import Module from './Module';
+import Image from 'next/image';
 
 const SemCard = () => {
   return (
@@ -22,17 +23,17 @@ const SemCard = () => {
       </div>
       <div className="mt-6 bg-white dark:bg-gray-700 p-2 rounded-lg shadow-lg">
         <div className="flex flex-wrap items-center gap-2 md:gap-4 font-semibold border-b pb-2 mb-2 text-blue-600 dark:text-blue-400 text-xs md:text-sm">
-            <div className="flex-1">Module Name</div>
-            <div className="w-14 md:w-20 text-center">Credits</div>
-            <div className="w-12 md:w-20 text-center">Grade</div>
-            <div className="w-5 md:w-8 text-center"></div>
+          <div className="flex-1">Module Name</div>
+          <div className="w-14 md:w-20 text-center">Credits</div>
+          <div className="w-12 md:w-20 text-center">Grade</div>
+          <div className="w-5 md:w-8 text-center"></div>
         </div>
         <Module />
         <div className="flex justify-center mt-4">
-            <button className="px-2 py-1 md:px-4 md:py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none flex items-center justify-center gap-2 text-sm md:text-base">
-                <svg height="1em" width="1em"></svg>
-                <span className="hidden md:block">Add Module</span>
-            </button>
+          <button className="px-2 py-1 md:px-4 md:py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none flex items-center justify-center gap-2 text-sm md:text-base">
+            <Image src="/add.svg" width={20} height={20} alt="add icon" />
+            <span className="hidden md:block">Add Module</span>
+          </button>
         </div>
       </div>
     </>
