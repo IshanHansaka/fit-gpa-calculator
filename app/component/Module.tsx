@@ -1,35 +1,34 @@
 import Image from 'next/image';
 
 interface ModuleType {
-  id: string;
   name: string;
   gpa: string;
   credits: string;
   grade: string;
-  onRemove: (id: string) => void;
-  onChange: (
-    id: string,
-    field: 'name' | 'gpa' | 'credits' | 'grade',
-    value: string
-  ) => void;
 }
 
-const Module: React.FC<ModuleType> = ({ id, name, gpa, credits, grade, onRemove, onChange,}) => {
+interface ModuleProps {
+  module: ModuleType;
+  onRemove: () => void;
+  onChange: (field: keyof ModuleType, value: string | number) => void;
+}
+
+const Module: React.FC<ModuleProps> = ({ module, onRemove, onChange }) => {
   return (
     <div className="flex flex-wrap md:flex-nowrap items-center gap-2 md:gap-4 mb-1 text-xs md:text-sm">
       <div className="flex-1">
         <input
           type="text"
-          value={name}
-          onChange={(e) => onChange(id, 'name', e.target.value)}
+          value={module.name}
+          onChange={(e) => onChange('name', e.target.value)}
           className="w-full p-1.5 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
           placeholder="Module Name"
         />
       </div>
       <div className="w-12 md:w-20 text-center">
         <select
-          value={gpa}
-          onChange={(e) => onChange(id, 'gpa', e.target.value)}
+          value={module.gpa}
+          onChange={(e) => onChange('gpa', e.target.value)}
           className="w-full p-1.5 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
         >
           <option value="GPA">GPA</option>
@@ -39,22 +38,22 @@ const Module: React.FC<ModuleType> = ({ id, name, gpa, credits, grade, onRemove,
       <div className="w-14 md:w-20 text-center">
         <input
           type="text"
-          value={credits}
+          value={module.credits}
           onChange={(e) => {
             const value = e.target.value;
             if (/^\d*\.?\d{0,1}$/.test(value)) {
-              onChange(id, 'credits', value);
+              onChange('credits', value);
             }
           }}
           inputMode="decimal"
           className="w-full p-1.5 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
-          placeholder="Credit"
+          placeholder="Credits"
         />
       </div>
       <div className="w-12 md:w-20 text-center">
         <select
-          value={grade}
-          onChange={(e) => onChange(id, 'grade', e.target.value)}
+          value={module.grade}
+          onChange={(e) => onChange('grade', e.target.value)}
           className="w-full p-1.5 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
         >
           <option value="A+">A+</option>
@@ -71,8 +70,8 @@ const Module: React.FC<ModuleType> = ({ id, name, gpa, credits, grade, onRemove,
         </select>
       </div>
       <div className="w-5 md:w-8 text-center">
-        <button onClick={() => onRemove(id)}>
-          <Image src="/remove-red.svg" width={20} height={20} alt="remove icon" />
+        <button onClick={onRemove}>
+          <Image src="/remove-red.svg" width={20} height={20} alt="Remove icon" />
         </button>
       </div>
     </div>
