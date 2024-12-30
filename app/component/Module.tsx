@@ -3,24 +3,18 @@ import Image from 'next/image';
 interface ModuleType {
   id: string;
   name: string;
+  gpa: string;
   credits: string;
   grade: string;
   onRemove: (id: string) => void;
   onChange: (
     id: string,
-    field: 'name' | 'credits' | 'grade',
+    field: 'name' | 'gpa' | 'credits' | 'grade',
     value: string
   ) => void;
 }
 
-const Module: React.FC<ModuleType> = ({
-  id,
-  name,
-  credits,
-  grade,
-  onRemove,
-  onChange,
-}) => {
+const Module: React.FC<ModuleType> = ({ id, name, gpa, credits, grade, onRemove, onChange,}) => {
   return (
     <div className="flex flex-wrap md:flex-nowrap items-center gap-2 md:gap-4 mb-1 text-xs md:text-sm">
       <div className="flex-1">
@@ -32,11 +26,26 @@ const Module: React.FC<ModuleType> = ({
           placeholder="Module Name"
         />
       </div>
+      <div className="w-12 md:w-20 text-center">
+        <select
+          value={gpa}
+          onChange={(e) => onChange(id, 'gpa', e.target.value)}
+          className="w-full p-1.5 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
+        >
+          <option value="GPA">GPA</option>
+          <option value="NGPA">NGPA</option>
+        </select>
+      </div>
       <div className="w-14 md:w-20 text-center">
         <input
           type="text"
           value={credits}
-          onChange={(e) => onChange(id, 'credits', e.target.value)}
+          onChange={(e) => {
+            const value = e.target.value;
+            if (/^\d*\.?\d{0,1}$/.test(value)) {
+              onChange(id, 'credits', value);
+            }
+          }}
           inputMode="decimal"
           className="w-full p-1.5 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
           placeholder="Credit"
@@ -63,12 +72,7 @@ const Module: React.FC<ModuleType> = ({
       </div>
       <div className="w-5 md:w-8 text-center">
         <button onClick={() => onRemove(id)}>
-          <Image
-            src="/remove-red.svg"
-            width={20}
-            height={20}
-            alt="remove icon"
-          />
+          <Image src="/remove-red.svg" width={20} height={20} alt="remove icon" />
         </button>
       </div>
     </div>
