@@ -122,7 +122,7 @@ const Table = () => {
           </ul>
           <div className="mt-6 text-sm text-gray-600 dark:text-gray-400">
             <p>
-              For more information on the grading system, visit the {' '}
+              For more information on the grading system, visit the{' '}
               <a
                 href="https://uom.lk/itfac/ugs/performance-criteria"
                 target="_blank"
