@@ -1,29 +1,57 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import Image from 'next/image';
 import Module from './Module';
 
 interface ModuleType {
-  id: number;
+  id: string;
+  name: string;
+  credits: string;
+  grade: string;
 }
 
-const SemCard = () => {
+interface SemCardProps {
+  id: string;
+}
+
+const SemCard: React.FC<SemCardProps> = ({ id }) => {
   const [modules, setModules] = useState<ModuleType[]>([]);
 
   const handleAddModule = () => {
-    setModules([...modules, { id: Date.now() }]);
+    if (modules.length < 10) {
+      setModules([
+        ...modules,
+        { id: new Date().toISOString(), name: '', credits: '', grade: 'A+' },
+      ]);
+    }
   };
 
-  const handleRemoveModule = (id: number) => {
-    setModules(modules.filter((module) => module.id !== id));
+  const handleRemoveModule = (moduleId: string) => {
+    setModules(modules.filter((module) => module.id !== moduleId));
   };
+
+  const handleModuleChange = (
+    moduleId: string,
+    field: 'name' | 'credits' | 'grade',
+    value: string
+  ) => {
+    setModules(
+      modules.map((module) =>
+        module.id === moduleId ? { ...module, [field]: value } : module
+      )
+    );
+  };
+
+  const numericId = Number(id);
+  const level = Math.ceil(numericId / 2);
+  const semester = numericId % 2 === 1 ? 1 : 2;
 
   return (
-    <>
+    <div className="bg-blue-50 dark:bg-slate-900 p-4 rounded-lg shadow-lg mb-6">
       <div className="flex flex-col md:flex-row items-center justify-between">
         <div className="text-lg md:text-xl font-semibold mb-2 text-blue-700 dark:text-blue-300">
-          L1 - S1
+          L{level} - S{semester}
         </div>
         <div className="flex flex-col md:flex-row items-center gap-0 md:gap-6">
           <div className="mb-2 text-xs md:text-sm text-gray-700 dark:text-gray-300">
@@ -50,18 +78,25 @@ const SemCard = () => {
           <Module
             key={module.id}
             id={module.id}
+            name={module.name}
+            credits={module.credits}
+            grade={module.grade}
             onRemove={handleRemoveModule}
+            onChange={handleModuleChange}
           />
         ))}
 
         <div className="flex justify-center mt-4">
-          <button onClick={handleAddModule} className="px-2 py-1 md:px-4 md:py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none flex items-center justify-center gap-2 text-sm md:text-base">
+          <button
+            onClick={handleAddModule}
+            className="px-2 py-1 md:px-4 md:py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none flex items-center justify-center gap-2 text-sm md:text-base"
+          >
             <Image src="/add.svg" width={20} height={20} alt="add icon" />
             <span className="hidden md:block">Add Module</span>
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
