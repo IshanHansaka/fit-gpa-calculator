@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SemCard from './SemCard';
 import Image from 'next/image';
 
@@ -19,19 +19,32 @@ interface SemesterType {
 }
 
 const Semester = () => {
-  const [semesters, setSemesters] = useState<SemesterType[]>([]);
+  const loadSemesters = () => {
+    const storedSemesters = localStorage.getItem('semester');
+    return storedSemesters ? JSON.parse(storedSemesters) : [];
+  };
+
+  const [semesters, setSemesters] = useState<SemesterType[]>(loadSemesters);
+
+  useEffect(() => {
+    if (semesters.length > 0) {
+      localStorage.setItem('semester', JSON.stringify(semesters));
+    }
+  }, [semesters]);
 
   const handleAddSemester = () => {
     if (semesters.length < 8) {
       const nextId = semesters.length + 1;
       const level = Math.ceil(nextId / 2);
       const semester = nextId % 2 === 1 ? 1 : 2;
-      setSemesters([...semesters, { id: nextId, level, semester, modules: [] }]);
+      const newSemesters = [...semesters, { id: nextId, level, semester, modules: [] }];
+      setSemesters(newSemesters);
     }
   };
 
   const handleRemoveSemester = () => {
-    setSemesters(semesters.slice(0, -1));
+    const newSemesters = semesters.slice(0, -1);
+    setSemesters(newSemesters);
   };
 
   const updateSemesterModules = (index: number, modules: ModuleType[]) => {
@@ -69,14 +82,14 @@ const Semester = () => {
             className="px-3 py-2 md:px-6 md:py-3 bg-green-500 text-white rounded-md hover:bg-green-600 disabled:bg-green-300 focus:outline-none flex items-center justify-center gap-2"
           >
             <Image src="/add.svg" width={20} height={20} alt="add icon" />
-            <span className="hidden md:block">Add Semester</span>
+            <span>Add Semester</span>
           </button>
           <button
             onClick={handleRemoveSemester}
             className="px-3 py-2 md:px-6 md:py-3 bg-red-500 text-white rounded-md hover:bg-red-600 disabled:bg-red-300 focus:outline-none flex items-center justify-center gap-2"
           >
             <Image src="/remove.svg" width={20} height={20} alt="remove icon" />
-            <span className="hidden md:block">Remove Semester</span>
+            <span>Remove Semester</span>
           </button>
         </div>
       </div>
