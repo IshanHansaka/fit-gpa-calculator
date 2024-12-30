@@ -1,11 +1,9 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import Module from './Module';
 
 interface ModuleType {
-  id: string;
   name: string;
   gpa: string;
   credits: string;
@@ -13,40 +11,30 @@ interface ModuleType {
 }
 
 interface SemCardProps {
-  id: string;
+  level: number;
+  semester: number;
+  modules: ModuleType[];
+  onModulesChange: (modules: ModuleType[]) => void;
 }
 
-const SemCard: React.FC<SemCardProps> = ({ id }) => {
-  const [modules, setModules] = useState<ModuleType[]>([]);
-
+const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesChange }) => {
   const handleAddModule = () => {
     if (modules.length < 10) {
-      setModules([
-        ...modules,
-        { id: new Date().toISOString(), name: '', gpa: 'GPA', credits: '', grade: 'A+' },
-      ]);
+      const newModule: ModuleType = { name: '', gpa: 'GPA', credits: "", grade: 'A+' };
+      onModulesChange([...modules, newModule]);
     }
   };
 
-  const handleRemoveModule = (moduleId: string) => {
-    setModules(modules.filter((module) => module.id !== moduleId));
+  const handleRemoveModule = (index: number) => {
+    const updatedModules = modules.filter((_, i) => i !== index);
+    onModulesChange(updatedModules);
   };
 
-  const handleModuleChange = (
-    moduleId: string,
-    field: 'name' | 'gpa' | 'credits' | 'grade',
-    value: string
-  ) => {
-    setModules(
-      modules.map((module) =>
-        module.id === moduleId ? { ...module, [field]: value } : module
-      )
-    );
+  const handleModuleChange = (index: number, field: keyof ModuleType, value: string | number) => {
+    const updatedModules = [...modules];
+    updatedModules[index] = { ...updatedModules[index], [field]: value };
+    onModulesChange(updatedModules);
   };
-
-  const numericId = Number(id);
-  const level = Math.ceil(numericId / 2);
-  const semester = numericId % 2 === 1 ? 1 : 2;
 
   return (
     <div className="bg-blue-50 dark:bg-slate-900 p-4 rounded-lg shadow-lg mb-6">
@@ -76,16 +64,12 @@ const SemCard: React.FC<SemCardProps> = ({ id }) => {
           <div className="w-5 md:w-8 text-center"></div>
         </div>
 
-        {modules.map((module) => (
+        {modules.map((module, index) => (
           <Module
-            key={module.id}
-            id={module.id}
-            name={module.name}
-            gpa={module.gpa}
-            credits={module.credits}
-            grade={module.grade}
-            onRemove={handleRemoveModule}
-            onChange={handleModuleChange}
+            key={index}
+            module={module}
+            onRemove={() => handleRemoveModule(index)}
+            onChange={(field, value) => handleModuleChange(index, field, value)}
           />
         ))}
 
