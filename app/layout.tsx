@@ -5,7 +5,7 @@ import Header from './component/Header';
 import Footer from './component/Footer';
 
 export const metadata: Metadata = {
-  title: 'FIT-GPA-Calculation',
+  title: 'FIT-GPA-Calculator',
   description:
     'GPA Calculator of Faculty of Information Technology, University of Moratuwa',
 };
