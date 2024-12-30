@@ -1,4 +1,5 @@
 import SemCard from './SemCard';
+import Image from 'next/image';
 
 const Semester = () => {
   return (
@@ -23,11 +24,11 @@ const Semester = () => {
       <div className="flex items-center justify-between w-full mt-4 flex-wrap">
         <div className="flex items-center gap-4 flex-wrap mb-4 md:mb-0">
           <button className="px-3 py-2 md:px-6 md:py-3 bg-green-500 text-white rounded-md hover:bg-green-600 disabled:bg-green-300 focus:outline-none flex items-center justify-center gap-2">
-            <svg height="1em" width="1em"></svg>
+            <Image src="/add.svg" width={20} height={20} alt="add icon" />
             <span className="hidden md:block">Add Semester</span>
           </button>
           <button className="px-3 py-2 md:px-6 md:py-3 bg-gray-500 text-white rounded-md hover:bg-gray-600 disabled:bg-gray-300 focus:outline-none flex items-center justify-center gap-2">
-            <svg height="1em" width="1em"></svg>
+            <Image src="/add.svg" width={20} height={20} alt="add icon" />
             <span className="hidden md:block">Remove Semester</span>
           </button>
         </div>
