@@ -103,7 +103,6 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
           <div className="w-12 md:w-20 text-center">Grade</div>
           <div className="w-5 md:w-8 text-center"></div>
         </div>
-
         {modules.map((module, index) => (
           <Module
             key={index}
@@ -112,8 +111,8 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
             onChange={(field, value) => handleModuleChange(index, field, value)}
           />
         ))}
-
-        <div className="flex justify-center mt-4">
+      </div>
+      <div className="flex justify-center mt-4">
           <button
             onClick={handleAddModule}
             className="px-2 py-1 md:px-4 md:py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none flex items-center justify-center gap-2 text-sm md:text-base"
@@ -122,7 +121,6 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
             <span>Add Module</span>
           </button>
         </div>
-      </div>
     </div>
   );
 };
