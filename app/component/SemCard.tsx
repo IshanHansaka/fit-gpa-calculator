@@ -18,7 +18,7 @@ interface SemCardProps {
 const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesChange }) => {
   const handleAddModule = () => {
     if (modules.length < 10) {
-      const newModule: ModuleType = { name: '', gpa: 'GPA', credits: "", grade: 'A+' };
+      const newModule: ModuleType = { name: '', gpa: 'GPA', credits: '', grade: 'A+' };
       onModulesChange([...modules, newModule]);
     }
   };
