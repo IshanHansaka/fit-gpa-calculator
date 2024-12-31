@@ -29,20 +29,10 @@ const gradeToPoint: Record<string, number> = {
   'I' : 0.0,
 };
 
-const SemCard: React.FC<SemCardProps> = ({
-  level,
-  semester,
-  modules,
-  onModulesChange,
-}) => {
+const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesChange, }) => {
   const handleAddModule = () => {
     if (modules.length < 10) {
-      const newModule: ModuleType = {
-        name: '',
-        gpa: 'GPA',
-        credits: '',
-        grade: 'A',
-      };
+      const newModule: ModuleType = { name: '', gpa: 'GPA', credits: '', grade: 'A' };
       onModulesChange([...modules, newModule]);
     }
   };
@@ -52,22 +42,18 @@ const SemCard: React.FC<SemCardProps> = ({
     onModulesChange(updatedModules);
   };
 
-  const handleModuleChange = (
-    index: number,
-    field: keyof ModuleType,
-    value: string | number
-  ) => {
+  const handleModuleChange = ( index: number, field: keyof ModuleType, value: string | number ) => {
     const updatedModules = [...modules];
     updatedModules[index] = { ...updatedModules[index], [field]: value };
     onModulesChange(updatedModules);
   };
 
-  const totalGpaCredits = modules.reduce((total, module) => {
+  const totalGPACredits = modules.reduce((total, module) => {
     const credits = parseFloat(module.credits) || 0;
     return module.gpa === 'GPA' ? total + credits : total;
   }, 0);
 
-  // const totalNGpaCredits = modules.reduce((total, module) => {
+  // const totalNGPACredits = modules.reduce((total, module) => {
   //   const credits = parseFloat(module.credits) || 0;
   //   return module.gpa === 'NGPA' ? total + credits : total;
   // }, 0);
@@ -79,8 +65,8 @@ const SemCard: React.FC<SemCardProps> = ({
   }, 0);
 
   const semesterGPA =
-    totalGpaCredits > 0
-      ? (totalGradePoints / totalGpaCredits).toFixed(2)
+    totalGPACredits > 0
+      ? (totalGradePoints / totalGPACredits).toFixed(2)
       : '0.00';
 
   return (
@@ -91,7 +77,7 @@ const SemCard: React.FC<SemCardProps> = ({
         </div>
         <div className="flex flex-col md:flex-row items-center gap-0 md:gap-6">
           <div className="mb-2 text-xs md:text-sm text-gray-700 dark:text-gray-300">
-            Total GPA Credits: {totalGpaCredits}
+            Total GPA Credits: {totalGPACredits}
           </div>
           <div className="mb-2 text-xs md:text-sm text-gray-700 dark:text-gray-300">
             Semester GPA:{' '}
@@ -102,7 +88,7 @@ const SemCard: React.FC<SemCardProps> = ({
         </div>
       </div>
 
-      {parseFloat(semesterGPA) >= 3.8 && (
+      {parseFloat(semesterGPA) >= 3.8 && totalGPACredits >= 12 && (
         <div className="text-green-600 dark:text-green-400 font-semibold text-xs md:text-lg mt-2">
           Congratulations! You are on the Dean&apos;s List 🎉
         </div>
