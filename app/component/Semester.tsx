@@ -1,6 +1,3 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import SemCard from './SemCard';
 import Image from 'next/image';
 
@@ -18,27 +15,12 @@ interface SemesterType {
   modules: ModuleType[];
 }
 
-const Semester = () => {
-  const [semesters, setSemesters] = useState<SemesterType[]>([]);
+type SemesterProps = {
+  semesters: SemesterType[];
+  setSemesters: React.Dispatch<React.SetStateAction<SemesterType[]>>;
+};
 
-  useEffect(() => {
-    const storedSemesters = localStorage.getItem('semester');
-    if (storedSemesters) {
-      try {
-        const parsedSemesters = JSON.parse(storedSemesters);
-        if (Array.isArray(parsedSemesters)) {
-          setSemesters(parsedSemesters);
-        }
-      } catch (error) {
-        console.error('Failed to parse semesters from localStorage:', error);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('semester', JSON.stringify(semesters));
-  }, [semesters]);
-
+const Semester: React.FC<SemesterProps> = ({ semesters, setSemesters }) => {
   const handleAddSemester = () => {
     if (semesters.length < 8) {
       const nextId = semesters.length + 1;
