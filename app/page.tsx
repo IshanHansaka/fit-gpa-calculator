@@ -74,16 +74,12 @@ export default function Home() {
       });
     });
 
-    const semesterGPA =
-      totalGPACredits > 0
-        ? (totalGradePoints / totalGPACredits).toFixed(2)
-        : '0.00';
+    const semesterGPA = totalGPACredits > 0 ? (totalGradePoints / totalGPACredits).toFixed(2): '0.00';
 
     return { totalGPACredits, totalNGPACredits, semesterGPA };
   };
 
-  const { totalGPACredits, totalNGPACredits, semesterGPA } =
-    calculateCreditsAndGPA();
+  const { totalGPACredits, totalNGPACredits, semesterGPA } = calculateCreditsAndGPA();
 
   return (
     <>
