@@ -53,10 +53,10 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
     return module.gpa === 'GPA' ? total + credits : total;
   }, 0);
 
-  // const totalNGPACredits = modules.reduce((total, module) => {
-  //   const credits = parseFloat(module.credits) || 0;
-  //   return module.gpa === 'NGPA' ? total + credits : total;
-  // }, 0);
+  const totalNGPACredits = modules.reduce((total, module) => {
+    const credits = parseFloat(module.credits) || 0;
+    return module.gpa === 'NGPA' ? total + credits : total;
+  }, 0);
 
   const totalGradePoints = modules.reduce((total, module) => {
     const credits = parseFloat(module.credits) || 0;
