@@ -76,18 +76,20 @@ export default function Home() {
 
     const semesterGPA = totalGPACredits > 0 ? (totalGradePoints / totalGPACredits).toFixed(2): '0.00';
 
-    return { totalGPACredits, totalNGPACredits, semesterGPA };
+    return { totalGPACredits, totalNGPACredits, semesterGPA, totalGradePoints };
   };
 
-  const { totalGPACredits, totalNGPACredits, semesterGPA } = calculateCreditsAndGPA();
+  const { totalGPACredits, totalNGPACredits, totalGradePoints } = calculateCreditsAndGPA();
 
+  const overallGPA = totalGPACredits > 0 ? (totalGradePoints / totalGPACredits).toFixed(2): '0.00';
+  
   return (
     <>
       <Hero />
       <Class
         totalGPACredits={totalGPACredits}
         totalNGPACredits={totalNGPACredits}
-        semesterGPA={semesterGPA}
+        overallGPA={overallGPA}
       />
       <Semester semesters={semesters} setSemesters={setSemesters} />
       <Table />
