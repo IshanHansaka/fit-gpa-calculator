@@ -19,17 +19,24 @@ interface SemesterType {
 }
 
 const Semester = () => {
-  const loadSemesters = () => {
-    const storedSemesters = localStorage.getItem('semester');
-    return storedSemesters ? JSON.parse(storedSemesters) : [];
-  };
-
-  const [semesters, setSemesters] = useState<SemesterType[]>(loadSemesters);
+  const [semesters, setSemesters] = useState<SemesterType[]>([]);
 
   useEffect(() => {
-    if (semesters.length > 0) {
-      localStorage.setItem('semester', JSON.stringify(semesters));
+    const storedSemesters = localStorage.getItem('semester');
+    if (storedSemesters) {
+      try {
+        const parsedSemesters = JSON.parse(storedSemesters);
+        if (Array.isArray(parsedSemesters)) {
+          setSemesters(parsedSemesters);
+        }
+      } catch (error) {
+        console.error('Failed to parse semesters from localStorage:', error);
+      }
     }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('semester', JSON.stringify(semesters));
   }, [semesters]);
 
   const handleAddSemester = () => {
@@ -37,14 +44,12 @@ const Semester = () => {
       const nextId = semesters.length + 1;
       const level = Math.ceil(nextId / 2);
       const semester = nextId % 2 === 1 ? 1 : 2;
-      const newSemesters = [...semesters, { id: nextId, level, semester, modules: [] }];
-      setSemesters(newSemesters);
+      setSemesters([...semesters, { id: nextId, level, semester, modules: [] }]);
     }
   };
 
   const handleRemoveSemester = () => {
-    const newSemesters = semesters.slice(0, -1);
-    setSemesters(newSemesters);
+    setSemesters(semesters.slice(0, -1));
   };
 
   const updateSemesterModules = (index: number, modules: ModuleType[]) => {
