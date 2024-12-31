@@ -5,9 +5,9 @@ import Header from './component/Header';
 import Footer from './component/Footer';
 
 export const metadata: Metadata = {
-  title: 'FIT-GPA-Calculator',
+  title: 'FIT GPA Calculator',
   description:
-    'GPA Calculator of Faculty of Information Technology, University of Moratuwa',
+    'GPA Calculator, Faculty of Information Technology, University of Moratuwa',
 };
 
 export default function RootLayout({
