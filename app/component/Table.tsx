@@ -1,14 +1,14 @@
 const Table = () => {
   return (
-    <div className="mt-8 bg-blue-50 dark:bg-gray-800 p-3 md:p-6 shadow-lg rounded-lg">
+    <div className="bg-blue-50 dark:bg-gray-800 p-3 md:p-6 shadow-lg rounded-lg">
       <div className="text-2xl font-semibold mb-4 text-blue-700 dark:text-blue-400">
         Grade Point System
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 gap-8">
         <div className="overflow-x-auto">
           <table className="min-w-full table-auto border-collapse text-sm text-gray-700 dark:text-gray-300">
             <thead>
-              <tr className="bg-blue-100 dark:bg-slate-900">
+              <tr className="bg-blue-200 dark:bg-slate-900">
                 <th className="px-6 py-3 text-left font-semibold text-blue-700 dark:text-blue-400">
                   Grade
                 </th>
@@ -20,58 +20,58 @@ const Table = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-gray-50 dark:bg-gray-700">
-              <tr className="border-t hover:bg-blue-50 dark:hover:bg-blue-800">
+            <tbody className="bg-blue-50 dark:bg-gray-700">
+              <tr className="border-t hover:bg-blue-100 dark:hover:bg-blue-800">
                 <td className="px-6 py-2">A+</td>
                 <td className="px-6 py-2">4.0</td>
                 <td className="px-6 py-2">85 - 100</td>
               </tr>
-              <tr className="border-t hover:bg-blue-50 dark:hover:bg-blue-800">
+              <tr className="border-t hover:bg-blue-100 dark:hover:bg-blue-800">
                 <td className="px-6 py-2">A</td>
                 <td className="px-6 py-2">4.0</td>
                 <td className="px-6 py-2">75 - 84</td>
               </tr>
-              <tr className="border-t hover:bg-blue-50 dark:hover:bg-blue-800">
+              <tr className="border-t hover:bg-blue-100 dark:hover:bg-blue-800">
                 <td className="px-6 py-2">A-</td>
                 <td className="px-6 py-2">3.7</td>
                 <td className="px-6 py-2">70 - 74</td>
               </tr>
-              <tr className="border-t hover:bg-blue-50 dark:hover:bg-blue-800">
+              <tr className="border-t hover:bg-blue-100 dark:hover:bg-blue-800">
                 <td className="px-6 py-2">B+</td>
                 <td className="px-6 py-2">3.3</td>
                 <td className="px-6 py-2">65 - 69</td>
               </tr>
-              <tr className="border-t hover:bg-blue-50 dark:hover:bg-blue-800">
+              <tr className="border-t hover:bg-blue-100 dark:hover:bg-blue-800">
                 <td className="px-6 py-2">B</td>
                 <td className="px-6 py-2">3.0</td>
                 <td className="px-6 py-2">60 - 64</td>
               </tr>
-              <tr className="border-t hover:bg-blue-50 dark:hover:bg-blue-800">
+              <tr className="border-t hover:bg-blue-100 dark:hover:bg-blue-800">
                 <td className="px-6 py-2">B-</td>
                 <td className="px-6 py-2">2.7</td>
                 <td className="px-6 py-2">55 - 59</td>
               </tr>
-              <tr className="border-t hover:bg-blue-50 dark:hover:bg-blue-800">
+              <tr className="border-t hover:bg-blue-100 dark:hover:bg-blue-800">
                 <td className="px-6 py-2">C+</td>
                 <td className="px-6 py-2">2.3</td>
                 <td className="px-6 py-2">50 - 54</td>
               </tr>
-              <tr className="border-t hover:bg-blue-50 dark:hover:bg-blue-800">
+              <tr className="border-t hover:bg-blue-100 dark:hover:bg-blue-800">
                 <td className="px-6 py-2">C</td>
                 <td className="px-6 py-2">2.0</td>
                 <td className="px-6 py-2">45 - 49</td>
               </tr>
-              <tr className="border-t hover:bg-blue-50 dark:hover:bg-blue-800">
+              <tr className="border-t hover:bg-blue-100 dark:hover:bg-blue-800">
                 <td className="px-6 py-2">C-</td>
                 <td className="px-6 py-2">1.7</td>
                 <td className="px-6 py-2">40 - 44</td>
               </tr>
-              <tr className="border-t hover:bg-blue-50 dark:hover:bg-blue-800">
+              <tr className="border-t hover:bg-blue-100 dark:hover:bg-blue-800">
                 <td className="px-6 py-2">D</td>
                 <td className="px-6 py-2">1.0</td>
                 <td className="px-6 py-2">35 - 39</td>
               </tr>
-              <tr className="border-t hover:bg-blue-50 dark:hover:bg-blue-800">
+              <tr className="border-t hover:bg-blue-100 dark:hover:bg-blue-800">
                 <td className="px-6 py-2">I</td>
                 <td className="px-6 py-2">0.0</td>
                 <td className="px-6 py-2">00 - 34</td>
