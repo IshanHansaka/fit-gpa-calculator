@@ -1,5 +1,5 @@
-import SemCard from './SemCard';
-import Image from 'next/image';
+import SemCard from "./SemCard";
+import Image from "next/image";
 
 interface ModuleType {
   name: string;
@@ -26,7 +26,10 @@ const Semester: React.FC<SemesterProps> = ({ semesters, setSemesters }) => {
       const nextId = semesters.length + 1;
       const level = Math.ceil(nextId / 2);
       const semester = nextId % 2 === 1 ? 1 : 2;
-      setSemesters([...semesters, { id: nextId, level, semester, modules: [] }]);
+      setSemesters([
+        ...semesters,
+        { id: nextId, level, semester, modules: [] },
+      ]);
     }
   };
 
@@ -47,9 +50,13 @@ const Semester: React.FC<SemesterProps> = ({ semesters, setSemesters }) => {
           Semesters
         </div>
       </div>
-      <div className="text-sm md:text-xs text-gray-600 dark:text-gray-400 mb-4">
-        * Add your modules for each semester to calculate your GPA. Please
-        don&apos;t forget to add the credits for each module.
+      <div className="text-md md:text-xs text-gray-600 dark:text-gray-400 mb-4">
+        * Add your modules for each semester to calculate your GPA, and
+        don&apos;t forget to include the credits for each module.<br /><br />
+        * Select whether each module is GPA or non-GPA.
+        <br /><br />
+        * Your data is auto-saved, so you can close the tab and return anytime!
+        <br /><br />
       </div>
 
       {semesters.map((semester, index) => (

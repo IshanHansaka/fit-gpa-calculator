@@ -62,7 +62,7 @@ const Class: React.FC<ClassProps> = ({
             description=""
           />
           <ClassCard
-            title="Total Non-GPA Credits"
+            title="Total NGPA Credits"
             value={totalNGPACredits}
             description=""
           />
