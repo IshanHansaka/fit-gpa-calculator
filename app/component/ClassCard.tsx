@@ -1,7 +1,7 @@
 interface ClassCardProps {
   title: string;
   value: string | number;
-  description: string;
+  description: string | null;
 }
 
 const ClassCard: React.FC<ClassCardProps> = ({ title, value, description }) => {
