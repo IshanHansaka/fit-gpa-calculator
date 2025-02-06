@@ -4,30 +4,23 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const Theme = () => {
-  const [theme, setTheme] = useState<"light" | "dark" | null>(null);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-      .matches
-      ? "dark"
-      : "light";
-    const appliedTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : systemTheme;
-
-    setTheme(appliedTheme);
-    document.documentElement.classList.add(appliedTheme);
+    if (savedTheme) {
+      setTheme(savedTheme as "light" | "dark");
+      document.documentElement.classList.add(savedTheme);
+    }
   }, []);
 
   const toggleTheme = () => {
-    if (!theme) return;
     const newTheme = theme === "light" ? "dark" : "light";
-
     setTheme(newTheme);
-    document.documentElement.classList.replace(theme, newTheme);
+    document.documentElement.classList.remove(theme);
+    document.documentElement.classList.add(newTheme);
     localStorage.setItem("theme", newTheme);
   };
-
-  if (!theme) return null;
 
   return (
     <button
@@ -43,4 +36,5 @@ const Theme = () => {
     </button>
   );
 };
+
 export default Theme;
