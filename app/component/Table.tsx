@@ -110,35 +110,25 @@ const Table = () => {
               2.99 ≥ Overall GPA ≥ 2.0
             </li>
           </ul>
-          <div className="text-sm text-gray-600 dark:text-gray-400">
-            * Faculty of Humanities and Sciences relies on the CGPA system to
-            decide the final class of the degree.
-          </div>
           <div className="text-lg font-semibold text-blue-700 dark:text-blue-400">
             Pass Grades
           </div>
           <ul className="list-inside list-disc">
-            <li>Grade C or above is considered a pass grade.</li>
+            <li>
+              The grade D or above is required to earn credit for a module.
+            </li>
           </ul>
           <div className="mt-6 text-sm text-gray-600 dark:text-gray-400">
             <p>
-              For more information on the grading system, visit the{' '}
+              For more information on the grading system, visit the{" "}
               <a
                 href="https://uom.lk/itfac/ugs/performance-criteria"
                 target="_blank"
-                className="text-blue-600 hover:text-blue-800 font-semibold dark:text-blue-400 dark:hover:text-blue-500"
+                className="text-blue-600 hover:text-blue-800 font-semibold dark:text-blue-400 dark:hover:text-blue-500 hover:underline"
               >
-                FIT Performance Criteria
+                FIT Performance Criteria.
               </a>
-              .
             </p>
-          </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400 mt-4 bg-yellow-100 dark:bg-yellow-900 border-l-4 border-yellow-500 dark:border-yellow-500 p-4 rounded-lg">
-            <div className="font-semibold text-yellow-800 dark:text-yellow-200">
-              Important Notice: This is a third-party site and is not affiliated
-              with SLIIT. Please refer to official SLIIT sources for accurate
-              and up-to-date information.
-            </div>
           </div>
         </div>
       </div>
