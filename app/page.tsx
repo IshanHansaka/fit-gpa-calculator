@@ -81,7 +81,7 @@ export default function Home() {
 
   const { totalGPACredits, totalNGPACredits, totalGradePoints } = calculateCreditsAndGPA();
 
-  const overallGPA = totalGPACredits > 0 ? (totalGradePoints / totalGPACredits).toFixed(2): '0.00';
+  const overallGPA = totalGPACredits > 0 ? parseFloat((totalGradePoints / totalGPACredits).toFixed(2)) : 0.00;
   
   return (
     <>
