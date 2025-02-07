@@ -4,28 +4,33 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const Theme = () => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark" | null>(null);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme as "light" | "dark");
-      document.documentElement.classList.add(savedTheme);
-    }
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark";
+    const initialTheme = savedTheme || "light";
+    setTheme(initialTheme);
+    document.documentElement.classList.add(initialTheme);
   }, []);
 
+  useEffect(() => {
+    if (theme) {
+      document.documentElement.classList.remove("light", "dark");
+      document.documentElement.classList.add(theme);
+      localStorage.setItem("theme", theme);
+    }
+  }, [theme]);
+
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.documentElement.classList.remove(theme);
-    document.documentElement.classList.add(newTheme);
-    localStorage.setItem("theme", newTheme);
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
+
+  if (theme === null) return null;
 
   return (
     <button
       onClick={toggleTheme}
-      className="fixed top-4 right-4 p-2 rounded-full bg-white dark:bg-gray-600"
+      className="fixed top-4 right-4 p-2 rounded-full bg-white dark:bg-gray-600 z-10"
     >
       <Image
         src={theme === "light" ? "/dark.svg" : "/light.svg"}
