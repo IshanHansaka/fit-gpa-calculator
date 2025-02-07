@@ -46,7 +46,7 @@ const Semester: React.FC<SemesterProps> = ({ semesters, setSemesters }) => {
   return (
     <div className="mt-8 bg-white dark:bg-gray-800 p-3 md:p-6 shadow-lg rounded-lg">
       <div className="flex justify-between items-center mb-6">
-        <div className="text-xl md:text-2xl font-semibold text-blue-600 dark:text-blue-400">
+        <div className="text-xl md:text-2xl font-semibold text-fuchsia-600 dark:text-fuchsia-400">
           Semesters
         </div>
       </div>

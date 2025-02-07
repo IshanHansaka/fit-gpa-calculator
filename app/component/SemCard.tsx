@@ -71,9 +71,9 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
       : '0.00';
 
   return (
-    <div className="bg-blue-50 dark:bg-slate-900 p-4 rounded-lg shadow-lg mb-6">
+    <div className="bg-fuchsia-50 dark:bg-slate-900 p-4 rounded-lg shadow-lg mb-6">
       <div className="flex flex-col md:flex-row items-center justify-between">
-        <div className="text-lg md:text-xl font-semibold mb-2 text-blue-700 dark:text-blue-300">
+        <div className="text-lg md:text-xl font-semibold mb-2 text-fuchsia-700 dark:text-fuchsia-300">
           Level {level} - Semester {semester}
         </div>
         <div className="flex flex-col md:flex-row items-center gap-0 md:gap-6">
@@ -82,7 +82,7 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
           </div>
           <div className="mb-2 text-xs md:text-sm text-gray-700 dark:text-gray-300">
             Semester GPA:{' '}
-            <span className="font-semibold text-blue-600 dark:text-blue-400">
+            <span className="font-semibold text-fuchsia-600 dark:text-fuchsia-400">
               {semesterGPA}
             </span>
           </div>
@@ -96,7 +96,7 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
       )}
 
       <div className="mt-6 bg-white dark:bg-gray-700 p-2 rounded-lg shadow-lg">
-        <div className="flex flex-wrap items-center gap-2 md:gap-4 font-semibold border-b pb-2 mb-2 text-blue-600 dark:text-blue-400 text-xs md:text-sm">
+        <div className="flex flex-wrap items-center gap-2 md:gap-4 font-semibold border-b pb-2 mb-2 text-fuchsia-600 dark:text-fuchsia-400 text-xs md:text-sm">
           <div className="flex-1">Module Name</div>
           <div className="w-12 md:w-20 text-center">GPA/NGPA</div>
           <div className="w-14 md:w-20 text-center">Credits</div>
@@ -115,7 +115,7 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
       <div className="flex justify-center mt-4">
           <button
             onClick={handleAddModule}
-            className="px-2 py-1 md:px-4 md:py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none flex items-center justify-center gap-2 text-sm md:text-base"
+            className="px-2 py-1 md:px-4 md:py-2 bg-fuchsia-500 text-white rounded-md hover:bg-fuchsia-600 focus:outline-none flex items-center justify-center gap-2 text-sm md:text-base"
           >
             <Image src="/add.svg" width={20} height={20} alt="add icon" />
             <span>Add Module</span>

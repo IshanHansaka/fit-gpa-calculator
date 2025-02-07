@@ -25,7 +25,7 @@ const Arrow = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-4 right-4 p-3 rounded-xl bg-blue-400 dark:bg-blue-600 shadow-lg transition-opacity duration-300 ${
+      className={`fixed bottom-4 right-4 p-3 rounded-xl bg-cyan-400 dark:bg-cyan-600 shadow-lg transition-opacity duration-300 z-10 ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
