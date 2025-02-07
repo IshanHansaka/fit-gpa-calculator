@@ -39,6 +39,7 @@ const Class: React.FC<ClassProps> = ({
                 ? `Your hard work has brought you here with an impressive GPA.`
                 : null
             }
+            color="violet"
           />
           <ClassCard
             title="Class"
@@ -48,6 +49,7 @@ const Class: React.FC<ClassProps> = ({
                 ? "Your class will be displayed here once you have completed all your semesters."
                 : `Congratulations on your ${className}! 🎉`
             }
+            color="lime"
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:col-span-3">
@@ -55,16 +57,19 @@ const Class: React.FC<ClassProps> = ({
             title="Total Credits"
             value={totalCredits}
             description=""
+            color="amber"
           />
           <ClassCard
             title="Total GPA Credits"
             value={totalGPACredits}
             description=""
+            color="cyan"
           />
           <ClassCard
             title="Total NGPA Credits"
             value={totalNGPACredits}
             description=""
+            color="fuchsia"
           />
         </div>
       </div>
