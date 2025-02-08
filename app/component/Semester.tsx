@@ -53,8 +53,6 @@ const Semester: React.FC<SemesterProps> = ({ semesters, setSemesters }) => {
       <div className="text-md md:text-xs text-gray-600 dark:text-gray-400 mb-4">
         * Add your modules for each semester to calculate your GPA, and
         don&apos;t forget to include the credits for each module.<br /><br />
-        * Select whether each module is GPA or non-GPA.
-        <br /><br />
         * Your data is auto-saved, so you can close the tab and return anytime!
         <br /><br />
       </div>

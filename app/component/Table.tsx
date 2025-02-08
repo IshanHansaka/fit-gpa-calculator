@@ -81,15 +81,6 @@ const Table = () => {
         </div>
         <div className="text-sm text-gray-700 dark:text-gray-300 space-y-4">
           <div className="text-lg font-semibold text-fuchsia-700 dark:text-fuchsia-400">
-            Dean&apos;s List
-          </div>
-          <ul className="list-inside list-disc">
-            <li>
-              <strong>Dean&apos;s List - </strong>
-              Semester GPA ≥ 3.8
-            </li>
-          </ul>
-          <div className="text-lg font-semibold text-fuchsia-700 dark:text-fuchsia-400">
             Classes
           </div>
           <ul className="list-inside list-disc">
@@ -108,6 +99,15 @@ const Table = () => {
             <li>
               <strong>General - </strong>
               2.99 ≥ Overall GPA ≥ 2.0
+            </li>
+          </ul>
+          <div className="text-lg font-semibold text-fuchsia-700 dark:text-fuchsia-400">
+            Dean&apos;s List
+          </div>
+          <ul className="list-inside list-disc">
+            <li>
+              <strong>Dean&apos;s List - </strong>
+              Semester GPA ≥ 3.8
             </li>
           </ul>
           <div className="text-lg font-semibold text-fuchsia-700 dark:text-fuchsia-400">
