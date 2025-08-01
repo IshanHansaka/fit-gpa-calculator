@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fit-gpa-calculator.vercel.app/sitemap.xml
