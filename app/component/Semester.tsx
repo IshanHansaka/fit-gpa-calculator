@@ -1,5 +1,5 @@
-import SemCard from "./SemCard";
-import Image from "next/image";
+import SemCard from './SemCard';
+import Image from 'next/image';
 
 interface ModuleType {
   name: string;
@@ -52,9 +52,12 @@ const Semester: React.FC<SemesterProps> = ({ semesters, setSemesters }) => {
       </div>
       <div className="text-md md:text-xs text-gray-600 dark:text-gray-400 mb-4">
         * Add your modules for each semester to calculate your GPA, and
-        don&apos;t forget to include the credits for each module.<br /><br />
+        don&apos;t forget to include the credits for each module.
+        <br />
+        <br />
         * Your data is auto-saved, so you can close the tab and return anytime!
-        <br /><br />
+        <br />
+        <br />
       </div>
 
       {semesters.map((semester, index) => (
@@ -71,6 +74,7 @@ const Semester: React.FC<SemesterProps> = ({ semesters, setSemesters }) => {
         <div className="flex items-center gap-4 flex-wrap mb-4 md:mb-0">
           <button
             onClick={handleAddSemester}
+            disabled={semesters.length >= 8}
             className="px-3 py-2 md:px-6 md:py-3 bg-green-500 text-white rounded-md hover:bg-green-600 disabled:bg-green-300 focus:outline-none flex items-center justify-center gap-2"
           >
             <Image src="/add.svg" width={20} height={20} alt="add icon" />
@@ -78,6 +82,7 @@ const Semester: React.FC<SemesterProps> = ({ semesters, setSemesters }) => {
           </button>
           <button
             onClick={handleRemoveSemester}
+            disabled={semesters.length === 0}
             className="px-3 py-2 md:px-6 md:py-3 bg-red-500 text-white rounded-md hover:bg-red-600 disabled:bg-red-300 focus:outline-none flex items-center justify-center gap-2"
           >
             <Image src="/remove.svg" width={20} height={20} alt="remove icon" />
