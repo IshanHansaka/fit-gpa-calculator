@@ -8,7 +8,7 @@ const Theme = () => {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") as "light" | "dark";
-    const initialTheme = savedTheme || "light";
+    const initialTheme = savedTheme || "dark";
     setTheme(initialTheme);
     document.documentElement.classList.add(initialTheme);
   }, []);
