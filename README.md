@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎓 FIT GPA Calculator
 
-## Getting Started
+Open-source GPA calculator for the Faculty of Information Technology, University of Moratuwa. Calculate SGPA and OGPA, store marks securely with local-only saving, and plan future grades. Your data remains private and is automatically saved, allowing you to close and reopen the app without losing progress.
 
-First, run the development server:
+🔗 [https://fit-gpa-calculator.vercel.app](https://fit-gpa-calculator.vercel.app)
+
+![Banner](public/opengraph-image.png)
+
+## Features
+
+- Calculate SGPA and OGPA based on the Faculty of Information Technology grading system.
+- Automatically saves data locally, allowing you to close and reopen without losing progress.
+- Add or remove semesters dynamically.
+- Manage GPA records easily.
+- Fast, responsive, and mobile-friendly.
+- SEO optimized with social share preview.
+- Open for contributions and feedback.
+
+## 📦 Tech Stack
+
+- **Next.js** 15 (App Router)
+- **Tailwind CSS**
+- **TypeScript**
+- **Vercel** for deployment
+
+## 🛠️ Getting Started
+
+Clone the repository and run the development server:
 
 ```bash
+git clone https://github.com/IshanHansaka/fit-gpa-calculator.git
+cd fit-gpa-calculator
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## 🤝 Contributing
+
+Pull requests are welcome! Feel free to open issues or submit features.
+
+1. Fork this repo
+2. Create your feature branch:
+
+```bash
+git checkout -b feature/YourFeature
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Commit your changes:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+git commit -m 'feat: Add YourFeature'
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Push to the branch:
 
-## Learn More
+```bash
+git push origin feature/YourFeature
+```
 
-To learn more about Next.js, take a look at the following resources:
+5. Open a pull request
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📄 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project is licensed under the **[MIT License](https://opensource.org/licenses/MIT)**.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
