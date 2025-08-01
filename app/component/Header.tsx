@@ -5,7 +5,7 @@ const Header = () => {
       🎓 FIT GPA Calculator
       </div>
       <div className="text-sm md:text-lg text-gray-700 dark:text-gray-300">
-        Calculate your SGPA and OGPA with the FIT grading system
+        Calculate your SGPA and OGPA with the Faculty of Information Technology grading system
       </div>
     </header>
   );

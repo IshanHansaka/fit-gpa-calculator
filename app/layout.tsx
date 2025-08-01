@@ -9,7 +9,7 @@ import Arrow from './component/Arrow';
 
 export const metadata: Metadata = {
   title: {
-    default: 'FIT GPA Calculator',
+    default: 'FIT GPA Calculator | University of Moratuwa',
     template: '%s | FIT GPA Calculator',
   },
   description:
@@ -43,6 +43,19 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <head>
+        <title>
+          FIT GPA Calculator | University of Moratuwa
+        </title>
+        <meta
+          property="og:image"
+          content="https://fit-gpa-calculator.vercel.app/opengraph-image.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta
+          property="og:image:alt"
+          content="FIT GPA Calculator preview image"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="canonical" href="https://fit-gpa-calculator.vercel.app/" />
         <link rel="icon" href="/favicon.ico" />
