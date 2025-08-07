@@ -2,7 +2,7 @@ const Footer = () => {
   return (
     <footer className="mt-8 text-center text-gray-600 dark:text-gray-300 text-sm">
       <div className="container mx-auto px-4 text-center">
-        Developed by{' '}
+        Developed with ❤️ by{' '}
         <a
           href="https://github.com/IshanHansaka"
           className="text-fuchsia-500 hover:underline font-bold"
