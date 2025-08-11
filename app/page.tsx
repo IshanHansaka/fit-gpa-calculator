@@ -93,7 +93,6 @@ export default function Home() {
       ? parseFloat((totalGradePoints / totalGPACredits).toFixed(2))
       : 0.0;
 
-
   // ...existing code...
   // Add the button to trigger PDF download
   // ...existing code...
@@ -114,23 +113,22 @@ export default function Home() {
         <link rel="canonical" href="https://fit-gpa-calculator.vercel.app/" />
       </Head>
       <Hero />
-      <div style={{ marginBottom: '20px', textAlign: 'right' }}>
-        {/* Use DownloadPDF component for popup and professional PDF export */}
-        <DownloadPDF
-          totalCredits={totalGPACredits}
-          result={`Overall CGPA: ${overallGPA}`}
-          summary={`GPA Credits: ${totalGPACredits}, NGPA Credits: ${totalNGPACredits}`}
-          tableHtml={(() => {
-            let html = '';
-            semesters.forEach((semester) => {
-              html += `<div style="margin-bottom:24px;">
+      {/* Use DownloadPDF component for popup and professional PDF export */}
+      <DownloadPDF
+        totalCredits={totalGPACredits}
+        result={`Overall CGPA: ${overallGPA}`}
+        summary={`GPA Credits: ${totalGPACredits}, NGPA Credits: ${totalNGPACredits}`}
+        tableHtml={(() => {
+          let html = '';
+          semesters.forEach((semester) => {
+            html += `<div style="margin-bottom:24px;">
                 <div style="font-weight:bold;color:#4B2991;font-size:1.1rem;margin-bottom:8px;">
                   Level ${semester.level} - Semester ${semester.semester}
                 </div>`;
-              if (semester.modules.length === 0) {
-                html += `<div style="font-style:italic;color:#888;margin-bottom:8px;">No modules added.</div>`;
-              } else {
-                html += `<table style="width:100%;border-collapse:collapse;margin-bottom:8px;font-size:14px;">
+            if (semester.modules.length === 0) {
+              html += `<div style="font-style:italic;color:#888;margin-bottom:8px;">No modules added.</div>`;
+            } else {
+              html += `<table style="width:100%;border-collapse:collapse;margin-bottom:8px;font-size:14px;">
                   <thead>
                     <tr>
                       <th style="border:1px solid #bbb;padding:8px;background:#e3e3e3;font-weight:bold;">Module Name</th>
@@ -140,35 +138,37 @@ export default function Home() {
                     </tr>
                   </thead>
                   <tbody>`;
-                semester.modules.forEach((module) => {
-                  html += `<tr>
+              semester.modules.forEach((module) => {
+                html += `<tr>
                     <td style="border:1px solid #ddd;padding:7px;background:#fff;">${module.name}</td>
                     <td style="border:1px solid #ddd;padding:7px;background:#fff;">${module.credits}</td>
                     <td style="border:1px solid #ddd;padding:7px;background:#fff;">${module.grade}</td>
                     <td style="border:1px solid #ddd;padding:7px;background:#fff;">${module.gpa}</td>
                   </tr>`;
-                });
-                html += `</tbody></table>`;
-              }
-              // Semester GPA
-              let semGPACredits = 0;
-              let semGradePoints = 0;
-              semester.modules.forEach((module) => {
-                const credits = parseFloat(module.credits) || 0;
-                const gradePoint = gradeToPoint[module.grade] || 0;
-                if (module.gpa === 'GPA') {
-                  semGPACredits += credits;
-                  semGradePoints += gradePoint * credits;
-                }
               });
-              const semesterGPA = semGPACredits > 0 ? (semGradePoints / semGPACredits).toFixed(2) : '0.00';
-              html += `<div style="font-weight:bold;margin-bottom:8px;font-size:1rem;">Semester GPA: ${semesterGPA}</div>`;
-              html += `</div>`;
+              html += `</tbody></table>`;
+            }
+            // Semester GPA
+            let semGPACredits = 0;
+            let semGradePoints = 0;
+            semester.modules.forEach((module) => {
+              const credits = parseFloat(module.credits) || 0;
+              const gradePoint = gradeToPoint[module.grade] || 0;
+              if (module.gpa === 'GPA') {
+                semGPACredits += credits;
+                semGradePoints += gradePoint * credits;
+              }
             });
-            return html;
-          })()}
-        />
-      </div>
+            const semesterGPA =
+              semGPACredits > 0
+                ? (semGradePoints / semGPACredits).toFixed(2)
+                : '0.00';
+            html += `<div style="font-weight:bold;margin-bottom:8px;font-size:1rem;">Semester GPA: ${semesterGPA}</div>`;
+            html += `</div>`;
+          });
+          return html;
+        })()}
+      />
       <div ref={pageRef}>
         <div className="grid grid-cols-1 xl:grid-cols-[60%_40%] gap-6 ">
           <div className="space-y-6">
