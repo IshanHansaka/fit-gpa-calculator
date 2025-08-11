@@ -66,10 +66,10 @@ const DownloadPDF = ({
   };
 
   return (
-    <div className="w-full flex justify-end mb-5">
+    <div className="w-full flex md:justify-end justify-center mb-5">
       <button
         onClick={handleDownload}
-        className="px-4 py-2 bg-fuchsia-600 dark:bg-fuchsia-600 hover:bg-fuchsia-700 dark:hover:bg-fuchsia-700 text-white rounded-md font-semibold flex gap-2"
+        className="px-4 py-2 bg-fuchsia-600 dark:bg-fuchsia-600 hover:bg-fuchsia-700 dark:hover:bg-fuchsia-700 text-white rounded-md font-semibold flex gap-2 items-center"
       >
         <Image src="/download.svg" width={24} height={24} alt="download" />
         Export GPA Summary
@@ -79,8 +79,8 @@ const DownloadPDF = ({
           className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
           style={{ backdropFilter: 'blur(6px)' }}
         >
-          <div className="bg-purple-50 dark:bg-slate-900 p-8 rounded-lg shadow-lg w-full max-w-md">
-            <h2 className="text-xl font-bold mb-4 text-fuchsia-600 dark:text-fuchsia-500 text-center">
+          <div className="bg-purple-50 dark:bg-slate-900 p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-sm sm:max-w-md mx-4">
+            <h2 className="text-lg font-bold mb-4 text-fuchsia-600 dark:text-fuchsia-500 text-center">
               Export GPA Summary
             </h2>
             <div className="mb-4">
@@ -118,23 +118,24 @@ const DownloadPDF = ({
                 ))}
               </select>
             </div>
-            <div className="flex gap-4 mt-6 items-center justify-center">
+
+            <div className="flex flex-col sm:flex-row gap-4 mt-6 items-center justify-center">
               <button
                 onClick={handleConfirm}
                 disabled={!degree}
-                className={`px-4 py-2 rounded-md font-semibold text-white
-					${
-            degree
-              ? 'bg-fuchsia-600 cursor-pointer hover:bg-fuchsia-700'
-              : 'bg-fuchsia-400 cursor-not-allowed'
-          }
-				`}
+                className={`w-full sm:w-auto px-4 py-2 rounded-md font-semibold text-white
+                  ${
+                    degree
+                      ? 'bg-fuchsia-600 cursor-pointer hover:bg-fuchsia-700'
+                      : 'bg-fuchsia-400 cursor-not-allowed'
+                  }
+                `}
               >
                 Confirm & Download
               </button>
               <button
                 onClick={() => setShowPopup(false)}
-                className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-300 font-semibold"
+                className="w-full sm:w-auto px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-300 font-semibold"
               >
                 Cancel
               </button>
