@@ -1,7 +1,7 @@
+'use client';
+
 import React, { useState } from 'react';
-import html2pdf from 'html2pdf.js';
 import { universityLogos } from '../constraint';
-import Image from 'next/image';
 
 const DownloadPDF = ({ totalCredits, result, summary, tableHtml }: { totalCredits: number, result: string, summary: string, tableHtml: string }) => {
 	const [showPopup, setShowPopup] = useState(false);
@@ -12,8 +12,9 @@ const DownloadPDF = ({ totalCredits, result, summary, tableHtml }: { totalCredit
 		setShowPopup(true);
 	};
 
-	const handleConfirm = () => {
+	const handleConfirm = async () => {
 		setShowPopup(false);
+		const html2pdf = (await import('html2pdf.js')).default;
 		const element = document.createElement('div');
 		element.style.position = 'relative';
 		element.style.padding = '32px';
@@ -46,16 +47,16 @@ const DownloadPDF = ({ totalCredits, result, summary, tableHtml }: { totalCredit
 			<>
 				<button
 					onClick={handleDownload}
-					className="px-4 py-2 bg-fuchsia-600 text-white rounded-md hover:bg-fuchsia-700 font-semibold"
+					className="px-4 py-2 bg-fuchsia-600 dark:bg-fuchsia-500 hover:bg-fuchsia-700 dark:hover:bg-fuchsia-600 text-white rounded-md font-semibold"
 				>
 					Download PDF
 				</button>
 				{showPopup && (
 					   <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50" style={{ backdropFilter: 'blur(6px)' }}>
-						<div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md">
-							<h2 className="text-xl font-bold mb-4 text-fuchsia-700 text-center">Download PDF</h2>
+						<div className="bg-purple-50 dark:bg-slate-900 p-8 rounded-lg shadow-lg w-full max-w-md">
+							<h2 className="text-xl font-bold mb-4 text-fuchsia-600 dark:text-fuchsia-500 text-center">Download PDF</h2>
 							<div className="mb-4">
-								<label className="block mb-1 font-semibold">Degree</label>
+								<label className="block mb-1 font-semibold text-gray-900 dark:text-white">Degree</label>
 								<input
 									type="text"
 									value={degree}
@@ -65,7 +66,7 @@ const DownloadPDF = ({ totalCredits, result, summary, tableHtml }: { totalCredit
 								/>
 							</div>
 							<div className="mb-4">
-								<label className="block mb-1 font-semibold">University</label>
+								<label className="block mb-1 font-semibold text-gray-900 dark:text-white">University</label>
 								<select
 									value={university}
 									onChange={e => setUniversity(e.target.value as 'University of Moratuwa' | 'University of Colombo' | 'University of Peradeniya')}
@@ -79,7 +80,7 @@ const DownloadPDF = ({ totalCredits, result, summary, tableHtml }: { totalCredit
 							<div className="flex gap-4 mt-6 items-center justify-center">
 								<button
 									onClick={handleConfirm}
-									className="px-4 py-2 bg-fuchsia-600 text-white rounded-md hover:bg-fuchsia-700 font-semibold"
+									className="px-4 py-2 bg-fuchsia-600 dark:bg-fuchsia-500 text-white rounded-md hover:bg-fuchsia-700 dark:hover:bg-fuchsia-600 font-semibold"
 									disabled={!degree}
 								>
 									Confirm & Download
