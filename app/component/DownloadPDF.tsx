@@ -51,9 +51,9 @@ const DownloadPDF = ({ totalCredits, result, summary, tableHtml }: { totalCredit
 					Download PDF
 				</button>
 				{showPopup && (
-					<div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+					   <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50" style={{ backdropFilter: 'blur(6px)' }}>
 						<div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md">
-							<h2 className="text-xl font-bold mb-4 text-fuchsia-700">Download PDF</h2>
+							<h2 className="text-xl font-bold mb-4 text-fuchsia-700 text-center">Download PDF</h2>
 							<div className="mb-4">
 								<label className="block mb-1 font-semibold">Degree</label>
 								<input
@@ -76,7 +76,7 @@ const DownloadPDF = ({ totalCredits, result, summary, tableHtml }: { totalCredit
 									))}
 								</select>
 							</div>
-							<div className="flex gap-4 mt-6">
+							<div className="flex gap-4 mt-6 items-center justify-center">
 								<button
 									onClick={handleConfirm}
 									className="px-4 py-2 bg-fuchsia-600 text-white rounded-md hover:bg-fuchsia-700 font-semibold"
