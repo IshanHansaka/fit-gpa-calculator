@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { universityLogos } from '../constraint';
+import { University, universityLogos } from '../constraint';
 import Image from 'next/image';
 
 const DownloadPDF = ({
@@ -17,11 +17,9 @@ const DownloadPDF = ({
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [degree, setDegree] = useState('');
-  const [university, setUniversity] = useState<
+  const [university, setUniversity] = useState<University>(
     'University of Moratuwa'
-    // | 'University of Colombo'
-    // | 'University of Peradeniya'
-  >('University of Moratuwa');
+  );
 
   const handleDownload = () => {
     setShowPopup(true);
@@ -103,13 +101,7 @@ const DownloadPDF = ({
               </label>
               <select
                 value={university}
-                onChange={(e) =>
-                  setUniversity(
-                    e.target.value as 'University of Moratuwa'
-                    //   | 'University of Colombo'
-                    //   | 'University of Peradeniya'
-                  )
-                }
+                onChange={(e) => setUniversity(e.target.value as University)}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-fuchsia-500"
               >
                 {Object.keys(universityLogos).map((u) => (
