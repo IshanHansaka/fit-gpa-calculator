@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import html2pdf from 'html2pdf.js';
 import Hero from './component/Hero';
 import Class from './component/Class';
 import Semester from './component/Semester';

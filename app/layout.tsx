@@ -8,6 +8,7 @@ import Theme from './component/Theme';
 import Arrow from './component/Arrow';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://fit-gpa-calculator.vercel.app'),
   title: {
     default: 'FIT GPA Calculator | University of Moratuwa',
     template: '%s | FIT GPA Calculator',
@@ -43,9 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <head>
-        <title>
-          FIT GPA Calculator | University of Moratuwa
-        </title>
+        <title>FIT GPA Calculator | University of Moratuwa</title>
         <meta
           property="og:image"
           content="https://fit-gpa-calculator.vercel.app/opengraph-image.png"
