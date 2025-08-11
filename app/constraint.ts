@@ -1,3 +1,14 @@
+export type Degree =
+  | 'BSc. Hons in Information Technology'
+  | 'BSc. Hons in Artificial Intelligence'
+  | 'BSc. Hons in IT & Management';
+
+export const degrees: Degree[] = [
+  'BSc. Hons in Information Technology',
+  'BSc. Hons in Artificial Intelligence',
+  'BSc. Hons in IT & Management',
+];
+
 // Define the possible university names as a union type
 export type University = 'University of Moratuwa';
 // | 'University of Colombo'

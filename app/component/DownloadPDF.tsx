@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { University, universityLogos } from '../constraint';
+import { University, universityLogos, Degree, degrees } from '../constraint';
 import Image from 'next/image';
 
 const DownloadPDF = ({
@@ -16,7 +16,7 @@ const DownloadPDF = ({
   tableHtml: string;
 }) => {
   const [showPopup, setShowPopup] = useState(false);
-  const [degree, setDegree] = useState('');
+  const [degree, setDegree] = useState<Degree | ''>('');
   const [university, setUniversity] = useState<University>(
     'University of Moratuwa'
   );
@@ -85,24 +85,12 @@ const DownloadPDF = ({
             </h2>
             <div className="mb-4">
               <label className="block mb-1 font-semibold text-gray-900 dark:text-white">
-                Degree
-              </label>
-              <input
-                type="text"
-                value={degree}
-                onChange={(e) => setDegree(e.target.value)}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-fuchsia-500"
-                placeholder="e.g. BSc in IT"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block mb-1 font-semibold text-gray-900 dark:text-white">
                 University
               </label>
               <select
                 value={university}
                 onChange={(e) => setUniversity(e.target.value as University)}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-fuchsia-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 hover:border-fuchsia-600 cursor-pointer"
               >
                 {Object.keys(universityLogos).map((u) => (
                   <option key={u} value={u}>
@@ -111,11 +99,36 @@ const DownloadPDF = ({
                 ))}
               </select>
             </div>
+            <div className="mb-4">
+              <label className="block mb-1 font-semibold text-gray-900 dark:text-white">
+                Degree
+              </label>
+              <select
+                value={degree}
+                onChange={(e) => setDegree(e.target.value as Degree)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 hover:border-fuchsia-600 cursor-pointer"
+              >
+                <option value="" disabled>
+                  Select your degree
+                </option>
+                {degrees.map((d) => (
+                  <option key={d} value={d}>
+                    {d}
+                  </option>
+                ))}
+              </select>
+            </div>
             <div className="flex gap-4 mt-6 items-center justify-center">
               <button
                 onClick={handleConfirm}
-                className="px-4 py-2 bg-fuchsia-600 cursor-pointer text-white rounded-md hover:bg-fuchsia-700 font-semibold"
                 disabled={!degree}
+                className={`px-4 py-2 rounded-md font-semibold text-white
+					${
+            degree
+              ? 'bg-fuchsia-600 cursor-pointer hover:bg-fuchsia-700'
+              : 'bg-fuchsia-400 cursor-not-allowed'
+          }
+				`}
               >
                 Confirm & Download
               </button>
