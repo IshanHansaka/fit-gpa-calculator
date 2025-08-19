@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Script from 'next/script';
 
-import Header from './component/Header';
-import Footer from './component/Footer';
-import Theme from './component/Theme';
-import Arrow from './component/Arrow';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import Theme from '../components/Theme';
+import Arrow from '../components/Arrow';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://fit-gpa-calculator.vercel.app'),

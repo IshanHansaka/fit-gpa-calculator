@@ -1,12 +1,12 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import Hero from './component/Hero';
-import Class from './component/Class';
-import Semester from './component/Semester';
-import Table from './component/Table';
+import Hero from '../components/Hero';
+import Class from '../components/Class';
+import Semester from '../components/Semester';
+import Table from '../components/Table';
 import Head from 'next/head';
-import DownloadPDF from './component/DownloadPDF';
+import DownloadPDF from '../components/DownloadPDF';
 
 type Module = {
   name: string;

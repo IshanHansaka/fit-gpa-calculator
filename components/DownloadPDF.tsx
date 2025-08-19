@@ -1,7 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { University, universityLogos, Degree, degrees } from '../constraint';
+import {
+  University,
+  universityLogos,
+  Degree,
+  degrees,
+} from '../app/constraint';
 import Image from 'next/image';
 
 const DownloadPDF = ({
