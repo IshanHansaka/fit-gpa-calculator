@@ -56,6 +56,9 @@ const Module: React.FC<ModuleProps> = ({ module, onRemove, onChange }) => {
           onChange={(e) => onChange('grade', e.target.value)}
           className="w-full p-1.5 border border-fuchsia-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
         >
+          <option value="" disabled hidden>
+            Select
+          </option>
           <option value="A+">A+</option>
           <option value="A">A</option>
           <option value="A-">A-</option>
@@ -71,7 +74,12 @@ const Module: React.FC<ModuleProps> = ({ module, onRemove, onChange }) => {
       </div>
       <div className="w-5 md:w-8 text-center">
         <button onClick={onRemove}>
-          <Image src="/remove-red.svg" width={20} height={20} alt="Remove icon" />
+          <Image
+            src="/remove-red.svg"
+            width={20}
+            height={20}
+            alt="Remove icon"
+          />
         </button>
       </div>
     </div>
