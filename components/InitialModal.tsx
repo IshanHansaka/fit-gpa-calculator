@@ -14,13 +14,11 @@ export default function InitialModal() {
     const hasVisited = localStorage.getItem('hasVisited');
     if (!hasVisited) {
       setShowModal(true);
-      localStorage.setItem('hasVisited', 'true');
     }
   }, []);
 
-  if (!showModal) return null;
-
   const handleSkip = () => {
+    localStorage.setItem('hasVisited', 'true');
     setShowModal(false);
   };
 
@@ -31,6 +29,14 @@ export default function InitialModal() {
       setShowModal(false);
     }
   };
+
+  const handleStart = () => {
+    
+    localStorage.setItem('hasVisited', 'true');
+    setShowModal(false);
+  };
+
+  if (!showModal) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 px-6">
@@ -46,7 +52,7 @@ export default function InitialModal() {
         {step === 1 && (
           <>
             <h2 className="text-2xl font-bold mb-4 text-fuchsia-600 dark:text-fuchsia-400 text-center">
-              Welcome 🎉
+              Welcome 🎓
             </h2>
             <p className="text-gray-700 dark:text-gray-300 mb-6 text-base text-center">
               Get started by choosing a template or continue without one.
