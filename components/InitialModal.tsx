@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Degree, degrees } from '../app/constraint';
+import { Semester01 } from '@/data/L1S1';
 
 export default function InitialModal() {
   const [showModal, setShowModal] = useState(false);
@@ -25,15 +26,23 @@ export default function InitialModal() {
   const handleNext = () => {
     if (step === 1) {
       setStep(2);
-    } else {
-      setShowModal(false);
     }
   };
 
   const handleStart = () => {
-    
+    // Save chosen template into localStorage
+    if (
+      degree === 'BSc. Hons in Information Technology' &&
+      level === 1 &&
+      semester === 1
+    ) {
+      localStorage.setItem('semester', JSON.stringify(Semester01));
+    }
+    // You can extend here for L1S2, L2S1, etc later
+
     localStorage.setItem('hasVisited', 'true');
     setShowModal(false);
+    window.location.reload();
   };
 
   if (!showModal) return null;
@@ -79,6 +88,7 @@ export default function InitialModal() {
             <h2 className="text-2xl font-bold mb-4 text-fuchsia-600 dark:text-fuchsia-400 text-center">
               Setup Your Template
             </h2>
+
             <div className="w-full mb-3">
               <label className="block mb-2 font-semibold text-sm text-gray-900 dark:text-white">
                 Degree
@@ -138,9 +148,10 @@ export default function InitialModal() {
                 ))}
               </select>
             </div>
+
             <button
-              onClick={handleNext}
-              disabled={!degree || !semester}
+              onClick={handleStart}
+              disabled={!degree || !semester || !level}
               className="px-6 py-2 bg-fuchsia-600 text-white rounded-md hover:bg-fuchsia-700 disabled:opacity-50"
             >
               Get Started
