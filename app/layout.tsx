@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Theme from '../components/Theme';
 import Arrow from '../components/Arrow';
+import InitialModal from '@/components/InitialModal';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://fit-gpa-calculator.vercel.app'),
@@ -79,6 +80,7 @@ export default function RootLayout({
             }),
           }}
         />
+        <InitialModal />
         <Theme />
         <Arrow />
         <div className="max-w-7xl mx-auto px-4 md:px-4">
