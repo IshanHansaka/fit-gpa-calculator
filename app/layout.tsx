@@ -44,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full dark" style={{ colorScheme: 'dark' }}>
+    <html lang="en" className="h-full" suppressHydrationWarning>
       <head>
         <title>FIT GPA Calculator | University of Moratuwa</title>
         <meta

@@ -22,11 +22,7 @@ export default function InitialModal() {
     setShowModal(false);
   };
 
-  const handleNext = () => {
-    if (step === 1) {
-      setStep(2);
-    }
-  };
+  const handleNext = () => step === 1 && setStep(2);
 
   const handleStart = () => {
     if (!degree || !level || !semester) return;
@@ -49,12 +45,11 @@ export default function InitialModal() {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 px-6">
       <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full flex flex-col justify-center items-center relative">
-        {/* Skip text */}
         <button
           onClick={handleSkip}
-          className="absolute top-3 right-3 text-md text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
+          className="absolute top-2 right-4 text-md text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
         >
-          Skip
+          skip
         </button>
 
         {step === 1 && (
