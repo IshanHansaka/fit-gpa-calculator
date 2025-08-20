@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Degree, degrees } from '../app/constraint';
-import { Semester01 } from '@/data/L1S1';
+import { Semester, Semester01 } from '@/data/L1S1';
 
 export default function InitialModal() {
   const [showModal, setShowModal] = useState(false);
@@ -30,15 +30,51 @@ export default function InitialModal() {
   };
 
   const handleStart = () => {
-    // Save chosen template into localStorage
-    if (
-      degree === 'BSc. Hons in Information Technology' &&
-      level === 1 &&
-      semester === 1
-    ) {
-      localStorage.setItem('semester', JSON.stringify(Semester01));
+    let selectedSemesters: Semester[] = [];
+
+    if (degree === 'BSc. Hons in Information Technology') {
+      if (level === 1) {
+        if (semester === 1) {
+          selectedSemesters = Semester01.filter((s) => s.id <= 1);
+        }
+
+        if (semester === 2) {
+          selectedSemesters = Semester01.filter((s) => s.id <= 2);
+        }
+      }
+
+      if (level === 2) {
+        if (semester === 1) {
+          selectedSemesters = Semester01.filter((s) => s.id <= 3);
+        }
+
+        if (semester === 2) {
+          selectedSemesters = Semester01.filter((s) => s.id <= 4);
+        }
+      }
+
+      if (level === 3) {
+        if (semester === 1) {
+          selectedSemesters = Semester01.filter((s) => s.id <= 5);
+        }
+
+        if (semester === 2) {
+          selectedSemesters = Semester01.filter((s) => s.id <= 6);
+        }
+      }
+
+      if (level === 4) {
+        if (semester === 1) {
+          selectedSemesters = Semester01.filter((s) => s.id <= 7);
+        }
+
+        if (semester === 2) {
+          selectedSemesters = Semester01.filter((s) => s.id <= 8);
+        }
+      }
+
+      localStorage.setItem('semester', JSON.stringify(selectedSemesters));
     }
-    // You can extend here for L1S2, L2S1, etc later
 
     localStorage.setItem('hasVisited', 'true');
     setShowModal(false);
