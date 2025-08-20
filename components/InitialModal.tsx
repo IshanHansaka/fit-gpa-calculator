@@ -22,6 +22,8 @@ export default function InitialModal() {
 
   const handleNext = () => step === 1 && setStep(2);
 
+  const handlePrevious = () => step === 2 && setStep(1);
+
   const handleStart = () => {
     if (!degree || !level || !semester) return;
 
@@ -41,22 +43,16 @@ export default function InitialModal() {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 px-6 bg-black bg-opacity-80 backdrop-blur-sm">
-      <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-2xl max-w-md w-full flex flex-col justify-center items-center relative transition-colors duration-300">
-        {/* Skip button */}
-        <button
-          onClick={handleSkip}
-          className="absolute top-4 right-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white transition-colors"
-        >
-          Skip
-        </button>
-
+      <div className="bg-gradient-to-r from-blue-100 via-purple-100 to-cyan-50 dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-8 rounded-2xl shadow-2xl max-w-md w-full flex flex-col justify-center items-center relative transition-colors duration-300">
         {step === 1 && (
           <>
-            <h2 className="text-3xl font-extrabold mb-4 text-fuchsia-600 dark:text-fuchsia-400 text-center">
-              Welcome 🎓
+            <h2 className="text-3xl font-semibold mb-4 text-fuchsia-600 dark:text-fuchsia-400 text-center">
+              Simplify Your Semester!
             </h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-6 text-center text-base">
-              Get started by choosing a template or continue without one.
+            <p className="text-gray-700 dark:text-gray-300 mb-6 text-center text-sm">
+              Welcome to the FIT GPA Calculator!
+              <br /> Quick setup with pre-filled templates or full customization
+              your GPA calculation, your way.
             </p>
             <div className="flex flex-col gap-4 w-full">
               <button
@@ -144,13 +140,21 @@ export default function InitialModal() {
               </select>
             </div>
 
-            <button
-              onClick={handleStart}
-              disabled={!degree || !semester || !level}
-              className="px-6 py-3 bg-fuchsia-600 text-white rounded-lg hover:bg-fuchsia-700 disabled:opacity-50 transition-colors shadow-md"
-            >
-              Get Started
-            </button>
+            <div className="flex justify-between gap-4">
+              <button
+                onClick={handleStart}
+                disabled={!degree || !semester || !level}
+                className="w-36 py-2 bg-fuchsia-600 text-white rounded-lg hover:bg-fuchsia-700 disabled:opacity-50 transition-colors shadow-md"
+              >
+                Get Started
+              </button>
+              <button
+                onClick={handlePrevious}
+                className="w-36 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 transition-colors shadow-md"
+              >
+                Cancel
+              </button>
+            </div>
           </>
         )}
       </div>
