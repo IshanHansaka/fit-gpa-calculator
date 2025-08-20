@@ -12,9 +12,7 @@ export default function InitialModal() {
 
   useEffect(() => {
     const hasVisited = localStorage.getItem('hasVisited');
-    if (!hasVisited) {
-      setShowModal(true);
-    }
+    if (!hasVisited) setShowModal(true);
   }, []);
 
   const handleSkip = () => {
@@ -28,7 +26,6 @@ export default function InitialModal() {
     if (!degree || !level || !semester) return;
 
     const maxSemesterId = (Number(level) - 1) * 2 + Number(semester);
-
     const selectedDegree = degreeMap[degree];
     const selectedSemesters = selectedDegree.filter(
       (s) => s.id <= maxSemesterId
@@ -43,33 +40,34 @@ export default function InitialModal() {
   if (!showModal) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 px-6">
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full flex flex-col justify-center items-center relative">
+    <div className="fixed inset-0 flex items-center justify-center z-50 px-6 bg-black bg-opacity-80 backdrop-blur-sm">
+      <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-2xl max-w-md w-full flex flex-col justify-center items-center relative transition-colors duration-300">
+        {/* Skip button */}
         <button
           onClick={handleSkip}
-          className="absolute top-2 right-4 text-md text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
+          className="absolute top-4 right-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white transition-colors"
         >
-          skip
+          Skip
         </button>
 
         {step === 1 && (
           <>
-            <h2 className="text-2xl font-bold mb-4 text-fuchsia-600 dark:text-fuchsia-400 text-center">
+            <h2 className="text-3xl font-extrabold mb-4 text-fuchsia-600 dark:text-fuchsia-400 text-center">
               Welcome 🎓
             </h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-6 text-base text-center">
+            <p className="text-gray-700 dark:text-gray-300 mb-6 text-center text-base">
               Get started by choosing a template or continue without one.
             </p>
-            <div className="flex flex-col gap-3 w-full">
+            <div className="flex flex-col gap-4 w-full">
               <button
                 onClick={handleNext}
-                className="px-6 py-2 bg-fuchsia-600 text-white rounded-md hover:bg-fuchsia-700"
+                className="px-6 py-3 bg-fuchsia-600 text-white rounded-lg hover:bg-fuchsia-700 transition-colors shadow-md"
               >
                 Choose Template
               </button>
               <button
                 onClick={handleSkip}
-                className="px-6 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                className="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 transition-colors shadow-md"
               >
                 Start Without Template
               </button>
@@ -79,18 +77,19 @@ export default function InitialModal() {
 
         {step === 2 && (
           <>
-            <h2 className="text-2xl font-bold mb-4 text-fuchsia-600 dark:text-fuchsia-400 text-center">
+            <h2 className="text-3xl font-extrabold mb-4 text-fuchsia-600 dark:text-fuchsia-400 text-center">
               Setup Your Template
             </h2>
 
-            <div className="w-full mb-3">
-              <label className="block mb-2 font-semibold text-sm text-gray-900 dark:text-white">
+            {/* Degree */}
+            <div className="w-full mb-4">
+              <label className="block mb-2 font-semibold text-sm text-gray-900 dark:text-gray-200">
                 Degree
               </label>
               <select
                 value={degree}
                 onChange={(e) => setDegree(e.target.value as Degree)}
-                className="w-full px-3 py-2 rounded-md focus:ring-2 focus:ring-fuchsia-500"
+                className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-fuchsia-500 transition-colors"
               >
                 <option value="" disabled>
                   Select your degree
@@ -103,14 +102,15 @@ export default function InitialModal() {
               </select>
             </div>
 
-            <div className="w-full mb-3">
-              <label className="block mb-2 font-semibold text-sm text-gray-900 dark:text-white">
+            {/* Level */}
+            <div className="w-full mb-4">
+              <label className="block mb-2 font-semibold text-sm text-gray-900 dark:text-gray-200">
                 Level
               </label>
               <select
                 value={level}
                 onChange={(e) => setLevel(Number(e.target.value))}
-                className="w-full px-3 py-2 rounded-md focus:ring-2 focus:ring-fuchsia-500"
+                className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-fuchsia-500 transition-colors"
               >
                 <option value="" disabled>
                   Select level
@@ -123,14 +123,15 @@ export default function InitialModal() {
               </select>
             </div>
 
+            {/* Semester */}
             <div className="w-full mb-6">
-              <label className="block mb-2 font-semibold text-sm text-gray-900 dark:text-white">
+              <label className="block mb-2 font-semibold text-sm text-gray-900 dark:text-gray-200">
                 Semester
               </label>
               <select
                 value={semester}
                 onChange={(e) => setSemester(Number(e.target.value))}
-                className="w-full px-3 py-2 rounded-md focus:ring-2 focus:ring-fuchsia-500"
+                className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-fuchsia-500 transition-colors"
               >
                 <option value="" disabled>
                   Select semester
@@ -146,7 +147,7 @@ export default function InitialModal() {
             <button
               onClick={handleStart}
               disabled={!degree || !semester || !level}
-              className="px-6 py-2 bg-fuchsia-600 text-white rounded-md hover:bg-fuchsia-700 disabled:opacity-50"
+              className="px-6 py-3 bg-fuchsia-600 text-white rounded-lg hover:bg-fuchsia-700 disabled:opacity-50 transition-colors shadow-md"
             >
               Get Started
             </button>
