@@ -1,3 +1,12 @@
+import { AI } from '@/data/AI';
+import { IT } from '@/data/IT';
+import { ITM } from '@/data/ITM';
+import { Semester } from '@/types/Semester';
+
+/* -------------------------
+   Degree Types & Constants
+-------------------------- */
+
 export type Degree =
   | 'BSc. Hons in Information Technology'
   | 'BSc. Hons in Artificial Intelligence'
@@ -8,6 +17,16 @@ export const degrees: Degree[] = [
   'BSc. Hons in Artificial Intelligence',
   'BSc. Hons in IT & Management',
 ];
+
+export const degreeMap: Record<Degree, Semester[]> = {
+  'BSc. Hons in Information Technology': IT,
+  'BSc. Hons in Artificial Intelligence': AI,
+  'BSc. Hons in IT & Management': ITM,
+};
+
+/* -------------------------
+   University Types & Logos
+-------------------------- */
 
 // Define the possible university names as a union type
 export type University = 'University of Moratuwa';
