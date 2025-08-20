@@ -1,8 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Degree, degrees } from '../app/constraint';
-import { Semester, Semester01 } from '@/data/L1S1';
+import { Degree, degrees, degreeMap } from '../app/constraint';
 
 export default function InitialModal() {
   const [showModal, setShowModal] = useState(false);
@@ -30,52 +29,16 @@ export default function InitialModal() {
   };
 
   const handleStart = () => {
-    let selectedSemesters: Semester[] = [];
+    if (!degree || !level || !semester) return;
 
-    if (degree === 'BSc. Hons in Information Technology') {
-      if (level === 1) {
-        if (semester === 1) {
-          selectedSemesters = Semester01.filter((s) => s.id <= 1);
-        }
+    const maxSemesterId = (Number(level) - 1) * 2 + Number(semester);
 
-        if (semester === 2) {
-          selectedSemesters = Semester01.filter((s) => s.id <= 2);
-        }
-      }
+    const selectedDegree = degreeMap[degree];
+    const selectedSemesters = selectedDegree.filter(
+      (s) => s.id <= maxSemesterId
+    );
 
-      if (level === 2) {
-        if (semester === 1) {
-          selectedSemesters = Semester01.filter((s) => s.id <= 3);
-        }
-
-        if (semester === 2) {
-          selectedSemesters = Semester01.filter((s) => s.id <= 4);
-        }
-      }
-
-      if (level === 3) {
-        if (semester === 1) {
-          selectedSemesters = Semester01.filter((s) => s.id <= 5);
-        }
-
-        if (semester === 2) {
-          selectedSemesters = Semester01.filter((s) => s.id <= 6);
-        }
-      }
-
-      if (level === 4) {
-        if (semester === 1) {
-          selectedSemesters = Semester01.filter((s) => s.id <= 7);
-        }
-
-        if (semester === 2) {
-          selectedSemesters = Semester01.filter((s) => s.id <= 8);
-        }
-      }
-
-      localStorage.setItem('semester', JSON.stringify(selectedSemesters));
-    }
-
+    localStorage.setItem('semester', JSON.stringify(selectedSemesters));
     localStorage.setItem('hasVisited', 'true');
     setShowModal(false);
     window.location.reload();
