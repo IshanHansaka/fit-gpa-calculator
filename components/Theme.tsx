@@ -1,35 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 
 const Theme = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark';
-    const initialTheme = savedTheme || 'dark';
-    setTheme(initialTheme);
-    document.documentElement.classList.add(initialTheme);
-  }, []);
-
-  useEffect(() => {
-    if (theme) {
-      document.documentElement.classList.remove('light', 'dark');
-      document.documentElement.classList.add(theme);
-      localStorage.setItem('theme', theme);
-    }
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-  };
-
-  if (theme === null) return null;
+  const { theme, setTheme } = useTheme();
 
   return (
     <button
-      onClick={toggleTheme}
+      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       className="fixed top-4 right-4 p-2 rounded-full bg-white dark:bg-gray-600 z-10"
     >
       <Image

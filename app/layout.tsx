@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import Theme from '../components/Theme';
 import Arrow from '../components/Arrow';
 import InitialModal from '@/components/InitialModal';
+import { Providers } from './providers';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://fit-gpa-calculator.vercel.app'),
@@ -43,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="h-full dark" style={{ colorScheme: 'dark' }}>
       <head>
         <title>FIT GPA Calculator | University of Moratuwa</title>
         <meta
@@ -80,14 +81,16 @@ export default function RootLayout({
             }),
           }}
         />
-        <InitialModal />
-        <Theme />
-        <Arrow />
-        <div className="max-w-7xl mx-auto px-4 md:px-4">
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </div>
+        <Providers>
+          <InitialModal />
+          <Theme />
+          <Arrow />
+          <div className="max-w-7xl mx-auto px-4 md:px-4">
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   );
