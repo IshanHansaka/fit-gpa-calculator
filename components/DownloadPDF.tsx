@@ -74,7 +74,7 @@ const DownloadPDF = ({
     <div className="w-full flex justify-center md:justify-end mb-5 px-4 sm:px-0">
       <button
         onClick={handleDownload}
-        className="w-full sm:w-auto min-w-0 px-3 sm:px-4 py-2.5 sm:py-2 bg-fuchsia-600 dark:bg-fuchsia-600 hover:bg-fuchsia-700 dark:hover:bg-fuchsia-700 text-white rounded-md font-semibold flex gap-2 items-center justify-center transition-all duration-200 active:scale-95 touch-manipulation"
+        className="w-full sm:w-auto min-w-0 px-3 sm:px-4 py-2.5 sm:py-2 bg-fuchsia-600 hover:bg-fuchsia-700 text-white rounded-md font-semibold flex gap-2 items-center justify-center transition-all duration-200 active:scale-95 touch-manipulation"
       >
         <Image
           src="/download.svg"
@@ -92,12 +92,12 @@ const DownloadPDF = ({
           className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
           style={{ backdropFilter: 'blur(6px)' }}
         >
-          <div className="bg-purple-50 dark:bg-slate-900 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg w-full max-w-sm sm:max-w-md mx-auto">
-            <h2 className="text-base sm:text-lg font-bold mb-4 text-fuchsia-600 dark:text-fuchsia-500 text-center">
+          <div className="bg-slate-900 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg w-full max-w-sm sm:max-w-md mx-auto">
+            <h2 className="text-base sm:text-lg font-bold mb-4 text-fuchsia-500 text-center">
               Export GPA Summary
             </h2>
             <div className="mb-4">
-              <label className="block mb-2 font-semibold text-sm sm:text-base text-gray-900 dark:text-white">
+              <label className="block mb-2 font-semibold text-sm sm:text-base text-white">
                 University
               </label>
               <select
@@ -113,7 +113,7 @@ const DownloadPDF = ({
               </select>
             </div>
             <div className="mb-6">
-              <label className="block mb-2 font-semibold text-sm sm:text-base text-gray-900 dark:text-white">
+              <label className="block mb-2 font-semibold text-sm sm:text-base text-white">
                 Degree
               </label>
               <select
@@ -148,7 +148,7 @@ const DownloadPDF = ({
               </button>
               <button
                 onClick={() => setShowPopup(false)}
-                className="w-full sm:w-auto sm:min-w-[100px] px-4 py-2.5 sm:py-2 bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-200 dark:hover:bg-gray-500 font-semibold text-sm sm:text-base transition-all duration-200 active:scale-95 touch-manipulation"
+                className="w-full sm:w-auto sm:min-w-[100px] px-4 py-2.5 sm:py-2 bg-gray-600 text-gray-200 rounded-md hover:bg-gray-500 font-semibold text-sm sm:text-base transition-all duration-200 active:scale-95 touch-manipulation"
               >
                 Cancel
               </button>

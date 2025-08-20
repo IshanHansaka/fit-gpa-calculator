@@ -4,7 +4,6 @@ import Script from 'next/script';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Theme from '../components/Theme';
 import Arrow from '../components/Arrow';
 import InitialModal from '@/components/InitialModal';
 
@@ -60,7 +59,7 @@ export default function RootLayout({
         <link rel="canonical" href="https://fit-gpa-calculator.vercel.app/" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className="bg-gradient-to-r from-blue-100 via-purple-100 to-cyan-50 dark:bg-gradient-to-r bg dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 mx-auto pt-10 pb-7 relative">
+      <body className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 mx-auto pt-10 pb-7 relative">
         <Script
           id="structured-data"
           type="application/ld+json"
@@ -81,7 +80,6 @@ export default function RootLayout({
           }}
         />
         <InitialModal />
-        <Theme />
         <Arrow />
         <div className="max-w-7xl mx-auto px-4 md:px-4">
           <Header />

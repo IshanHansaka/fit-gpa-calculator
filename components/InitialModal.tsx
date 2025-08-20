@@ -48,21 +48,21 @@ export default function InitialModal() {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 px-6">
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full flex flex-col justify-center items-center relative">
+      <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full flex flex-col justify-center items-center relative">
         {/* Skip text */}
         <button
           onClick={handleSkip}
-          className="absolute top-3 right-3 text-md text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
+          className="absolute top-3 right-3 text-md text-gray-300 hover:text-white"
         >
           Skip
         </button>
 
         {step === 1 && (
           <>
-            <h2 className="text-2xl font-bold mb-4 text-fuchsia-600 dark:text-fuchsia-400 text-center">
+            <h2 className="text-2xl font-bold mb-4 text-fuchsia-400 text-center">
               Welcome 🎓
             </h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-6 text-base text-center">
+            <p className="text-gray-300 mb-6 text-base text-center">
               Get started by choosing a template or continue without one.
             </p>
             <div className="flex flex-col gap-3 w-full">
@@ -74,7 +74,7 @@ export default function InitialModal() {
               </button>
               <button
                 onClick={handleSkip}
-                className="px-6 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                className="px-6 py-2 rounded-md bg-gray-700 text-gray-200 hover:bg-gray-600"
               >
                 Start Without Template
               </button>
@@ -84,12 +84,12 @@ export default function InitialModal() {
 
         {step === 2 && (
           <>
-            <h2 className="text-2xl font-bold mb-4 text-fuchsia-600 dark:text-fuchsia-400 text-center">
+            <h2 className="text-2xl font-bold mb-4 text-fuchsia-400 text-center">
               Setup Your Template
             </h2>
 
             <div className="w-full mb-3">
-              <label className="block mb-2 font-semibold text-sm text-gray-900 dark:text-white">
+              <label className="block mb-2 font-semibold text-sm text-white">
                 Degree
               </label>
               <select
@@ -109,7 +109,7 @@ export default function InitialModal() {
             </div>
 
             <div className="w-full mb-3">
-              <label className="block mb-2 font-semibold text-sm text-gray-900 dark:text-white">
+              <label className="block mb-2 font-semibold text-sm text-white">
                 Level
               </label>
               <select
@@ -129,7 +129,7 @@ export default function InitialModal() {
             </div>
 
             <div className="w-full mb-6">
-              <label className="block mb-2 font-semibold text-sm text-gray-900 dark:text-white">
+              <label className="block mb-2 font-semibold text-sm text-white">
                 Semester
               </label>
               <select

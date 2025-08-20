@@ -29,7 +29,7 @@ const Class: React.FC<ClassProps> = ({
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-3 md:p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="bg-gray-800 shadow-lg rounded-lg p-3 md:p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="grid grid-cols-1 md:grid-cols-2 md:col-span-3 gap-6">
           <ClassCard
             title="Overall GPA"
