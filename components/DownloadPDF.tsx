@@ -6,7 +6,7 @@ import {
   universityLogos,
   Degree,
   degrees,
-} from '../app/constraint';
+} from '../constans/constraint';
 import Image from 'next/image';
 
 const DownloadPDF = ({

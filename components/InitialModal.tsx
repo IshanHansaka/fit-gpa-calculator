@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Degree, degrees, degreeMap } from '../app/constraint';
+import { Degree, degrees, degreeMap } from '../constans/constraint';
 
 export default function InitialModal() {
   const [showModal, setShowModal] = useState(false);
