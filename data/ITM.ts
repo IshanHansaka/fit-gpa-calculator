@@ -1,3 +1,311 @@
 import { Semester } from '@/types/Semester';
 
-export const ITM: Semester[] = [];
+export const ITM: Semester[] = [
+  {
+    id: 1,
+    level: 1,
+    semester: 1,
+    modules: [
+      {
+        name: 'Structured Programming I',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Digital Systems and Digital Computers',
+        gpa: 'GPA',
+        credits: '3.0',
+        grade: '',
+      },
+      {
+        name: 'Multimedia Technologies and Web Design',
+        gpa: 'GPA',
+        credits: '3.0',
+        grade: '',
+      },
+      {
+        name: 'Principles of Management',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Essentials of Mathematics',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'English',
+        gpa: 'NGPA',
+        credits: '3.0',
+        grade: '',
+      },
+    ],
+  },
+  {
+    id: 2,
+    level: 1,
+    semester: 2,
+    modules: [
+      {
+        name: 'Structured Programming II',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Fundamentals of Databases',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Business Foundation',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Industry Reconnaissance and Engagement',
+        gpa: 'GPA',
+        credits: '2.0',
+        grade: '',
+      },
+      {
+        name: 'Elements of Probability and Statistics',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Microcontroller based ICT Project',
+        gpa: 'GPA',
+        credits: '3.0',
+        grade: '',
+      },
+    ],
+  },
+  {
+    id: 3,
+    level: 2,
+    semester: 1,
+    modules: [
+      {
+        name: 'Fundamentals of Object Oriented Programming',
+        gpa: 'GPA',
+        credits: '3.0',
+        grade: '',
+      },
+      {
+        name: 'Web Programming',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Software Engineering',
+        gpa: 'GPA',
+        credits: '3.0',
+        grade: '',
+      },
+      {
+        name: 'Object Oriented Analysis and Design',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Principles of Marketing & Consumer Solutions',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Fundamentals of Accounting and Finance',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Foundation of Mathematical Methods',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+    ],
+  },
+  {
+    id: 4,
+    level: 2,
+    semester: 2,
+    modules: [
+      {
+        name: 'Graphic Design and Development',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Database Systems',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Essentials of Computer Organization & Architecture',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Data Structures and Algorithms I',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Essentials of Business Law and Taxation',
+        gpa: 'GPA',
+        credits: '2.0',
+        grade: '',
+      },
+      {
+        name: 'Economic Applications in Business',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Statistical Inference',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Software Development Project',
+        gpa: 'GPA',
+        credits: '4.0',
+        grade: '',
+      },
+    ],
+  },
+  {
+    id: 5,
+    level: 3,
+    semester: 1,
+    modules: [
+      {
+        name: 'Operating Systems',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Data Communication & Computer Networks',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Artificial Intelligence',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Automata Theory',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Management Information Systems',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'IT Project Management',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Communication Skills and Professional Conduct',
+        gpa: 'NGPA',
+        credits: '2.0',
+        grade: '',
+      },
+    ],
+  },
+  {
+    id: 6,
+    level: 3,
+    semester: 2,
+    modules: [
+      {
+        name: 'Industrial Training',
+        gpa: 'NGPA',
+        credits: '6.0',
+        grade: '',
+      },
+      {
+        name: 'Scientific Communication',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Research Methodology',
+        gpa: 'GPA',
+        credits: '2.0',
+        grade: '',
+      },
+      {
+        name: 'Individual Project on Business Solutions',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+    ],
+  },
+  {
+    id: 7,
+    level: 4,
+    semester: 1,
+    modules: [
+      {
+        name: 'Software Management',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'IT Quality Assurance',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Professional Practice',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Corporate Information Security Management',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Comprehensive Group Project',
+        gpa: 'GPA',
+        credits: '10.0',
+        grade: '',
+      },
+    ],
+  },
+];
