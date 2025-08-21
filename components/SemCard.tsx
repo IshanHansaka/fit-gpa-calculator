@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import Module from './Module';
-
-interface ModuleType {
-  name: string;
-  gpa: string;
-  credits: string;
-  grade: string;
-}
+import {
+  ModuleType,
+  gradeToPoint,
+  DEAN_LIST_MIN_GPA,
+  DEAN_LIST_MIN_CREDITS,
+  MAX_MODULES_PER_SEMESTER,
+} from '@/constants/grades';
 
 interface SemCardProps {
   level: number;
@@ -15,24 +15,20 @@ interface SemCardProps {
   onModulesChange: (modules: ModuleType[]) => void;
 }
 
-const gradeToPoint: Record<string, number> = {
-  'A+': 4.0,
-  'A' : 4.0,
-  'A-': 3.7,
-  'B+': 3.3,
-  'B' : 3.0,
-  'B-': 2.7,
-  'C+': 2.3,
-  'C' : 2.0,
-  'C-': 1.7,
-  'D' : 1.0,
-  'I' : 0.0,
-};
-
-const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesChange, }) => {
+const SemCard: React.FC<SemCardProps> = ({
+  level,
+  semester,
+  modules,
+  onModulesChange,
+}) => {
   const handleAddModule = () => {
-    if (modules.length < 10) {
-      const newModule: ModuleType = { name: '', gpa: 'GPA', credits: '', grade: '' };
+    if (modules.length < MAX_MODULES_PER_SEMESTER) {
+      const newModule: ModuleType = {
+        name: '',
+        gpa: 'GPA',
+        credits: '',
+        grade: '',
+      };
       onModulesChange([...modules, newModule]);
     }
   };
@@ -42,7 +38,11 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
     onModulesChange(updatedModules);
   };
 
-  const handleModuleChange = ( index: number, field: keyof ModuleType, value: string | number ) => {
+  const handleModuleChange = (
+    index: number,
+    field: keyof ModuleType,
+    value: string | number
+  ) => {
     const updatedModules = [...modules];
     updatedModules[index] = { ...updatedModules[index], [field]: value };
     onModulesChange(updatedModules);
@@ -51,12 +51,6 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
   const totalGPACredits = modules.reduce((total, module) => {
     const credits = parseFloat(module.credits) || 0;
     return module.gpa === 'GPA' ? total + credits : total;
-  }, 0);
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const totalNGPACredits = modules.reduce((total, module) => {
-    const credits = parseFloat(module.credits) || 0;
-    return module.gpa === 'NGPA' ? total + credits : total;
   }, 0);
 
   const totalGradePoints = modules.reduce((total, module) => {
@@ -89,7 +83,7 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
         </div>
       </div>
 
-      {parseFloat(semesterGPA) >= 3.8 && totalGPACredits >= 12 && (
+      {parseFloat(semesterGPA) >= DEAN_LIST_MIN_GPA && totalGPACredits >= DEAN_LIST_MIN_CREDITS && (
         <div className="text-green-600 dark:text-green-400 font-semibold text-xs md:text-lg mt-2">
           Congratulations! You are on the Dean&apos;s List 🎉
         </div>
@@ -113,14 +107,14 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
         ))}
       </div>
       <div className="flex justify-center mt-4">
-          <button
-            onClick={handleAddModule}
-            className="px-2 py-1 md:px-4 md:py-2 bg-fuchsia-500 text-white rounded-md hover:bg-fuchsia-600 focus:outline-none flex items-center justify-center gap-2 text-sm md:text-base"
-          >
-            <Image src="/add.svg" width={20} height={20} alt="add icon" />
-            <span>Add Module</span>
-          </button>
-        </div>
+        <button
+          onClick={handleAddModule}
+          className="px-2 py-1 md:px-4 md:py-2 bg-fuchsia-500 text-white rounded-md hover:bg-fuchsia-600 focus:outline-none flex items-center justify-center gap-2 text-sm md:text-base"
+        >
+          <Image src="/add.svg" width={20} height={20} alt="add icon" />
+          <span>Add Module</span>
+        </button>
+      </div>
     </div>
   );
 };

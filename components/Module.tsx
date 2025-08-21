@@ -1,11 +1,5 @@
 import Image from 'next/image';
-
-interface ModuleType {
-  name: string;
-  gpa: string;
-  credits: string;
-  grade: string;
-}
+import { ModuleType, gradeOptions } from '@/constants/grades';
 
 interface ModuleProps {
   module: ModuleType;
@@ -59,17 +53,11 @@ const Module: React.FC<ModuleProps> = ({ module, onRemove, onChange }) => {
           <option value="" disabled hidden>
             Select
           </option>
-          <option value="A+">A+</option>
-          <option value="A">A</option>
-          <option value="A-">A-</option>
-          <option value="B+">B+</option>
-          <option value="B">B</option>
-          <option value="B-">B-</option>
-          <option value="C+">C+</option>
-          <option value="C">C</option>
-          <option value="C-">C-</option>
-          <option value="D">D</option>
-          <option value="I">I</option>
+          {gradeOptions.map((grade) => (
+            <option key={grade} value={grade}>
+              {grade}
+            </option>
+          ))}
         </select>
       </div>
       <div className="w-5 md:w-8 text-center">

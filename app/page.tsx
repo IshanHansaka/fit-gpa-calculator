@@ -7,34 +7,7 @@ import Semester from '../components/Semester';
 import Table from '../components/Table';
 import Head from 'next/head';
 import DownloadPDF from '../components/DownloadPDF';
-
-type Module = {
-  name: string;
-  credits: string;
-  grade: string;
-  gpa: string;
-};
-
-type SemesterType = {
-  id: number;
-  level: number;
-  semester: number;
-  modules: Module[];
-};
-
-const gradeToPoint: Record<string, number> = {
-  'A+': 4.0,
-  A: 4.0,
-  'A-': 3.7,
-  'B+': 3.3,
-  B: 3.0,
-  'B-': 2.7,
-  'C+': 2.3,
-  C: 2.0,
-  'C-': 1.7,
-  D: 1.0,
-  I: 0.0,
-};
+import { SemesterType, gradeToPoint } from '@/constants/grades';
 
 export default function Home() {
   const pageRef = useRef<HTMLDivElement>(null);
@@ -47,15 +20,25 @@ export default function Home() {
         const parsedSemesters: SemesterType[] = JSON.parse(storedSemesters);
         if (Array.isArray(parsedSemesters)) {
           setSemesters(parsedSemesters);
+        } else {
+          console.warn(
+            'Invalid semesters data in localStorage, using empty array'
+          );
+          setSemesters([]);
         }
       } catch (error) {
         console.error('Failed to parse semesters from localStorage:', error);
+        setSemesters([]);
       }
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('semester', JSON.stringify(semesters));
+    try {
+      localStorage.setItem('semester', JSON.stringify(semesters));
+    } catch (error) {
+      console.error('Failed to save semesters to localStorage:', error);
+    }
   }, [semesters]);
 
   const calculateCreditsAndGPA = () => {
@@ -120,7 +103,7 @@ export default function Home() {
         summary={`GPA Credits: ${totalGPACredits}, NGPA Credits: ${totalNGPACredits}`}
         tableHtml={(() => {
           let html = '';
-          semesters.forEach((semester, i) => {
+          semesters.forEach((semester) => {
             html += `<div style="margin-bottom:32px;page-break-inside: avoid;">
       <div style="font-weight:bold;color:#4B2991;font-size:1.1rem;margin-bottom:8px;">
         Level ${semester.level} - Semester ${semester.semester}
@@ -181,11 +164,6 @@ export default function Home() {
 
             html += `<div style="font-weight:bold;margin-bottom:8px;font-size:1rem;color:#000000;">Semester GPA: ${semesterGPA}</div>`;
             html += `</div>`;
-
-            // Page break every 2 semesters
-            if ((i + 1) % 2 === 0) {
-              html += `<div style="page-break-after: always;"></div>`;
-            }
           });
           return html;
         })()}
