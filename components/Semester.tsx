@@ -1,6 +1,7 @@
 import SemCard from './SemCard';
 import Image from 'next/image';
-import { ModuleType, SemesterType, MAX_SEMESTERS } from '../constants/grades';
+import { MAX_SEMESTERS } from '../constants/grades';
+import { SemesterType, ModuleType } from '@/types/Semester';
 
 type SemesterProps = {
   semesters: SemesterType[];

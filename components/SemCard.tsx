@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import Module from './Module';
 import {
-  ModuleType,
   gradeToPoint,
   DEAN_LIST_MIN_GPA,
   DEAN_LIST_MIN_CREDITS,
   MAX_MODULES_PER_SEMESTER,
 } from '@/constants/grades';
+import { ModuleType } from '@/types/Semester';
 
 interface SemCardProps {
   level: number;
@@ -83,11 +83,12 @@ const SemCard: React.FC<SemCardProps> = ({
         </div>
       </div>
 
-      {parseFloat(semesterGPA) >= DEAN_LIST_MIN_GPA && totalGPACredits >= DEAN_LIST_MIN_CREDITS && (
-        <div className="text-green-600 dark:text-green-400 font-semibold text-xs md:text-lg mt-2">
-          Congratulations! You are on the Dean&apos;s List 🎉
-        </div>
-      )}
+      {parseFloat(semesterGPA) >= DEAN_LIST_MIN_GPA &&
+        totalGPACredits >= DEAN_LIST_MIN_CREDITS && (
+          <div className="text-green-600 dark:text-green-400 font-semibold text-xs md:text-lg mt-2">
+            Congratulations! You are on the Dean&apos;s List 🎉
+          </div>
+        )}
 
       <div className="mt-6 bg-white dark:bg-gray-700 p-2 rounded-lg shadow-lg">
         <div className="flex flex-wrap items-center gap-2 md:gap-4 font-semibold border-b pb-2 mb-2 text-fuchsia-600 dark:text-fuchsia-400 text-xs md:text-sm">

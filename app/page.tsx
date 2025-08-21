@@ -7,7 +7,8 @@ import Semester from '../components/Semester';
 import Table from '../components/Table';
 import Head from 'next/head';
 import DownloadPDF from '../components/DownloadPDF';
-import { SemesterType, gradeToPoint } from '@/constants/grades';
+import { gradeToPoint } from '@/constants/grades';
+import { SemesterType } from '@/types/Semester';
 
 export default function Home() {
   const pageRef = useRef<HTMLDivElement>(null);

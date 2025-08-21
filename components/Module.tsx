@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { ModuleType, gradeOptions } from '@/constants/grades';
+import { gradeOptions } from '@/constants/grades';
+import { ModuleType } from '@/types/Semester';
 
 interface ModuleProps {
   module: ModuleType;
