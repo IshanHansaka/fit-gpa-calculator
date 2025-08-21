@@ -46,6 +46,7 @@ const DownloadPDF = ({
       font-weight:bold;white-space:nowrap;'>
       FIT GPA Calculator
     </div>
+
     <div style='position:relative;z-index:1;'>
       <div style='display:flex;align-items:center;gap:16px;margin-bottom:24px;'>
         <img src='${
@@ -65,8 +66,8 @@ const DownloadPDF = ({
       
       <div style='margin-bottom:24px;'>${tableHtml || ''}</div>
 
-      <footer style='margin-top:40px;text-align:center;opacity:0.5;font-size:1rem;color:#333;'>
-        FIT GPA Calculator &copy; ${new Date().getFullYear()}
+      <footer style='margin-bottom:20px;text-align:center;opacity:0.5;font-size:1rem;color:#333;'>
+        Generate by FIT GPA Calculator &copy; ${new Date().getFullYear()}
       </footer>
     </div>
   `;
