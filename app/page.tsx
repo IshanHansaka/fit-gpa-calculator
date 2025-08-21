@@ -41,7 +41,7 @@ export default function Home() {
     }
   }, [semesters]);
 
-  const calculateCreditsAndGPA = () => {
+  const calculateCreditsAndGPA = (semesters: SemesterType[]) => {
     let totalGPACredits = 0;
     let totalNGPACredits = 0;
     let totalGradePoints = 0;
@@ -69,17 +69,13 @@ export default function Home() {
   };
 
   const { totalGPACredits, totalNGPACredits, totalGradePoints } =
-    calculateCreditsAndGPA();
+    calculateCreditsAndGPA(semesters);
 
   const overallGPA =
     totalGPACredits > 0
       ? parseFloat((totalGradePoints / totalGPACredits).toFixed(2))
       : 0.0;
 
-  // ...existing code...
-  // Add the button to trigger PDF download
-  // ...existing code...
-  // Place above the main grid
   return (
     <>
       <Head>
