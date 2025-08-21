@@ -1,11 +1,5 @@
 import Image from 'next/image';
-
-interface ModuleType {
-  name: string;
-  gpa: string;
-  credits: string;
-  grade: string;
-}
+import { ModuleType, gradeOptions } from '../constants/grades';
 
 interface ModuleProps {
   module: ModuleType;
@@ -41,8 +35,13 @@ const Module: React.FC<ModuleProps> = ({ module, onRemove, onChange }) => {
           value={module.credits}
           onChange={(e) => {
             const value = e.target.value;
-            if (/^\d*\.?\d{0,1}$/.test(value)) {
-              onChange('credits', value);
+            // Allow empty string, numbers with optional decimal point and one decimal place
+            if (value === '' || /^\d*\.?\d{0,1}$/.test(value)) {
+              // Ensure credits don't exceed reasonable limits (e.g., 20 credits per module)
+              const numValue = parseFloat(value);
+              if (value === '' || (numValue >= 0 && numValue <= 20)) {
+                onChange('credits', value);
+              }
             }
           }}
           inputMode="decimal"
@@ -56,17 +55,11 @@ const Module: React.FC<ModuleProps> = ({ module, onRemove, onChange }) => {
           onChange={(e) => onChange('grade', e.target.value)}
           className="w-full p-1.5 border border-fuchsia-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
         >
-          <option value="A+">A+</option>
-          <option value="A">A</option>
-          <option value="A-">A-</option>
-          <option value="B+">B+</option>
-          <option value="B">B</option>
-          <option value="B-">B-</option>
-          <option value="C+">C+</option>
-          <option value="C">C</option>
-          <option value="C-">C-</option>
-          <option value="D">D</option>
-          <option value="I">I</option>
+          {gradeOptions.map((grade) => (
+            <option key={grade} value={grade}>
+              {grade}
+            </option>
+          ))}
         </select>
       </div>
       <div className="w-5 md:w-8 text-center">

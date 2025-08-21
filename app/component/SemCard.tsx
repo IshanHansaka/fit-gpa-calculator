@@ -1,12 +1,6 @@
 import Image from 'next/image';
 import Module from './Module';
-
-interface ModuleType {
-  name: string;
-  gpa: string;
-  credits: string;
-  grade: string;
-}
+import { ModuleType, gradeToPoint, DEAN_LIST_MIN_GPA, DEAN_LIST_MIN_CREDITS, MAX_MODULES_PER_SEMESTER } from '../constants/grades';
 
 interface SemCardProps {
   level: number;
@@ -15,23 +9,9 @@ interface SemCardProps {
   onModulesChange: (modules: ModuleType[]) => void;
 }
 
-const gradeToPoint: Record<string, number> = {
-  'A+': 4.0,
-  'A' : 4.0,
-  'A-': 3.7,
-  'B+': 3.3,
-  'B' : 3.0,
-  'B-': 2.7,
-  'C+': 2.3,
-  'C' : 2.0,
-  'C-': 1.7,
-  'D' : 1.0,
-  'I' : 0.0,
-};
-
 const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesChange, }) => {
   const handleAddModule = () => {
-    if (modules.length < 10) {
+    if (modules.length < MAX_MODULES_PER_SEMESTER) {
       const newModule: ModuleType = { name: '', gpa: 'GPA', credits: '', grade: 'A' };
       onModulesChange([...modules, newModule]);
     }
@@ -53,7 +33,6 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
     return module.gpa === 'GPA' ? total + credits : total;
   }, 0);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const totalNGPACredits = modules.reduce((total, module) => {
     const credits = parseFloat(module.credits) || 0;
     return module.gpa === 'NGPA' ? total + credits : total;
@@ -81,6 +60,9 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
             Total GPA Credits: {totalGPACredits}
           </div>
           <div className="mb-2 text-xs md:text-sm text-gray-700 dark:text-gray-300">
+            Total NGPA Credits: {totalNGPACredits}
+          </div>
+          <div className="mb-2 text-xs md:text-sm text-gray-700 dark:text-gray-300">
             Semester GPA:{' '}
             <span className="font-semibold text-fuchsia-600 dark:text-fuchsia-400">
               {semesterGPA}
@@ -89,7 +71,7 @@ const SemCard: React.FC<SemCardProps> = ({ level, semester, modules, onModulesCh
         </div>
       </div>
 
-      {parseFloat(semesterGPA) >= 3.8 && totalGPACredits >= 12 && (
+      {parseFloat(semesterGPA) >= DEAN_LIST_MIN_GPA && totalGPACredits >= DEAN_LIST_MIN_CREDITS && (
         <div className="text-green-600 dark:text-green-400 font-semibold text-xs md:text-lg mt-2">
           Congratulations! You are on the Dean&apos;s List 🎉
         </div>
