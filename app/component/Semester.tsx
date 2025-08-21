@@ -1,19 +1,6 @@
 import SemCard from './SemCard';
 import Image from 'next/image';
-
-interface ModuleType {
-  name: string;
-  gpa: string;
-  credits: string;
-  grade: string;
-}
-
-interface SemesterType {
-  id: number;
-  level: number;
-  semester: number;
-  modules: ModuleType[];
-}
+import { ModuleType, SemesterType, MAX_SEMESTERS } from '../constants/grades';
 
 type SemesterProps = {
   semesters: SemesterType[];
@@ -22,7 +9,7 @@ type SemesterProps = {
 
 const Semester: React.FC<SemesterProps> = ({ semesters, setSemesters }) => {
   const handleAddSemester = () => {
-    if (semesters.length < 8) {
+    if (semesters.length < MAX_SEMESTERS) {
       const nextId = semesters.length + 1;
       const level = Math.ceil(nextId / 2);
       const semester = nextId % 2 === 1 ? 1 : 2;
@@ -74,7 +61,7 @@ const Semester: React.FC<SemesterProps> = ({ semesters, setSemesters }) => {
         <div className="flex items-center gap-4 flex-wrap mb-4 md:mb-0">
           <button
             onClick={handleAddSemester}
-            disabled={semesters.length >= 8}
+            disabled={semesters.length >= MAX_SEMESTERS}
             className="px-3 py-2 md:px-6 md:py-3 bg-green-500 text-white rounded-md hover:bg-green-600 disabled:bg-green-300 focus:outline-none flex items-center justify-center gap-2"
           >
             <Image src="/add.svg" width={20} height={20} alt="add icon" />

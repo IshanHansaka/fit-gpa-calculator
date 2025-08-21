@@ -5,36 +5,8 @@ import Hero from './component/Hero';
 import Class from './component/Class';
 import Semester from './component/Semester';
 import Table from './component/Table';
-import Head from 'next/head';
 import DownloadPDF from './component/DownloadPDF';
-
-type Module = {
-  name: string;
-  credits: string;
-  grade: string;
-  gpa: string;
-};
-
-type SemesterType = {
-  id: number;
-  level: number;
-  semester: number;
-  modules: Module[];
-};
-
-const gradeToPoint: Record<string, number> = {
-  'A+': 4.0,
-  A: 4.0,
-  'A-': 3.7,
-  'B+': 3.3,
-  B: 3.0,
-  'B-': 2.7,
-  'C+': 2.3,
-  C: 2.0,
-  'C-': 1.7,
-  D: 1.0,
-  I: 0.0,
-};
+import { SemesterType, gradeToPoint } from './constants/grades';
 
 export default function Home() {
   const pageRef = useRef<HTMLDivElement>(null);
@@ -47,15 +19,23 @@ export default function Home() {
         const parsedSemesters: SemesterType[] = JSON.parse(storedSemesters);
         if (Array.isArray(parsedSemesters)) {
           setSemesters(parsedSemesters);
+        } else {
+          console.warn('Invalid semesters data in localStorage, using empty array');
+          setSemesters([]);
         }
       } catch (error) {
         console.error('Failed to parse semesters from localStorage:', error);
+        setSemesters([]);
       }
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('semester', JSON.stringify(semesters));
+    try {
+      localStorage.setItem('semester', JSON.stringify(semesters));
+    } catch (error) {
+      console.error('Failed to save semesters to localStorage:', error);
+    }
   }, [semesters]);
 
   const calculateCreditsAndGPA = () => {
@@ -99,19 +79,6 @@ export default function Home() {
   // Place above the main grid
   return (
     <>
-      <Head>
-        <title>GPA Calculator | University of Moratuwa</title>
-        <meta
-          name="description"
-          content="Calculate GPA, SGPA, OGPA easily for FIT - UoM. Includes grade/class instructions and saves results in-browser."
-        />
-        <meta
-          name="keywords"
-          content="GPA calculator, University of Moratuwa, FIT, Faculty of IT, UOM, uom, UoM, Faculty of Information Technology, SGPA, OGPA, class calculation, grade scale"
-        />
-        <meta name="author" content="Ishan Hansaka Silva" />
-        <link rel="canonical" href="https://fit-gpa-calculator.vercel.app/" />
-      </Head>
       <Hero />
       {/* Use DownloadPDF component for popup and professional PDF export */}
       <DownloadPDF
