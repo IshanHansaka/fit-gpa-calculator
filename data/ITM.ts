@@ -1,6 +1,6 @@
-import { Semester } from '@/types/Semester';
+import { SemesterType } from '@/types/Semester';
 
-export const ITM: Semester[] = [
+export const ITM: SemesterType[] = [
   {
     id: 1,
     level: 1,

@@ -1,6 +1,6 @@
-import { Semester } from "@/types/Semester";
+import { SemesterType } from "@/types/Semester";
 
-export const IT: Semester[] = [
+export const IT: SemesterType[] = [
   {
     id: 1,
     level: 1,

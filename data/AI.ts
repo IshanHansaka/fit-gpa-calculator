@@ -1,6 +1,6 @@
-import { Semester } from '@/types/Semester';
+import { SemesterType } from '@/types/Semester';
 
-export const AI: Semester[] = [
+export const AI: SemesterType[] = [
   {
     id: 1,
     level: 1,

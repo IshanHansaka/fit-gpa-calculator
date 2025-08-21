@@ -1,7 +1,7 @@
 import { AI } from '@/data/AI';
 import { IT } from '@/data/IT';
 import { ITM } from '@/data/ITM';
-import { Semester } from '@/types/Semester';
+import { SemesterType } from '@/types/Semester';
 
 /* -------------------------
    Degree Types & Constants
@@ -18,7 +18,7 @@ export const degrees: Degree[] = [
   'BSc. Hons in IT & Management',
 ];
 
-export const degreeMap: Record<Degree, Semester[]> = {
+export const degreeMap: Record<Degree, SemesterType[]> = {
   'BSc. Hons in Information Technology': IT,
   'BSc. Hons in Artificial Intelligence': AI,
   'BSc. Hons in IT & Management': ITM,
