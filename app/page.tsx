@@ -115,8 +115,8 @@ export default function Home() {
       <Hero />
       {/* Use DownloadPDF component for popup and professional PDF export */}
       <DownloadPDF
-        totalCredits={totalGPACredits}
-        result={`Overall CGPA: ${overallGPA}`}
+        totalCredits={totalGPACredits + totalNGPACredits}
+        result={`Overall GPA: ${overallGPA}`}
         summary={`GPA Credits: ${totalGPACredits}, NGPA Credits: ${totalNGPACredits}`}
         tableHtml={(() => {
           let html = '';
@@ -131,19 +131,19 @@ export default function Home() {
               html += `<table style="width:100%;border-collapse:collapse;margin-bottom:8px;font-size:14px;">
                   <thead>
                     <tr>
-                      <th style="border:1px solid #bbb;padding:8px;background:#e3e3e3;font-weight:bold;">Module Name</th>
-                      <th style="border:1px solid #bbb;padding:8px;background:#e3e3e3;font-weight:bold;">Credits</th>
-                      <th style="border:1px solid #bbb;padding:8px;background:#e3e3e3;font-weight:bold;">Grade</th>
-                      <th style="border:1px solid #bbb;padding:8px;background:#e3e3e3;font-weight:bold;">GPA/NGPA</th>
+                      <th style="border:1px solid #bbb;padding:8px;background:#e3e3e3;font-weight:bold;color:#000000;">Module Name</th>
+                      <th style="border:1px solid #bbb;padding:8px;background:#e3e3e3;font-weight:bold;color:#000000;">Credits</th>
+                      <th style="border:1px solid #bbb;padding:8px;background:#e3e3e3;font-weight:bold;color:#000000;">Grade</th>
+                      <th style="border:1px solid #bbb;padding:8px;background:#e3e3e3;font-weight:bold;color:#000000;">GPA/NGPA</th>
                     </tr>
                   </thead>
                   <tbody>`;
               semester.modules.forEach((module) => {
                 html += `<tr>
-                    <td style="border:1px solid #ddd;padding:7px;background:#fff;">${module.name}</td>
-                    <td style="border:1px solid #ddd;padding:7px;background:#fff;">${module.credits}</td>
-                    <td style="border:1px solid #ddd;padding:7px;background:#fff;">${module.grade}</td>
-                    <td style="border:1px solid #ddd;padding:7px;background:#fff;">${module.gpa}</td>
+                    <td style="border:1px solid #ddd;padding:7px;background:#fff;color:#000000;">${module.name}</td>
+                    <td style="border:1px solid #ddd;padding:7px;background:#fff;color:#000000;">${module.credits}</td>
+                    <td style="border:1px solid #ddd;padding:7px;background:#fff;color:#000000;">${module.grade}</td>
+                    <td style="border:1px solid #ddd;padding:7px;background:#fff;color:#000000;">${module.gpa}</td>
                   </tr>`;
               });
               html += `</tbody></table>`;

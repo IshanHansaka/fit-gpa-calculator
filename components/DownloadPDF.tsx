@@ -51,13 +51,15 @@ const DownloadPDF = ({
 					</div>
 				</div>
 				<hr style='margin:16px 0;border-color:#a21caf;'>
-				<div style='margin-bottom:16px;'>${summary || ''}</div>
+        <div style='margin-top:3px;font-size:1.1rem;color:#a21caf;font-weight:bold;'>${result}</div>
+				<div style='margin-top:3px;font-size:1.1rem;color:#a21caf;font-weight:bold;'>Total Credits: ${totalCredits}</div>
+				<div style='margin-top:3px;margin-bottom:16px;font-size:1.1rem;color:#a21caf;font-weight:bold;'>${
+          summary || ''
+        }</div>
 						<div style='margin-bottom:24px;'>
 							${tableHtml || ''}
 						</div>
-				<div style='margin-top:24px;font-size:1.1rem;color:#a21caf;font-weight:bold;'>Total Credits: ${totalCredits}</div>
-				<div style='margin-top:8px;font-size:1.1rem;color:#a21caf;font-weight:bold;'>Result: ${result}</div>
-				<footer style='margin-top:32px;text-align:center;opacity:0.5;font-size:1rem;'>FIT GPA Calculator &copy; ${new Date().getFullYear()}</footer>
+				<footer style='margin-top:32px;text-align:center;opacity:0.5;font-size:1rem;color:#333'>FIT GPA Calculator &copy; ${new Date().getFullYear()}</footer>
 			</div>
 		`;
     html2pdf()
