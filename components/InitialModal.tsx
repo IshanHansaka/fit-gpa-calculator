@@ -157,13 +157,17 @@ export default function InitialModal() {
             </div>
 
             {/* Warning for existing users */}
-            <div className="mt-6 w-full text-center">
-              <p className="text-sm text-red-600 dark:text-red-400 font-medium bg-red-50 dark:bg-red-900/30 px-3 py-2 rounded-lg shadow-sm">
-                ⚠️ Note: If you already added data, selecting a template will{' '}
-                <span className="font-semibold">
-                  delete your previous records
+            <div className="w-full text-left mb-4">
+              <p className="text-sm flex gap-2 text-yellow-800 dark:text-yellow-200 font-medium bg-yellow-50/30 dark:bg-yellow-900/30 px-4 py-3 rounded-lg border-l-4 border-yellow-500 shadow-sm">
+                ⚠️
+                <span>
+                  Important: Choosing a template will{' '}
+                  <span className="font-semibold text-yellow-900 dark:text-yellow-300">
+                    replace your existing data
+                  </span>
+                  . If you want to keep your current records, start without a
+                  template.
                 </span>
-                .
               </p>
             </div>
 
