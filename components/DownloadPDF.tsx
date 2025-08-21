@@ -33,40 +33,50 @@ const DownloadPDF = ({
   const handleConfirm = async () => {
     setShowPopup(false);
     const html2pdf = (await import('html2pdf.js')).default;
+
     const element = document.createElement('div');
     element.style.position = 'relative';
-    element.style.padding = '32px';
+    element.style.padding = '0px';
     element.style.fontFamily = 'Arial, sans-serif';
     element.style.background = '#fff';
+
     element.innerHTML = `
-			<div style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:4rem;color:#a21caf22;pointer-events:none;z-index:0;font-weight:bold;white-space:nowrap;'>FIT GPA Calculator</div>
-			<div style='position:relative;z-index:1;'>
-				<div style='display:flex;align-items:center;gap:16px;margin-bottom:24px;'>
-					<img src='${
-            universityLogos[university] || ''
-          }' alt='logo' style='height:64px;'/>
-					<div>
-						<div style='font-size:2rem;font-weight:bold;color:#a21caf;'>${degree}</div>
-						<div style='font-size:1.2rem;color:#333;'>${university}</div>
-					</div>
-				</div>
-				<hr style='margin:16px 0;border-color:#a21caf;'>
-        <div style='margin-top:3px;font-size:1.1rem;color:#a21caf;font-weight:bold;'>${result}</div>
-				<div style='margin-top:3px;font-size:1.1rem;color:#a21caf;font-weight:bold;'>Total Credits: ${totalCredits}</div>
-				<div style='margin-top:3px;margin-bottom:16px;font-size:1.1rem;color:#a21caf;font-weight:bold;'>${
-          summary || ''
-        }</div>
-						<div style='margin-bottom:24px;'>
-							${tableHtml || ''}
-						</div>
-				<footer style='margin-top:32px;text-align:center;opacity:0.5;font-size:1rem;color:#333'>FIT GPA Calculator &copy; ${new Date().getFullYear()}</footer>
-			</div>
-		`;
+    <div style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+      font-size:4rem;color:#a21caf22;pointer-events:none;z-index:0;
+      font-weight:bold;white-space:nowrap;'>
+      FIT GPA Calculator
+    </div>
+    <div style='position:relative;z-index:1;'>
+      <div style='display:flex;align-items:center;gap:16px;margin-bottom:24px;'>
+        <img src='${
+          universityLogos[university] || ''
+        }' alt='logo' style='height:64px;'/>
+        <div>
+          <div style='font-size:2rem;font-weight:bold;color:#a21caf;'>${degree}</div>
+          <div style='font-size:1.2rem;color:#333;'>${university}</div>
+        </div>
+      </div>
+      <hr style='margin:16px 0;border-color:#a21caf;'>
+      <div style='margin-top:3px;font-size:1.1rem;color:#a21caf;font-weight:bold;'>${result}</div>
+      <div style='margin-top:3px;font-size:1.1rem;color:#a21caf;font-weight:bold;'>Total Credits: ${totalCredits}</div>
+      <div style='margin-top:3px;margin-bottom:16px;font-size:1.1rem;color:#a21caf;font-weight:bold;'>${
+        summary || ''
+      }</div>
+      
+      <div style='margin-bottom:24px;'>${tableHtml || ''}</div>
+
+      <footer style='margin-top:40px;text-align:center;opacity:0.5;font-size:1rem;color:#333;'>
+        FIT GPA Calculator &copy; ${new Date().getFullYear()}
+      </footer>
+    </div>
+  `;
+
     html2pdf()
       .set({
-        margin: 0,
+        margin: [35, 25, 60, 25], // add padding, esp. bottom
         filename: 'gpa-summary.pdf',
         html2canvas: { scale: 2 },
+        jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' },
       })
       .from(element)
       .save();
