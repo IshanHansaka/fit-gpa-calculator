@@ -1,40 +1,14 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import Hero from './component/Hero';
-import Class from './component/Class';
-import Semester from './component/Semester';
-import Table from './component/Table';
+import Hero from '../components/Hero';
+import Class from '../components/Class';
+import Semester from '../components/Semester';
+import Table from '../components/Table';
 import Head from 'next/head';
-import DownloadPDF from './component/DownloadPDF';
-
-type Module = {
-  name: string;
-  credits: string;
-  grade: string;
-  gpa: string;
-};
-
-type SemesterType = {
-  id: number;
-  level: number;
-  semester: number;
-  modules: Module[];
-};
-
-const gradeToPoint: Record<string, number> = {
-  'A+': 4.0,
-  A: 4.0,
-  'A-': 3.7,
-  'B+': 3.3,
-  B: 3.0,
-  'B-': 2.7,
-  'C+': 2.3,
-  C: 2.0,
-  'C-': 1.7,
-  D: 1.0,
-  I: 0.0,
-};
+import DownloadPDF from '../components/DownloadPDF';
+import { gradeToPoint } from '@/constants/grades';
+import { SemesterType } from '@/types/Semester';
 
 export default function Home() {
   const pageRef = useRef<HTMLDivElement>(null);
@@ -47,18 +21,28 @@ export default function Home() {
         const parsedSemesters: SemesterType[] = JSON.parse(storedSemesters);
         if (Array.isArray(parsedSemesters)) {
           setSemesters(parsedSemesters);
+        } else {
+          console.warn(
+            'Invalid semesters data in localStorage, using empty array'
+          );
+          setSemesters([]);
         }
       } catch (error) {
         console.error('Failed to parse semesters from localStorage:', error);
+        setSemesters([]);
       }
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('semester', JSON.stringify(semesters));
+    try {
+      localStorage.setItem('semester', JSON.stringify(semesters));
+    } catch (error) {
+      console.error('Failed to save semesters to localStorage:', error);
+    }
   }, [semesters]);
 
-  const calculateCreditsAndGPA = () => {
+  const calculateCreditsAndGPA = (semesters: SemesterType[]) => {
     let totalGPACredits = 0;
     let totalNGPACredits = 0;
     let totalGradePoints = 0;
@@ -86,17 +70,13 @@ export default function Home() {
   };
 
   const { totalGPACredits, totalNGPACredits, totalGradePoints } =
-    calculateCreditsAndGPA();
+    calculateCreditsAndGPA(semesters);
 
   const overallGPA =
     totalGPACredits > 0
       ? parseFloat((totalGradePoints / totalGPACredits).toFixed(2))
       : 0.0;
 
-  // ...existing code...
-  // Add the button to trigger PDF download
-  // ...existing code...
-  // Place above the main grid
   return (
     <>
       <Head>
@@ -115,39 +95,54 @@ export default function Home() {
       <Hero />
       {/* Use DownloadPDF component for popup and professional PDF export */}
       <DownloadPDF
-        totalCredits={totalGPACredits}
-        result={`Overall CGPA: ${overallGPA}`}
+        totalCredits={totalGPACredits + totalNGPACredits}
+        result={`Overall GPA: ${overallGPA}`}
         summary={`GPA Credits: ${totalGPACredits}, NGPA Credits: ${totalNGPACredits}`}
         tableHtml={(() => {
           let html = '';
           semesters.forEach((semester) => {
-            html += `<div style="margin-bottom:24px;">
-                <div style="font-weight:bold;color:#4B2991;font-size:1.1rem;margin-bottom:8px;">
-                  Level ${semester.level} - Semester ${semester.semester}
-                </div>`;
+            html += `<div style="margin-bottom:32px;page-break-inside: avoid;">
+      <div style="font-weight:bold;color:#4B2991;font-size:1.1rem;margin-bottom:8px;">
+        Level ${semester.level} - Semester ${semester.semester}
+      </div>`;
+
             if (semester.modules.length === 0) {
               html += `<div style="font-style:italic;color:#888;margin-bottom:8px;">No modules added.</div>`;
             } else {
-              html += `<table style="width:100%;border-collapse:collapse;margin-bottom:8px;font-size:14px;">
-                  <thead>
-                    <tr>
-                      <th style="border:1px solid #bbb;padding:8px;background:#e3e3e3;font-weight:bold;">Module Name</th>
-                      <th style="border:1px solid #bbb;padding:8px;background:#e3e3e3;font-weight:bold;">Credits</th>
-                      <th style="border:1px solid #bbb;padding:8px;background:#e3e3e3;font-weight:bold;">Grade</th>
-                      <th style="border:1px solid #bbb;padding:8px;background:#e3e3e3;font-weight:bold;">GPA/NGPA</th>
-                    </tr>
-                  </thead>
-                  <tbody>`;
-              semester.modules.forEach((module) => {
-                html += `<tr>
-                    <td style="border:1px solid #ddd;padding:7px;background:#fff;">${module.name}</td>
-                    <td style="border:1px solid #ddd;padding:7px;background:#fff;">${module.credits}</td>
-                    <td style="border:1px solid #ddd;padding:7px;background:#fff;">${module.grade}</td>
-                    <td style="border:1px solid #ddd;padding:7px;background:#fff;">${module.gpa}</td>
-                  </tr>`;
+              html += `
+        <table style="width:100%;border-collapse:collapse;margin-bottom:12px;font-size:14px;table-layout:fixed;">
+          <colgroup>
+            <col style="width:45%;"> <!-- wider for module name -->
+            <col style="width:15%;">
+            <col style="width:20%;">
+            <col style="width:20%;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th style="border:1px solid #ccc;padding:8px;background:#f3f3f3;font-weight:bold;color:#000;text-align:left;">Module Name</th>
+              <th style="border:1px solid #ccc;padding:8px;background:#f3f3f3;font-weight:bold;color:#000;text-align:center;">Credits</th>
+              <th style="border:1px solid #ccc;padding:8px;background:#f3f3f3;font-weight:bold;color:#000;text-align:center;">Grade</th>
+              <th style="border:1px solid #ccc;padding:8px;background:#f3f3f3;font-weight:bold;color:#000;text-align:center;">GPA/NGPA</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+              semester.modules.forEach((module, idx) => {
+                const rowBg = idx % 2 === 0 ? '#fff' : '#fafafa';
+                html += `
+          <tr>
+            <td style="border:1px solid #ddd;padding:8px;background:${rowBg};color:#000;">${module.name}</td>
+            <td style="border:1px solid #ddd;padding:8px;text-align:center;background:${rowBg};color:#000;">${module.credits}</td>
+            <td style="border:1px solid #ddd;padding:8px;text-align:center;background:${rowBg};color:#000;">${module.grade}</td>
+            <td style="border:1px solid #ddd;padding:8px;text-align:center;background:${rowBg};color:#000;">${module.gpa}</td>
+          </tr>
+        `;
               });
+
               html += `</tbody></table>`;
             }
+
             // Semester GPA
             let semGPACredits = 0;
             let semGradePoints = 0;
@@ -163,7 +158,8 @@ export default function Home() {
               semGPACredits > 0
                 ? (semGradePoints / semGPACredits).toFixed(2)
                 : '0.00';
-            html += `<div style="font-weight:bold;margin-bottom:8px;font-size:1rem;">Semester GPA: ${semesterGPA}</div>`;
+
+            html += `<div style="font-weight:bold;margin-bottom:8px;font-size:1rem;color:#000000;">Semester GPA: ${semesterGPA}</div>`;
             html += `</div>`;
           });
           return html;

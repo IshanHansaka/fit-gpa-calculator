@@ -1,11 +1,6 @@
 import Image from 'next/image';
-
-interface ModuleType {
-  name: string;
-  gpa: string;
-  credits: string;
-  grade: string;
-}
+import { gradeOptions } from '@/constants/grades';
+import { ModuleType } from '@/types/Semester';
 
 interface ModuleProps {
   module: ModuleType;
@@ -21,7 +16,7 @@ const Module: React.FC<ModuleProps> = ({ module, onRemove, onChange }) => {
           type="text"
           value={module.name}
           onChange={(e) => onChange('name', e.target.value)}
-          className="w-full p-1.5 border border-fuchsia-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
+          className="w-full p-1.5 border border-fuchsia-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-fuchsia-100 text-gray-800 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
           placeholder="Module Name"
         />
       </div>
@@ -29,7 +24,7 @@ const Module: React.FC<ModuleProps> = ({ module, onRemove, onChange }) => {
         <select
           value={module.gpa}
           onChange={(e) => onChange('gpa', e.target.value)}
-          className="w-full p-1.5 border border-fuchsia-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
+          className="w-full p-1.5 border border-fuchsia-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-fuchsia-100 text-gray-800 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
         >
           <option value="GPA">GPA</option>
           <option value="NGPA">NGPA</option>
@@ -46,7 +41,7 @@ const Module: React.FC<ModuleProps> = ({ module, onRemove, onChange }) => {
             }
           }}
           inputMode="decimal"
-          className="w-full p-1.5 border border-fuchsia-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
+          className="w-full p-1.5 border border-fuchsia-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-fuchsia-100 text-gray-800 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
           placeholder="Credits"
         />
       </div>
@@ -54,24 +49,26 @@ const Module: React.FC<ModuleProps> = ({ module, onRemove, onChange }) => {
         <select
           value={module.grade}
           onChange={(e) => onChange('grade', e.target.value)}
-          className="w-full p-1.5 border border-fuchsia-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
+          className="w-full p-1.5 border border-fuchsia-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-fuchsia-100 text-gray-800 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
         >
-          <option value="A+">A+</option>
-          <option value="A">A</option>
-          <option value="A-">A-</option>
-          <option value="B+">B+</option>
-          <option value="B">B</option>
-          <option value="B-">B-</option>
-          <option value="C+">C+</option>
-          <option value="C">C</option>
-          <option value="C-">C-</option>
-          <option value="D">D</option>
-          <option value="I">I</option>
+          <option value="" disabled hidden>
+            Select
+          </option>
+          {gradeOptions.map((grade) => (
+            <option key={grade} value={grade}>
+              {grade}
+            </option>
+          ))}
         </select>
       </div>
       <div className="w-5 md:w-8 text-center">
         <button onClick={onRemove}>
-          <Image src="/remove-red.svg" width={20} height={20} alt="Remove icon" />
+          <Image
+            src="/remove-red.svg"
+            width={20}
+            height={20}
+            alt="Remove icon"
+          />
         </button>
       </div>
     </div>
