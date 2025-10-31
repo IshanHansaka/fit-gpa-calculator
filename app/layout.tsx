@@ -10,6 +10,7 @@ import InitialModal from '@/components/InitialModal';
 import { Providers } from './providers';
 
 export const metadata: Metadata = {
+  manifest: '/manifest.json',
   metadataBase: new URL('https://fit-gpa-calculator.vercel.app'),
   title: {
     default: 'FIT GPA Calculator | University of Moratuwa',
