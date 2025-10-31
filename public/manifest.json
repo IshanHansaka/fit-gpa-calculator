@@ -1,0 +1,18 @@
+{
+  "name": "FIT GPA Calculator",
+  "short_name": "FIT GPA Cal",
+  "description": "GPA Calculator for Faculty of IT – University of Moratuwa: Easily calculate your GPA, SGPA, and OGPA. View class standings, grade scales, and academic instructions. Save your results in-browser for quick access!",
+  "icons": [
+    {
+      "src": "/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}
