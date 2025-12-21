@@ -1,28 +1,50 @@
+import { useState } from 'react';
 import SemCard from './SemCard';
 import Image from 'next/image';
 import { MAX_SEMESTERS } from '../constants/grades';
 import { SemesterType, ModuleType } from '@/types/Semester';
+import AddSemesterModal from './AddSemesterModal';
+import ConfirmDialog from './ConfirmDialog';
+import Toast from './Toast';
 
 type SemesterProps = {
   semesters: SemesterType[];
   setSemesters: React.Dispatch<React.SetStateAction<SemesterType[]>>;
 };
 
+type ToastType = {
+  message: string;
+  type: 'success' | 'error' | 'warning' | 'info';
+} | null;
+
 const Semester: React.FC<SemesterProps> = ({ semesters, setSemesters }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [toast, setToast] = useState<ToastType>(null);
+
   const handleAddSemester = () => {
     if (semesters.length < MAX_SEMESTERS) {
-      const nextId = semesters.length + 1;
-      const level = Math.ceil(nextId / 2);
-      const semester = nextId % 2 === 1 ? 1 : 2;
-      setSemesters([
-        ...semesters,
-        { id: nextId, level, semester, modules: [] },
-      ]);
+      setIsModalOpen(true);
     }
   };
 
+  const handleAddSemesterFromModal = (newSemester: SemesterType) => {
+    setSemesters([...semesters, newSemester]);
+  };
+
   const handleRemoveSemester = () => {
+    if (semesters.length === 0) return;
+    setShowConfirmDialog(true);
+  };
+
+  const confirmRemoveSemester = () => {
+    const removedSemester = semesters[semesters.length - 1];
     setSemesters(semesters.slice(0, -1));
+    setShowConfirmDialog(false);
+    setToast({
+      message: `Level ${removedSemester.level} - Semester ${removedSemester.semester} removed successfully!`,
+      type: 'info'
+    });
   };
 
   const updateSemesterModules = (index: number, modules: ModuleType[]) => {
@@ -33,6 +55,28 @@ const Semester: React.FC<SemesterProps> = ({ semesters, setSemesters }) => {
 
   return (
     <div className="mt-8 bg-white dark:bg-gray-800 p-3 md:p-6 shadow-lg rounded-lg">
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
+      <AddSemesterModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onAddSemester={handleAddSemesterFromModal}
+        existingSemesters={semesters}
+      />
+      <ConfirmDialog
+        isOpen={showConfirmDialog}
+        title="Remove Semester"
+        message={`Are you sure you want to remove Level ${semesters.length > 0 ? semesters[semesters.length - 1].level : ''} - Semester ${semesters.length > 0 ? semesters[semesters.length - 1].semester : ''}? This action cannot be undone.`}
+        onConfirm={confirmRemoveSemester}
+        onCancel={() => setShowConfirmDialog(false)}
+        confirmText="Remove"
+        cancelText="Cancel"
+      />
       <div className="flex justify-between items-center mb-6">
         <div className="text-xl md:text-2xl font-semibold text-fuchsia-600 dark:text-fuchsia-400">
           Semesters

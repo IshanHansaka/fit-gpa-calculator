@@ -9,11 +9,17 @@ export default function InitialModal() {
   const [degree, setDegree] = useState<Degree | ''>('');
   const [level, setLevel] = useState<number | ''>('');
   const [semester, setSemester] = useState<number | ''>('');
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const hasVisited = localStorage.getItem('hasVisited');
     if (!hasVisited) setShowModal(true);
   }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   const handleSkip = () => {
     localStorage.setItem('hasVisited', 'true');
