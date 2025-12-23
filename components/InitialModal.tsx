@@ -39,7 +39,15 @@ export default function InitialModal() {
       (s) => s.id <= maxSemesterId
     );
 
+    // Store user context for future semester additions
+    const userContext = {
+      degree: degree,
+      level: Number(level),
+      semester: Number(semester)
+    };
+
     localStorage.setItem('semester', JSON.stringify(selectedSemesters));
+    localStorage.setItem('userContext', JSON.stringify(userContext));
     localStorage.setItem('hasVisited', 'true');
     setShowModal(false);
     window.location.reload();
