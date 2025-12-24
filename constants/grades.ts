@@ -1,5 +1,3 @@
-
-
 export const gradeToPoint: Record<string, number> = {
   'A+': 4.0,
   A: 4.0,
