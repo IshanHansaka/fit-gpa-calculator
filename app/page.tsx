@@ -13,8 +13,10 @@ import { SemesterType } from '@/types/Semester';
 export default function Home() {
   const pageRef = useRef<HTMLDivElement>(null);
   const [semesters, setSemesters] = useState<SemesterType[]>([]);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const storedSemesters = localStorage.getItem('semester');
     if (storedSemesters) {
       try {
@@ -93,8 +95,10 @@ export default function Home() {
         <link rel="canonical" href="https://fit-gpa-calculator.vercel.app/" />
       </Head>
       <Hero />
-      {/* Use DownloadPDF component for popup and professional PDF export */}
-      <DownloadPDF
+      {mounted && (
+        <>
+          {/* Use DownloadPDF component for popup and professional PDF export */}
+          <DownloadPDF
         totalCredits={totalGPACredits + totalNGPACredits}
         result={`Overall GPA: ${overallGPA}`}
         summary={`GPA Credits: ${totalGPACredits}, NGPA Credits: ${totalNGPACredits}`}
@@ -180,6 +184,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+        </>
+      )}
     </>
   );
 }

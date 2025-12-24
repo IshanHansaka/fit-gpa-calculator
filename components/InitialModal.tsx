@@ -9,11 +9,17 @@ export default function InitialModal() {
   const [degree, setDegree] = useState<Degree | ''>('');
   const [level, setLevel] = useState<number | ''>('');
   const [semester, setSemester] = useState<number | ''>('');
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const hasVisited = localStorage.getItem('hasVisited');
     if (!hasVisited) setShowModal(true);
   }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   const handleSkip = () => {
     localStorage.setItem('hasVisited', 'true');
@@ -33,7 +39,15 @@ export default function InitialModal() {
       (s) => s.id <= maxSemesterId
     );
 
+    // Store user context for future semester additions
+    const userContext = {
+      degree: degree,
+      level: Number(level),
+      semester: Number(semester)
+    };
+
     localStorage.setItem('semester', JSON.stringify(selectedSemesters));
+    localStorage.setItem('userContext', JSON.stringify(userContext));
     localStorage.setItem('hasVisited', 'true');
     setShowModal(false);
     window.location.reload();
