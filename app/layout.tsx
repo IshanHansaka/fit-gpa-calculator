@@ -62,7 +62,7 @@ export default function RootLayout({
         <link rel="canonical" href="https://fit-gpa-calculator.vercel.app/" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className="bg-gradient-to-r from-blue-100 via-purple-100 to-cyan-50 dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 mx-auto pt-10 pb-7 relative" suppressHydrationWarning>
+      <body className="bg-gradient-to-r from-blue-100 via-purple-100 to-cyan-50 dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 mx-auto pt-10 pb-7 relative">
         <Script
           id="structured-data"
           type="application/ld+json"
