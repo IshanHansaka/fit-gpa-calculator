@@ -1,11 +1,18 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Degree, degrees, degreeMap } from '../constants/constraint';
+import {
+  Degree,
+  degrees,
+  degreeMap,
+  DegreeCode,
+  degreeCodeToName,
+  degreeNameToCode,
+} from '../constants/constraint';
 
 export default function InitialModal() {
   const [showModal, setShowModal] = useState(false);
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState<1 | 2>(1);
   const [degree, setDegree] = useState<Degree | ''>('');
   const [level, setLevel] = useState<number | ''>('');
   const [semester, setSemester] = useState<number | ''>('');
@@ -13,22 +20,34 @@ export default function InitialModal() {
 
   useEffect(() => {
     setMounted(true);
-    const hasVisited = localStorage.getItem('hasVisited');
-    if (!hasVisited) setShowModal(true);
+
+    const savedDegree = localStorage.getItem('degree');
+    setShowModal(savedDegree === null);
+
+    if (savedDegree) {
+      if (savedDegree in degreeCodeToName) {
+        setDegree(degreeCodeToName[savedDegree as DegreeCode]);
+      } else if (savedDegree in degreeMap) {
+        setDegree(savedDegree as Degree);
+      }
+    }
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
+  if (!mounted || !showModal) return null;
 
   const handleSkip = () => {
-    localStorage.setItem('hasVisited', 'true');
+    if (!degree) return;
+
+    try {
+      localStorage.setItem('degree', degreeNameToCode[degree]);
+    } catch (err) {
+      console.warn('Failed to save degree code', err);
+    }
     setShowModal(false);
   };
 
-  const handleNext = () => step === 1 && setStep(2);
-
-  const handlePrevious = () => step === 2 && setStep(1);
+  const handleNext = () => setStep(2);
+  const handlePrevious = () => setStep(1);
 
   const handleStart = () => {
     if (!degree || !level || !semester) return;
@@ -39,21 +58,17 @@ export default function InitialModal() {
       (s) => s.id <= maxSemesterId
     );
 
-    // Store user context for future semester additions
-    const userContext = {
-      degree: degree,
-      level: Number(level),
-      semester: Number(semester)
-    };
-
     localStorage.setItem('semester', JSON.stringify(selectedSemesters));
-    localStorage.setItem('userContext', JSON.stringify(userContext));
-    localStorage.setItem('hasVisited', 'true');
+
+    try {
+      localStorage.setItem('degree', degreeNameToCode[degree]);
+    } catch (err) {
+      console.warn('Failed to save degree code', err);
+    }
+
     setShowModal(false);
     window.location.reload();
   };
-
-  if (!showModal) return null;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 px-6 bg-black bg-opacity-80 backdrop-blur-sm">
@@ -68,6 +83,24 @@ export default function InitialModal() {
               <br /> Quick setup with pre-filled templates or full customization
               your GPA calculation, your way.
             </p>
+
+            {/* Degree */}
+            <div className="w-full mb-4">
+              <select
+                value={degree}
+                onChange={(e) => setDegree(e.target.value as Degree)}
+                className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-fuchsia-500 transition-colors"
+              >
+                <option value="" disabled>
+                  Select your degree
+                </option>
+                {degrees.map((d) => (
+                  <option key={d} value={d}>
+                    {d}
+                  </option>
+                ))}
+              </select>
+            </div>
 
             {/* Warning for existing users */}
             <div className="w-full text-left mb-4">
@@ -87,13 +120,15 @@ export default function InitialModal() {
             <div className="flex flex-col gap-2 w-full">
               <button
                 onClick={handleNext}
-                className="px-6 py-3 bg-fuchsia-600 text-white rounded-lg hover:bg-fuchsia-700 transition-colors shadow-md"
+                className="px-6 py-3 bg-fuchsia-600 disabled:opacity-50 text-white rounded-lg hover:bg-fuchsia-700 transition-colors shadow-md"
+                disabled={!degree}
               >
                 Choose Template
               </button>
               <button
                 onClick={handleSkip}
-                className="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 transition-colors shadow-md"
+                disabled={!degree}
+                className="px-6 py-3 bg-gray-200 disabled:opacity-50 text-gray-800 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 transition-colors shadow-md"
               >
                 Start Without Template
               </button>
@@ -106,27 +141,6 @@ export default function InitialModal() {
             <h2 className="text-3xl font-extrabold mb-4 text-fuchsia-600 dark:text-fuchsia-400 text-center">
               Setup Your Template
             </h2>
-
-            {/* Degree */}
-            <div className="w-full mb-4">
-              <label className="block mb-2 font-semibold text-sm text-gray-900 dark:text-gray-200">
-                Degree
-              </label>
-              <select
-                value={degree}
-                onChange={(e) => setDegree(e.target.value as Degree)}
-                className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-fuchsia-500 transition-colors"
-              >
-                <option value="" disabled>
-                  Select your degree
-                </option>
-                {degrees.map((d) => (
-                  <option key={d} value={d}>
-                    {d}
-                  </option>
-                ))}
-              </select>
-            </div>
 
             {/* Level */}
             <div className="w-full mb-4">

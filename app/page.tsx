@@ -5,7 +5,6 @@ import Hero from '../components/Hero';
 import Class from '../components/Class';
 import Semester from '../components/Semester';
 import Table from '../components/Table';
-import Head from 'next/head';
 import DownloadPDF from '../components/DownloadPDF';
 import { gradeToPoint } from '@/constants/grades';
 import { SemesterType } from '@/types/Semester';
@@ -79,20 +78,6 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>GPA Calculator | University of Moratuwa</title>
-        <meta
-          name="description"
-          content="Calculate GPA, SGPA, OGPA easily for FIT - UoM. Includes grade/class instructions and saves results in-browser."
-        />
-        <meta
-          name="keywords"
-          content="GPA calculator, University of Moratuwa, FIT, Faculty of IT, UOM, uom, UoM, Faculty of Information Technology, SGPA, OGPA, class calculation, grade scale"
-        />
-        <meta name="author" content="Ishan Hansaka Silva" />
-        <link rel="canonical" href="https://fit-gpa-calculator.vercel.app/" />
-      </Head>
-
       <Hero />
 
       {/* Use DownloadPDF component for popup and professional PDF export */}
