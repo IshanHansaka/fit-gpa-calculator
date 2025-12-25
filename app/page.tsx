@@ -5,7 +5,6 @@ import Hero from '../components/Hero';
 import Class from '../components/Class';
 import Semester from '../components/Semester';
 import Table from '../components/Table';
-import Head from 'next/head';
 import DownloadPDF from '../components/DownloadPDF';
 import { gradeToPoint } from '@/constants/grades';
 import { SemesterType } from '@/types/Semester';
@@ -79,20 +78,8 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>GPA Calculator | University of Moratuwa</title>
-        <meta
-          name="description"
-          content="Calculate GPA, SGPA, OGPA easily for FIT - UoM. Includes grade/class instructions and saves results in-browser."
-        />
-        <meta
-          name="keywords"
-          content="GPA calculator, University of Moratuwa, FIT, Faculty of IT, UOM, uom, UoM, Faculty of Information Technology, SGPA, OGPA, class calculation, grade scale"
-        />
-        <meta name="author" content="Ishan Hansaka Silva" />
-        <link rel="canonical" href="https://fit-gpa-calculator.vercel.app/" />
-      </Head>
       <Hero />
+
       {/* Use DownloadPDF component for popup and professional PDF export */}
       <DownloadPDF
         totalCredits={totalGPACredits + totalNGPACredits}
@@ -102,42 +89,42 @@ export default function Home() {
           let html = '';
           semesters.forEach((semester) => {
             html += `<div style="margin-bottom:32px;page-break-inside: avoid;">
-      <div style="font-weight:bold;color:#4B2991;font-size:1.1rem;margin-bottom:8px;">
-        Level ${semester.level} - Semester ${semester.semester}
-      </div>`;
+                      <div style="font-weight:bold;color:#4B2991;font-size:1.1rem;margin-bottom:8px;">
+                        Level ${semester.level} - Semester ${semester.semester}
+                      </div>`;
 
             if (semester.modules.length === 0) {
               html += `<div style="font-style:italic;color:#888;margin-bottom:8px;">No modules added.</div>`;
             } else {
               html += `
-        <table style="width:100%;border-collapse:collapse;margin-bottom:12px;font-size:14px;table-layout:fixed;">
-          <colgroup>
-            <col style="width:45%;"> <!-- wider for module name -->
-            <col style="width:15%;">
-            <col style="width:20%;">
-            <col style="width:20%;">
-          </colgroup>
-          <thead>
-            <tr>
-              <th style="border:1px solid #ccc;padding:8px;background:#f3f3f3;font-weight:bold;color:#000;text-align:left;">Module Name</th>
-              <th style="border:1px solid #ccc;padding:8px;background:#f3f3f3;font-weight:bold;color:#000;text-align:center;">Credits</th>
-              <th style="border:1px solid #ccc;padding:8px;background:#f3f3f3;font-weight:bold;color:#000;text-align:center;">Grade</th>
-              <th style="border:1px solid #ccc;padding:8px;background:#f3f3f3;font-weight:bold;color:#000;text-align:center;">GPA/NGPA</th>
-            </tr>
-          </thead>
-          <tbody>
-      `;
+                        <table style="width:100%;border-collapse:collapse;margin-bottom:12px;font-size:14px;table-layout:fixed;">
+                        <colgroup>
+                          <col style="width:45%;"> <!-- wider for module name -->
+                          <col style="width:15%;">
+                          <col style="width:20%;">
+                          <col style="width:20%;">
+                        </colgroup>
+                        <thead>
+                          <tr>
+                            <th style="border:1px solid #ccc;padding:8px;background:#f3f3f3;font-weight:bold;color:#000;text-align:left;">Module Name</th>
+                            <th style="border:1px solid #ccc;padding:8px;background:#f3f3f3;font-weight:bold;color:#000;text-align:center;">Credits</th>
+                            <th style="border:1px solid #ccc;padding:8px;background:#f3f3f3;font-weight:bold;color:#000;text-align:center;">Grade</th>
+                            <th style="border:1px solid #ccc;padding:8px;background:#f3f3f3;font-weight:bold;color:#000;text-align:center;">GPA/NGPA</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                      `;
 
               semester.modules.forEach((module, idx) => {
                 const rowBg = idx % 2 === 0 ? '#fff' : '#fafafa';
                 html += `
-          <tr>
-            <td style="border:1px solid #ddd;padding:8px;background:${rowBg};color:#000;">${module.name}</td>
-            <td style="border:1px solid #ddd;padding:8px;text-align:center;background:${rowBg};color:#000;">${module.credits}</td>
-            <td style="border:1px solid #ddd;padding:8px;text-align:center;background:${rowBg};color:#000;">${module.grade}</td>
-            <td style="border:1px solid #ddd;padding:8px;text-align:center;background:${rowBg};color:#000;">${module.gpa}</td>
-          </tr>
-        `;
+                        <tr>
+                          <td style="border:1px solid #ddd;padding:8px;background:${rowBg};color:#000;">${module.name}</td>
+                          <td style="border:1px solid #ddd;padding:8px;text-align:center;background:${rowBg};color:#000;">${module.credits}</td>
+                          <td style="border:1px solid #ddd;padding:8px;text-align:center;background:${rowBg};color:#000;">${module.grade}</td>
+                          <td style="border:1px solid #ddd;padding:8px;text-align:center;background:${rowBg};color:#000;">${module.gpa}</td>
+                        </tr>
+                      `;
               });
 
               html += `</tbody></table>`;
@@ -165,6 +152,7 @@ export default function Home() {
           return html;
         })()}
       />
+
       <div ref={pageRef}>
         <div className="grid grid-cols-1 xl:grid-cols-[60%_40%] gap-6 ">
           <div className="space-y-6">

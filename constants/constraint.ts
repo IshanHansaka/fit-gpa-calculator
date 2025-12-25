@@ -9,19 +9,43 @@ import { SemesterType } from '@/types/Semester';
 
 export type Degree =
   | 'BSc. Hons in Information Technology'
-  | 'BSc. Hons in Artificial Intelligence'
-  | 'BSc. Hons in IT & Management';
+  | 'BSc. Hons in IT & Management'
+  | 'BSc. Hons in Artificial Intelligence';
 
 export const degrees: Degree[] = [
   'BSc. Hons in Information Technology',
-  'BSc. Hons in Artificial Intelligence',
   'BSc. Hons in IT & Management',
+  'BSc. Hons in Artificial Intelligence',
 ];
 
 export const degreeMap: Record<Degree, SemesterType[]> = {
   'BSc. Hons in Information Technology': IT,
-  'BSc. Hons in Artificial Intelligence': AI,
   'BSc. Hons in IT & Management': ITM,
+  'BSc. Hons in Artificial Intelligence': AI,
+};
+
+/* -------------------------
+   Degree Short Codes
+-------------------------- */
+
+export type DegreeCode = 'IT' | 'AI' | 'ITM';
+
+export const degreeCodeToName: Record<DegreeCode, Degree> = {
+  IT: 'BSc. Hons in Information Technology',
+  ITM: 'BSc. Hons in IT & Management',
+  AI: 'BSc. Hons in Artificial Intelligence',
+};
+
+export const degreeNameToCode: Record<Degree, DegreeCode> = {
+  'BSc. Hons in Information Technology': 'IT',
+  'BSc. Hons in IT & Management': 'ITM',
+  'BSc. Hons in Artificial Intelligence': 'AI',
+};
+
+export const degreeMapByCode: Record<DegreeCode, SemesterType[]> = {
+  IT: IT,
+  ITM: ITM,
+  AI: AI,
 };
 
 /* -------------------------

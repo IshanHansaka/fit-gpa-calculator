@@ -1,4 +1,4 @@
-import { SemesterType } from "@/types/Semester";
+import { SemesterType } from '@/types/Semester';
 
 export const IT: SemesterType[] = [
   {
@@ -325,5 +325,11 @@ export const IT: SemesterType[] = [
         grade: '',
       },
     ],
+  },
+  {
+    id: 8,
+    level: 4,
+    semester: 2,
+    modules: [],
   },
 ];

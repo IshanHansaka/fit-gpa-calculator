@@ -1,7 +1,17 @@
+'use client';
+
 import SemCard from './SemCard';
 import Image from 'next/image';
 import { MAX_SEMESTERS } from '../constants/grades';
 import { SemesterType, ModuleType } from '@/types/Semester';
+import ConfirmDialog from './ConfirmDialog';
+import {
+  Degree,
+  DegreeCode,
+  degreeMap,
+  degreeMapByCode,
+} from '@/constants/constraint';
+import { useState } from 'react';
 
 type SemesterProps = {
   semesters: SemesterType[];
@@ -9,21 +19,61 @@ type SemesterProps = {
 };
 
 const Semester: React.FC<SemesterProps> = ({ semesters, setSemesters }) => {
+  const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
+
   const handleAddSemester = () => {
     if (semesters.length < MAX_SEMESTERS) {
       const nextId = semesters.length + 1;
       const level = Math.ceil(nextId / 2);
       const semester = nextId % 2 === 1 ? 1 : 2;
-      setSemesters([
-        ...semesters,
-        { id: nextId, level, semester, modules: [] },
-      ]);
+      let newSem: SemesterType = { id: nextId, level, semester, modules: [] };
+      try {
+        const storedDegree = localStorage.getItem('degree');
+        if (storedDegree) {
+          if ((storedDegree as Degree) in degreeMap) {
+            const template = degreeMap[storedDegree as Degree].find(
+              (s) => s.id === nextId
+            );
+            if (template) {
+              newSem = {
+                id: template.id,
+                level: template.level,
+                semester: template.semester,
+                modules: template.modules,
+              };
+            }
+          } else if ((storedDegree as DegreeCode) in degreeMapByCode) {
+            const template = degreeMapByCode[storedDegree as DegreeCode].find(
+              (s) => s.id === nextId
+            );
+            if (template) {
+              newSem = {
+                id: template.id,
+                level: template.level,
+                semester: template.semester,
+                modules: template.modules,
+              };
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('Failed to apply degree template', err);
+      }
+
+      setSemesters([...semesters, newSem]);
     }
   };
 
   const handleRemoveSemester = () => {
-    setSemesters(semesters.slice(0, -1));
+    setShowRemoveConfirm(true);
   };
+
+  const confirmRemove = () => {
+    setSemesters(semesters.slice(0, -1));
+    setShowRemoveConfirm(false);
+  };
+
+  const cancelRemove = () => setShowRemoveConfirm(false);
 
   const updateSemesterModules = (index: number, modules: ModuleType[]) => {
     const updatedSemesters = [...semesters];
@@ -50,7 +100,7 @@ const Semester: React.FC<SemesterProps> = ({ semesters, setSemesters }) => {
 
       {semesters.map((semester, index) => (
         <SemCard
-          key={index}
+          key={semester.id}
           level={semester.level}
           semester={semester.semester}
           modules={semester.modules}
@@ -78,6 +128,16 @@ const Semester: React.FC<SemesterProps> = ({ semesters, setSemesters }) => {
           </button>
         </div>
       </div>
+      {/* Remove confirmation dialog */}
+      <ConfirmDialog
+        isOpen={showRemoveConfirm}
+        title="Remove Semester"
+        message="Are you sure you want to remove the last semester? This action cannot be undone."
+        onConfirm={confirmRemove}
+        onCancel={cancelRemove}
+        confirmText="Remove"
+        cancelText="Cancel"
+      />
     </div>
   );
 };
