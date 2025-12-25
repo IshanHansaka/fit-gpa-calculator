@@ -308,4 +308,10 @@ export const ITM: SemesterType[] = [
       },
     ],
   },
+  {
+    id: 8,
+    level: 4,
+    semester: 2,
+    modules: [],
+  },
 ];
