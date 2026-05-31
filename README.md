@@ -62,5 +62,5 @@ git push origin feature/YourFeature
 
 ## 📄 License
 
-This project is licensed under the **[MIT License](https://opensource.org/licenses/MIT)**.
+This project is licensed under the **[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)**.
 
