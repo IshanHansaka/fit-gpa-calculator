@@ -313,12 +313,6 @@ export const IT: SemesterType[] = [
         grade: '',
       },
       {
-        name: 'Data Mining and Data Warehousing',
-        gpa: 'GPA',
-        credits: '2.5',
-        grade: '',
-      },
-      {
         name: 'IT Project Management',
         gpa: 'GPA',
         credits: '2.5',
