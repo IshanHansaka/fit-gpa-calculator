@@ -277,7 +277,7 @@ export const IT: SemesterType[] = [
       },
       {
         name: 'Scientific Communication ',
-        gpa: 'NGPA',
+        gpa: 'GPA',
         credits: '2.5',
         grade: '',
       },
@@ -308,12 +308,6 @@ export const IT: SemesterType[] = [
       },
       {
         name: 'Advanced Software Engineering',
-        gpa: 'GPA',
-        credits: '2.5',
-        grade: '',
-      },
-      {
-        name: 'Data Mining and Data Warehousing',
         gpa: 'GPA',
         credits: '2.5',
         grade: '',
