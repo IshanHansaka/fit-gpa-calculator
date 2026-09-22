@@ -277,7 +277,7 @@ export const IT: SemesterType[] = [
       },
       {
         name: 'Scientific Communication ',
-        gpa: 'NGPA',
+        gpa: 'GPA',
         credits: '2.5',
         grade: '',
       },
