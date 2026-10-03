@@ -312,6 +312,13 @@ export const IT: SemesterType[] = [
         credits: '2.5',
         grade: '',
       },
+    ],
+  },
+  {
+    id: 8,
+    level: 4,
+    semester: 2,
+    modules: [
       {
         name: 'IT Project Management',
         gpa: 'GPA',
@@ -319,11 +326,5 @@ export const IT: SemesterType[] = [
         grade: '',
       },
     ],
-  },
-  {
-    id: 8,
-    level: 4,
-    semester: 2,
-    modules: [],
   },
 ];
