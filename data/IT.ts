@@ -336,6 +336,30 @@ export const IT: SemesterType[] = [
         credits: '2.5',
         grade: '',
       },
+      {
+        name: 'Elective Module 01',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Elective Module 02',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Elective Module 03',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Elective Module 04',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
     ],
   },
   {
@@ -345,6 +369,12 @@ export const IT: SemesterType[] = [
     modules: [
       {
         name: 'IT Project Management',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Elective Module 05',
         gpa: 'GPA',
         credits: '2.5',
         grade: '',
