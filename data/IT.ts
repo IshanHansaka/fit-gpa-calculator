@@ -134,6 +134,12 @@ export const IT: SemesterType[] = [
         credits: '2.5',
         grade: '',
       },
+      {
+        name: 'Elective Module 01',
+        gpa: 'NGPA',
+        credits: '2.0',
+        grade: '',
+      },
     ],
   },
   {
@@ -181,6 +187,12 @@ export const IT: SemesterType[] = [
         name: 'Software Development Project',
         gpa: 'GPA',
         credits: '4.0',
+        grade: '',
+      },
+      {
+        name: 'Elective Module 01',
+        gpa: 'NGPA',
+        credits: '2.0',
         grade: '',
       },
     ],
