@@ -134,6 +134,12 @@ export const IT: SemesterType[] = [
         credits: '2.5',
         grade: '',
       },
+      {
+        name: 'Elective Module 01',
+        gpa: 'NGPA',
+        credits: '2.0',
+        grade: '',
+      },
     ],
   },
   {
@@ -183,6 +189,12 @@ export const IT: SemesterType[] = [
         credits: '4.0',
         grade: '',
       },
+      {
+        name: 'Elective Module 01',
+        gpa: 'NGPA',
+        credits: '2.0',
+        grade: '',
+      },
     ],
   },
   {
@@ -227,6 +239,30 @@ export const IT: SemesterType[] = [
         grade: '',
       },
       {
+        name: 'Applied Numerical Methods',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Mobile Applications Development',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Wireless Communication & Mobile Networks',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Embedded Systems',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
         name: 'Communication Skills and Professional Conduct',
         gpa: 'NGPA',
         credits: '2.0',
@@ -239,12 +275,6 @@ export const IT: SemesterType[] = [
     level: 3,
     semester: 2,
     modules: [
-      {
-        name: 'Industrial Training',
-        gpa: 'NGPA',
-        credits: '6.0',
-        grade: '',
-      },
       {
         name: 'Logic Programming and Artificial Cognitive Systems',
         gpa: 'GPA',
@@ -281,6 +311,12 @@ export const IT: SemesterType[] = [
         credits: '2.5',
         grade: '',
       },
+      {
+        name: 'Industrial Training',
+        gpa: 'NGPA',
+        credits: '6.0',
+        grade: '',
+      },
     ],
   },
   {
@@ -313,7 +349,25 @@ export const IT: SemesterType[] = [
         grade: '',
       },
       {
-        name: 'IT Project Management',
+        name: 'Elective Module 01',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Elective Module 02',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Elective Module 03',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Elective Module 04',
         gpa: 'GPA',
         credits: '2.5',
         grade: '',
@@ -324,6 +378,19 @@ export const IT: SemesterType[] = [
     id: 8,
     level: 4,
     semester: 2,
-    modules: [],
+    modules: [
+      {
+        name: 'IT Project Management',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Elective Module 05',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+    ],
   },
 ];

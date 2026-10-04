@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import { gradeOptions } from '@/constants/grades';
-import { ModuleType } from '@/types/Semester';
+import Image from "next/image";
+import { gradeOptions } from "@/constants/grades";
+import { ModuleType } from "@/types/Semester";
 
 interface ModuleProps {
   module: ModuleType;
@@ -15,20 +15,37 @@ const Module: React.FC<ModuleProps> = ({ module, onRemove, onChange }) => {
         <input
           type="text"
           value={module.name}
-          onChange={(e) => onChange('name', e.target.value)}
+          onChange={(e) => onChange("name", e.target.value)}
           className="w-full p-1.5 border border-fuchsia-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-fuchsia-100 text-gray-800 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
           placeholder="Module Name"
         />
       </div>
       <div className="w-12 md:w-20 text-center">
-        <select
-          value={module.gpa}
-          onChange={(e) => onChange('gpa', e.target.value)}
-          className="w-full p-1.5 border border-fuchsia-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-fuchsia-100 text-gray-800 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
-        >
-          <option value="GPA">GPA</option>
-          <option value="NGPA">NGPA</option>
-        </select>
+        <div className="relative w-full">
+          <select
+            value={module.gpa}
+            onChange={(e) => onChange("gpa", e.target.value)}
+            className="w-full appearance-none pl-2.5 pr-8 py-1.5 border border-fuchsia-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-fuchsia-100 text-gray-800 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200 cursor-pointer"
+          >
+            <option value="GPA">GPA</option>
+            <option value="NGPA">NGPA</option>
+          </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-gray-700 dark:text-gray-300">
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+        </div>
       </div>
       <div className="w-14 md:w-20 text-center">
         <input
@@ -37,7 +54,7 @@ const Module: React.FC<ModuleProps> = ({ module, onRemove, onChange }) => {
           onChange={(e) => {
             const value = e.target.value;
             if (/^\d*\.?\d{0,1}$/.test(value)) {
-              onChange('credits', value);
+              onChange("credits", value);
             }
           }}
           inputMode="decimal"
@@ -46,20 +63,37 @@ const Module: React.FC<ModuleProps> = ({ module, onRemove, onChange }) => {
         />
       </div>
       <div className="w-12 md:w-20 text-center">
-        <select
-          value={module.grade}
-          onChange={(e) => onChange('grade', e.target.value)}
-          className="w-full p-1.5 border border-fuchsia-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-fuchsia-100 text-gray-800 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200"
-        >
-          <option value="" disabled hidden>
-            Select
-          </option>
-          {gradeOptions.map((grade) => (
-            <option key={grade} value={grade}>
-              {grade}
+        <div className="relative w-full">
+          <select
+            value={module.grade}
+            onChange={(e) => onChange("grade", e.target.value)}
+            className="w-full appearance-none pl-2.5 pr-8 py-1.5 border border-fuchsia-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-fuchsia-100 text-gray-800 dark:bg-gray-800 dark:border-gray-600 text-sm dark:text-gray-200 cursor-pointer"
+          >
+            <option value="" disabled hidden>
+              Select
             </option>
-          ))}
-        </select>
+            {gradeOptions.map((grade) => (
+              <option key={grade} value={grade}>
+                {grade}
+              </option>
+            ))}
+          </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-gray-700 dark:text-gray-300">
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+        </div>
       </div>
       <div className="w-5 md:w-8 text-center">
         <button onClick={onRemove}>
