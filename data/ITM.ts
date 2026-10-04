@@ -300,6 +300,13 @@ export const ITM: SemesterType[] = [
         credits: '2.5',
         grade: '',
       },
+    ],
+  },
+  {
+    id: 8,
+    level: 4,
+    semester: 2,
+    modules: [
       {
         name: 'Comprehensive Group Project',
         gpa: 'GPA',
@@ -307,11 +314,5 @@ export const ITM: SemesterType[] = [
         grade: '',
       },
     ],
-  },
-  {
-    id: 8,
-    level: 4,
-    semester: 2,
-    modules: [],
   },
 ];
