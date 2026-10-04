@@ -331,18 +331,6 @@ export const IT: SemesterType[] = [
         grade: '',
       },
       {
-        name: 'Comprehensive Group Project',
-        gpa: 'GPA',
-        credits: '10.0',
-        grade: '',
-      },
-      {
-        name: 'Individual Research Project',
-        gpa: 'GPA',
-        credits: '10.0',
-        grade: '',
-      },
-      {
         name: 'Advanced Software Engineering',
         gpa: 'GPA',
         credits: '2.5',
@@ -383,6 +371,18 @@ export const IT: SemesterType[] = [
         name: 'IT Project Management',
         gpa: 'GPA',
         credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Comprehensive Group Project',
+        gpa: 'GPA',
+        credits: '10.0',
+        grade: '',
+      },
+      {
+        name: 'Individual Research Project',
+        gpa: 'GPA',
+        credits: '10.0',
         grade: '',
       },
       {
