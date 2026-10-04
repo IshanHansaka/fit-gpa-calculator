@@ -227,6 +227,30 @@ export const IT: SemesterType[] = [
         grade: '',
       },
       {
+        name: 'Applied Numerical Methods',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Mobile Applications Development',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Wireless Communication & Mobile Networks',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Embedded Systems',
+        gpa: 'GPA',
+        credits: '2.5',
+        grade: '',
+      },
+      {
         name: 'Communication Skills and Professional Conduct',
         gpa: 'NGPA',
         credits: '2.0',
