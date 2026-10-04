@@ -240,12 +240,6 @@ export const IT: SemesterType[] = [
     semester: 2,
     modules: [
       {
-        name: 'Industrial Training',
-        gpa: 'NGPA',
-        credits: '6.0',
-        grade: '',
-      },
-      {
         name: 'Logic Programming and Artificial Cognitive Systems',
         gpa: 'GPA',
         credits: '2.5',
@@ -279,6 +273,12 @@ export const IT: SemesterType[] = [
         name: 'Scientific Communication ',
         gpa: 'GPA',
         credits: '2.5',
+        grade: '',
+      },
+      {
+        name: 'Industrial Training',
+        gpa: 'NGPA',
+        credits: '6.0',
         grade: '',
       },
     ],
