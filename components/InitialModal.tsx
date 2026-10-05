@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
   Degree,
   degrees,
@@ -8,20 +8,20 @@ import {
   DegreeCode,
   degreeCodeToName,
   degreeNameToCode,
-} from '../constants/constraint';
+} from "../constants/constraint";
 
 export default function InitialModal() {
   const [showModal, setShowModal] = useState(false);
   const [step, setStep] = useState<1 | 2>(1);
-  const [degree, setDegree] = useState<Degree | ''>('');
-  const [level, setLevel] = useState<number | ''>('');
-  const [semester, setSemester] = useState<number | ''>('');
+  const [degree, setDegree] = useState<Degree | "">("");
+  const [level, setLevel] = useState<number | "">("");
+  const [semester, setSemester] = useState<number | "">("");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
 
-    const savedDegree = localStorage.getItem('degree');
+    const savedDegree = localStorage.getItem("degree");
     setShowModal(savedDegree === null);
 
     if (savedDegree) {
@@ -39,9 +39,9 @@ export default function InitialModal() {
     if (!degree) return;
 
     try {
-      localStorage.setItem('degree', degreeNameToCode[degree]);
+      localStorage.setItem("degree", degreeNameToCode[degree]);
     } catch (err) {
-      console.warn('Failed to save degree code', err);
+      console.warn("Failed to save degree code", err);
     }
     setShowModal(false);
   };
@@ -55,15 +55,15 @@ export default function InitialModal() {
     const maxSemesterId = (Number(level) - 1) * 2 + Number(semester);
     const selectedDegree = degreeMap[degree];
     const selectedSemesters = selectedDegree.filter(
-      (s) => s.id <= maxSemesterId
+      (s) => s.id <= maxSemesterId,
     );
 
-    localStorage.setItem('semester', JSON.stringify(selectedSemesters));
+    localStorage.setItem("semester", JSON.stringify(selectedSemesters));
 
     try {
-      localStorage.setItem('degree', degreeNameToCode[degree]);
+      localStorage.setItem("degree", degreeNameToCode[degree]);
     } catch (err) {
-      console.warn('Failed to save degree code', err);
+      console.warn("Failed to save degree code", err);
     }
 
     setShowModal(false);
@@ -86,20 +86,37 @@ export default function InitialModal() {
 
             {/* Degree */}
             <div className="w-full mb-4">
-              <select
-                value={degree}
-                onChange={(e) => setDegree(e.target.value as Degree)}
-                className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-fuchsia-500 transition-colors"
-              >
-                <option value="" disabled>
-                  Select your degree
-                </option>
-                {degrees.map((d) => (
-                  <option key={d} value={d}>
-                    {d}
+              <div className="relative w-full">
+                <select
+                  value={degree}
+                  onChange={(e) => setDegree(e.target.value as Degree)}
+                  className="w-full appearance-none px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-fuchsia-500 transition-colors cursor-pointer"
+                >
+                  <option value="" disabled>
+                    Select your degree
                   </option>
-                ))}
-              </select>
+                  {degrees.map((d) => (
+                    <option key={d} value={d}>
+                      {d}
+                    </option>
+                  ))}
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-gray-700 dark:text-gray-300">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
 
             {/* Warning for existing users */}
@@ -107,7 +124,7 @@ export default function InitialModal() {
               <p className="text-sm flex gap-2 text-yellow-800 dark:text-yellow-200 font-medium bg-yellow-50/30 dark:bg-yellow-900/30 px-4 py-3 rounded-lg border-l-4 border-yellow-500 shadow-sm">
                 ⚠️
                 <span>
-                  Important: Choosing a template will{' '}
+                  Important: Choosing a template will{" "}
                   <span className="font-semibold text-yellow-900 dark:text-yellow-300">
                     replace your existing data
                   </span>
@@ -147,20 +164,37 @@ export default function InitialModal() {
               <label className="block mb-2 font-semibold text-sm text-gray-900 dark:text-gray-200">
                 Level
               </label>
-              <select
-                value={level}
-                onChange={(e) => setLevel(Number(e.target.value))}
-                className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-fuchsia-500 transition-colors"
-              >
-                <option value="" disabled>
-                  Select level
-                </option>
-                {[1, 2, 3, 4].map((s) => (
-                  <option key={s} value={s}>
-                    Level {s}
+              <div className="relative w-full">
+                <select
+                  value={level}
+                  onChange={(e) => setLevel(Number(e.target.value))}
+                  className="w-full appearance-none px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-fuchsia-500 transition-colors cursor-pointer"
+                >
+                  <option value="" disabled>
+                    Select level
                   </option>
-                ))}
-              </select>
+                  {[1, 2, 3, 4].map((s) => (
+                    <option key={s} value={s}>
+                      Level {s}
+                    </option>
+                  ))}
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-gray-700 dark:text-gray-300">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
 
             {/* Semester */}
@@ -168,20 +202,37 @@ export default function InitialModal() {
               <label className="block mb-2 font-semibold text-sm text-gray-900 dark:text-gray-200">
                 Semester
               </label>
-              <select
-                value={semester}
-                onChange={(e) => setSemester(Number(e.target.value))}
-                className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-fuchsia-500 transition-colors"
-              >
-                <option value="" disabled>
-                  Select semester
-                </option>
-                {[1, 2].map((s) => (
-                  <option key={s} value={s}>
-                    Semester {s}
+              <div className="relative w-full">
+                <select
+                  value={semester}
+                  onChange={(e) => setSemester(Number(e.target.value))}
+                  className="w-full appearance-none px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-fuchsia-500 transition-colors cursor-pointer"
+                >
+                  <option value="" disabled>
+                    Select semester
                   </option>
-                ))}
-              </select>
+                  {[1, 2].map((s) => (
+                    <option key={s} value={s}>
+                      Semester {s}
+                    </option>
+                  ))}
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-gray-700 dark:text-gray-300">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
 
             {/* Warning for existing users */}
@@ -189,7 +240,7 @@ export default function InitialModal() {
               <p className="text-sm flex gap-2 text-yellow-800 dark:text-yellow-200 font-medium bg-yellow-50/30 dark:bg-yellow-900/30 px-4 py-3 rounded-lg border-l-4 border-yellow-500 shadow-sm">
                 ⚠️
                 <span>
-                  Important: Choosing a template will{' '}
+                  Important: Choosing a template will{" "}
                   <span className="font-semibold text-yellow-900 dark:text-yellow-300">
                     replace your existing data
                   </span>
