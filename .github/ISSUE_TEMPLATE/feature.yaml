@@ -1,0 +1,65 @@
+name: "💡 New Feature Request"
+description: Suggest new functionality and features for the product.
+labels: ["Type/NewFeature"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: "What problem are we solving?"
+      description: "Be specific about the problem, not the solution."
+      placeholder: |
+        When [user type] wants to [goal], they [current limitation/problem], which causes [negative impact].
+    validations:
+      required: true
+  - type: textarea
+    id: who
+    attributes:
+      label: "Who are we solving this for?"
+      description: "Identify user personas and their goals."
+      placeholder: |
+        Primary: [Persona]
+        - Goal: [Goal]
+        - Pain: [Pain point]
+    validations:
+      required: true
+  - type: textarea
+    id: why_now
+    attributes:
+      label: "Why should we solve this now?"
+      description: "Provide justification for prioritization. Focus on value, not the solution."
+      placeholder: |
+        Why now:
+        - Value to Persona: [Value they get]
+        - Value to Org: [Revenue, Efficiency, etc.]
+    validations:
+      required: true
+  - type: textarea
+    id: usecases
+    attributes:
+      label: Use Cases
+      description: "List concrete scenarios where this feature would be used."
+      placeholder: |
+        1. As a [persona], I want to [action] so that [outcome].
+        2. ...
+    validations:
+      required: false
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the solution you'd like to have.
+    validations:
+      required: false
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: "Clarify what is included and what is explicitly left out."
+      placeholder: |
+        In scope:
+        - [Item]
+
+        Out of scope:
+        - [Item]
+    validations:
+      required: false
