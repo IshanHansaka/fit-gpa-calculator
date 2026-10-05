@@ -1,6 +1,6 @@
 # 🎓 FIT GPA Calculator
 
-Open-source GPA calculator for the Faculty of Information Technology, University of Moratuwa. Calculate SGPA and OGPA, store marks securely with local-only saving, and plan future grades. Your data remains private and is automatically saved, allowing you to close and reopen the app without losing progress.
+Open-source GPA calculator for the Faculty of Information Technology, University of Moratuwa. Calculate Semester GPA, Current GPA and Overall GPA, store marks securely with local-only saving, and plan future grades. Your data remains private and is automatically saved, allowing you to close and reopen the app without losing progress.
 
 🔗 [https://fit-gpa-calculator.vercel.app](https://fit-gpa-calculator.vercel.app)
 
@@ -33,6 +33,7 @@ cd fit-gpa-calculator
 npm install
 npm run dev
 ```
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## 🤝 Contributing
@@ -63,4 +64,3 @@ git push origin feature/YourFeature
 ## 📄 License
 
 This project is licensed under the **[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)**.
-
