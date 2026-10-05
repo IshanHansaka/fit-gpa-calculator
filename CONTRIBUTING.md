@@ -53,6 +53,6 @@ We use Conventional Commits. Please write clear, concise commit messages:
 ### 5. Submit a Pull Request (PR)
 
 1. Push your branch to your forked repository:
-2. Open a Pull Request from your fork to the `main` branch of this original repository.
+2. Open a Pull Request from your fork to the `dev` branch of this original repository.
 3. **PR Description:** Provide a clear description of what you changed. Link the PR to the original issue by including keywords like `Closes #12` or `Fixes #34`.
 4. **Screenshots:** If your PR includes UI changes, please include "Before" and "After" screenshots in your PR description.
