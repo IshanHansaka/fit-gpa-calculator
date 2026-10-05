@@ -33,16 +33,22 @@ const Theme = () => {
         href='https://github.com/IshanHansaka/fit-gpa-calculator'
         target='_blank'
         rel='noopener noreferrer'
-        aria-label='Star this project on GitHub'
-        className='flex h-9 items-center gap-2 rounded-full py-2 pl-4 pr-3 text-sm font-medium transition-colors hover:bg-black/5 dark:hover:bg-white/10'
+        className='group flex h-9 items-center rounded-full py-2 pl-4 pr-3 text-sm font-medium transition-colors hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-500 dark:hover:bg-white/10'
       >
         <Image
           src={theme === 'light' ? '/star-light.svg' : '/star-dark.svg'}
           width={18}
           height={18}
           alt={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+          className='shrink-0 transition-transform duration-700 ease-out group-hover:rotate-[72deg] group-hover:scale-125 group-focus-visible:rotate-[72deg] group-focus-visible:scale-125 motion-reduce:transition-none'
         />
-        <span>Star</span>
+        <span className='ml-2'>Star</span>
+        <span
+          aria-hidden='true'
+          className='hidden max-w-0 overflow-hidden whitespace-nowrap opacity-0 transition-all duration-700 ease-out group-hover:max-w-[22rem] group-hover:opacity-100 group-focus-visible:max-w-[22rem] group-focus-visible:opacity-100 motion-reduce:transition-none sm:block'
+        >
+          <span className='text-fuchsia-600 dark:text-fuchsia-400 ml-1'>us on GitHub</span>
+        </span>
       </a>
 
       <button
@@ -51,7 +57,7 @@ const Theme = () => {
         aria-label={
           theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'
         }
-        className='flex h-9 w-9 items-center justify-center rounded-full border-2 border-gray-800 bg-white/60 transition-colors hover:bg-white dark:border-white/30 dark:bg-white/10 dark:hover:bg-white/20'
+        className='flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-gray-800 bg-white/60 transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-500 dark:border-white/30 dark:bg-white/10 dark:hover:bg-white/20'
       >
         <Image
           src={theme === 'light' ? '/dark.svg' : '/light.svg'}
