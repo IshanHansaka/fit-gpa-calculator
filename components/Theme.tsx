@@ -40,12 +40,12 @@ const Theme = () => {
           width={18}
           height={18}
           alt='Star on GitHub'
-          className='shrink-0 transition-transform duration-1000 ease-out group-hover:rotate-[72deg] group-focus-visible:rotate-[72deg] motion-reduce:transition-none'
+          className='shrink-0 transition-transform duration-1000 ease-in-out group-hover:rotate-[72deg] group-focus-visible:rotate-[72deg] motion-reduce:transition-none'
         />
         <span className='ml-2'>Star</span>
         <span
           aria-hidden='true'
-          className='hidden max-w-0 overflow-hidden whitespace-nowrap opacity-0 transition-all duration-1000 ease-out group-hover:max-w-[22rem] group-hover:opacity-100 group-focus-visible:max-w-[22rem] group-focus-visible:opacity-100 motion-reduce:transition-none sm:block'
+          className='hidden max-w-0 overflow-hidden whitespace-nowrap opacity-0 transition-all duration-1000 ease-in-out group-hover:max-w-[7rem] group-hover:opacity-100 group-focus-visible:max-w-[7rem] group-focus-visible:opacity-100 motion-reduce:transition-none sm:block'
         >
           <span className='text-fuchsia-600 dark:text-fuchsia-400 ml-1'>us on GitHub</span>
         </span>
