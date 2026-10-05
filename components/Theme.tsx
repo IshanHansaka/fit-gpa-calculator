@@ -28,17 +28,39 @@ const Theme = () => {
   if (theme === null) return null;
 
   return (
-    <button
-      onClick={toggleTheme}
-      className="fixed top-4 right-4 p-2 rounded-full bg-white dark:bg-gray-600 z-10"
-    >
-      <Image
-        src={theme === 'light' ? '/dark.svg' : '/light.svg'}
-        width={24}
-        height={24}
-        alt={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-      />
-    </button>
+    <div className='fixed top-4 right-4 z-10 flex items-center gap-1 rounded-full border border-gray-200 bg-gray-100/90 p-1 text-gray-900 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-800/80 dark:text-white'>
+      <a
+        href='https://github.com/IshanHansaka/fit-gpa-calculator'
+        target='_blank'
+        rel='noopener noreferrer'
+        aria-label='Star this project on GitHub'
+        className='flex h-9 items-center gap-2 rounded-full py-2 pl-4 pr-3 text-sm font-medium transition-colors hover:bg-black/5 dark:hover:bg-white/10'
+      >
+        <Image
+          src={theme === 'light' ? '/star-light.svg' : '/star-dark.svg'}
+          width={18}
+          height={18}
+          alt={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+        />
+        <span>Star</span>
+      </a>
+
+      <button
+        type='button'
+        onClick={toggleTheme}
+        aria-label={
+          theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'
+        }
+        className='flex h-9 w-9 items-center justify-center rounded-full border-2 border-gray-800 bg-white/60 transition-colors hover:bg-white dark:border-white/30 dark:bg-white/10 dark:hover:bg-white/20'
+      >
+        <Image
+          src={theme === 'light' ? '/dark.svg' : '/light.svg'}
+          width={18}
+          height={18}
+          alt={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+        />
+      </button>
+    </div>
   );
 };
 
