@@ -11,17 +11,28 @@ export default async function Header() {
       headers.set("Authorization", `Bearer ${process.env.GITHUB_PAT}`);
     }
 
+    //Create a 5 second deadline so the app never hangs
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+
     const response = await fetch(
       "https://api.github.com/repos/IshanHansaka/fit-gpa-calculator/releases/latest",
       {
         headers,
+        signal: controller.signal,
         next: { revalidate: 3600 },
       },
     );
 
+
+    clearTimeout(timeoutId);
+
     if (response.ok) {
       const data = await response.json();
       version = data.tag_name;
+    } else {
+      // Log specific HTTP errors 
+      console.error("Failed to fetch version:", response.status, response.statusText);
     }
   } catch (error) {
     console.error("Failed to fetch version:", error);
