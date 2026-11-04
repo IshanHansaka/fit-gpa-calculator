@@ -7,7 +7,14 @@ import Semester from '../components/Semester';
 import Table from '../components/Table';
 import DownloadPDF from '../components/DownloadPDF';
 import { gradeToPoint } from '@/constants/grades';
-import { SemesterType } from '@/types/Semester';
+import { SemesterType, ModuleType } from '@/types/Semester';
+import HtmlImporter from '../components/HtmlImporter';
+import {
+  degreeMap,
+  degreeMapByCode,
+  Degree,
+  DegreeCode,
+} from '@/constants/constraint';
 
 export default function Home() {
   const pageRef = useRef<HTMLDivElement>(null);
@@ -75,10 +82,88 @@ export default function Home() {
     totalGPACredits > 0
       ? parseFloat((totalGradePoints / totalGPACredits).toFixed(2))
       : 0.0;
+  const handleHtmlImport = (gradesMap: Record<string, string>) => {
+    try {
+      const storedDegree = localStorage.getItem('degree');
+      let template: SemesterType[] = [];
 
+      // Fetch the full 8-semester template based on the user's selected degree
+      if (storedDegree) {
+        if ((storedDegree as Degree) in degreeMap) {
+          template = degreeMap[storedDegree as Degree];
+        } else if ((storedDegree as DegreeCode) in degreeMapByCode) {
+          template = degreeMapByCode[storedDegree as DegreeCode];
+        }
+      }
+
+      if (template.length === 0) {
+        alert('Please select a degree template first from the main menu.');
+        return;
+      }
+
+      // Merge the existing semesters with the template to ensure we don't lose manually added custom modules
+      const updatedSemesters = [...semesters];
+
+      template.forEach((templateSem) => {
+        let hasImportedGrades = false;
+
+        // Deep copy the template modules so we don't mutate the constant
+        const semModules = templateSem.modules.map((mod: ModuleType) => {
+          const modNameLower = mod.name.trim().toLowerCase();
+          if (gradesMap[modNameLower]) {
+            hasImportedGrades = true;
+            return { ...mod, grade: gradesMap[modNameLower] };
+          }
+          return { ...mod };
+        });
+
+        // Check if this semester already exists in the user's current view
+        const existingSemIndex = updatedSemesters.findIndex(
+          (s) => s.id === templateSem.id
+        );
+
+        if (existingSemIndex !== -1) {
+          // Update the existing semester's grades
+          const existingModules = updatedSemesters[existingSemIndex].modules;
+          semModules.forEach((newMod: ModuleType) => {
+            const matchIndex = existingModules.findIndex(
+              (em: ModuleType) =>
+                em.name.trim().toLowerCase() ===
+                newMod.name.trim().toLowerCase()
+            );
+            if (matchIndex !== -1) {
+              existingModules[matchIndex].grade =
+                newMod.grade || existingModules[matchIndex].grade;
+            } else if (newMod.grade) {
+              // If it's in the template, has a grade, but was deleted by the user, add it back
+              existingModules.push(newMod);
+            }
+          });
+          updatedSemesters[existingSemIndex].modules = [...existingModules];
+        } else if (hasImportedGrades) {
+          // If the semester is not currently shown but has imported grades, add it to the view
+          updatedSemesters.push({
+            id: templateSem.id,
+            level: templateSem.level,
+            semester: templateSem.semester,
+            modules: semModules,
+          });
+        }
+      });
+
+      // Sort by ID to keep Semester 1, 2, 3 in order
+      updatedSemesters.sort((a, b) => a.id - b.id);
+      setSemesters(updatedSemesters);
+      alert('Results imported successfully!');
+    } catch (err) {
+      console.error(err);
+      alert('An error occurred while matching the modules.');
+    }
+  };
   return (
     <>
       <Hero />
+      <HtmlImporter onImportComplete={handleHtmlImport} />
 
       {/* Use DownloadPDF component for popup and professional PDF export */}
       <DownloadPDF
