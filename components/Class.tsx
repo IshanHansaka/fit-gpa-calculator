@@ -27,6 +27,26 @@ const Class: React.FC<ClassProps> = ({
       ? "Fail"
       : "Error";
 
+  const getClassDescription = (tier: string) => {
+    switch (tier) {
+      case "Pending":
+        return "Your class will be displayed here once you have completed all your semesters.";
+      case "First Class":
+        return "Outstanding achievement! You've earned a First Class Honors! 🏆";
+      case "Second Class - Upper Division":
+        return "Great job! You've secured a Second Class Upper! 🌟";
+      case "Second Class - Lower Division":
+        return "Well done on achieving a Second Class Lower! 👍";
+      case "Pass":
+        return "Good work! You have successfully passed your degree. 🎓";
+      case "Fail":
+        return "Keep pushing, don't give up! 💪";
+      case "Error":
+      default:
+        return "There was an error calculating your class.";
+    }
+  };
+  
   return (
     <div className="space-y-6">
       <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-3 md:p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -44,11 +64,7 @@ const Class: React.FC<ClassProps> = ({
           <ClassCard
             title="Class"
             value={className}
-            description={
-              className === "Pending"
-                ? "Your class will be displayed here once you have completed all your semesters."
-                : `Congratulations on your ${className}! 🎉`
-            }
+            description={getClassDescription(className)}
             color="lime"
           />
         </div>
