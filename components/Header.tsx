@@ -24,15 +24,18 @@ export default async function Header() {
       },
     );
 
-
     clearTimeout(timeoutId);
 
     if (response.ok) {
       const data = await response.json();
       version = data.tag_name;
     } else {
-      // Log specific HTTP errors 
-      console.error("Failed to fetch version:", response.status, response.statusText);
+      // Log specific HTTP errors
+      console.error(
+        "Failed to fetch version:",
+        response.status,
+        response.statusText,
+      );
     }
   } catch (error) {
     console.error("Failed to fetch version:", error);
@@ -46,7 +49,7 @@ export default async function Header() {
         </span>
         {/* Nuxt-style Version Badge */}
         {version && (
-          <span className="px-2 py-0.5 text-xs font-mono font-semibold bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-950 dark:text-fuchsia-300 rounded-md border border-fuchsia-200 dark:border-fuchsia-800 shadow-sm">
+          <span className="px-2 py-1 text-xs font-mono font-semibold bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-950 dark:text-fuchsia-300 rounded-md border border-fuchsia-600 dark:border-fuchsia-800 shadow-sm">
             {version}
           </span>
         )}
